@@ -4,18 +4,28 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:padding="20dp">
+    android:padding="20dp"
+    android:background="@color/background_color">
 
     <Button
         android:id="@+id/audioModeButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Audio Mode (For Blind Users)" />
+        android:text="🎧 Audio Mode (For Blind Users)"
+        android:textSize="20sp"
+        android:padding="15dp"
+        android:background="@drawable/button_style"
+        android:contentDescription="Tap to enter audio mode for blind users" />
 
     <Button
+
         android:id="@+id/videoModeButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Video Mode (For Deaf Users)"
-        android:layout_marginTop="20dp"/>
+        android:text="🎥 Video Mode (For Deaf Users)"
+        android:textSize="20sp"
+        android:padding="15dp"
+        android:background="@drawable/button_style"
+        android:layout_marginTop="20dp"
+        android:contentDescription="Tap to enter video mode for deaf users" />
 </LinearLayout>

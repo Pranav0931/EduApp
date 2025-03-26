@@ -14,8 +14,16 @@ public class MainActivity extends AppCompatActivity {
         Button audioModeButton = findViewById(R.id.audioModeButton);
         Button videoModeButton = findViewById(R.id.videoModeButton);
 
-        audioModeButton.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, AudioModeActivity.class)));
+        // Launch Audio Mode (for blind users)
+        audioModeButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, AudioModeActivity.class);
+            startActivity(intent);
+        });
 
-        videoModeButton.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, VideoModeActivity.class)));
+        // Launch Video Mode (for deaf users)
+        videoModeButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, VideoModeActivity.class);
+            startActivity(intent);
+        });
     }
 }
