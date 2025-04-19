@@ -36,6 +36,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+    
 
     // ✅ OkHttp for API Requests (Google Translate API)
     implementation("com.squareup.okhttp3:okhttp:4.9.3")

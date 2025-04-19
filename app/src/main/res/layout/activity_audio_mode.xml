@@ -25,7 +25,10 @@
             android:layout_height="wrap_content"
             android:hint="Enter text to convert to speech"
             android:textSize="16sp"
-            android:padding="12dp"/>
+            android:padding="12dp"
+            android:textColor="@color/text_primary"
+            android:background="@drawable/rounded_edittext"/>
+
 
         <Spinner
             android:id="@+id/languageSpinner"
@@ -62,10 +65,26 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Chapter 1 Audio"
+            android:text="Audio Player"
             android:textSize="20sp"
             android:textStyle="bold"
             android:padding="8dp"/>
+
+        <!-- Chapter Selection Spinner -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Chapter"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:layout_marginTop="10dp"/>
+
+        <Spinner
+            android:id="@+id/chapterSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"/>
 
         <TextView
             android:id="@+id/audioStatus"
@@ -96,8 +115,12 @@
             android:layout_height="wrap_content"
             android:text="▶ Play Chapter Audio"
             android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:background="@drawable/rounded_button"
             android:padding="12dp"
             android:layout_marginTop="10dp"/>
+
+
 
         <Button
             android:id="@+id/stopAudioButton"

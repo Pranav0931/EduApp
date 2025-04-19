@@ -1,21 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp">
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp"
+    android:background="#FFFFFF">
 
+    <!-- Play Local Video Button -->
+    <Button
+        android:id="@+id/playLocalButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="▶ Play Local Video"
+        android:textColor="#381A51"
+        android:backgroundTint="#D3B2F5"
+        android:padding="10dp"
+        android:layout_marginBottom="10dp"/>
+
+    <!-- Play YouTube Video Button -->
+    <Button
+        android:id="@+id/playYouTubeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="🎥 Play YouTube Video"
+        android:textColor="#381A51"
+        android:backgroundTint="#D3B2F5"
+        android:padding="10dp"
+        android:layout_marginBottom="20dp"/>
+
+    <!-- Video Player -->
     <VideoView
         android:id="@+id/videoView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true" />
+        android:layout_height="200dp"
+        android:visibility="gone"/>
 
-    <Button
-        android:id="@+id/playButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="▶ Play Video"
-        android:layout_below="@id/videoView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"/>
-</RelativeLayout>
+    <!-- WebView for YouTube -->
+    <WebView
+        android:id="@+id/videoWebView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:visibility="gone"/>
+</LinearLayout>

@@ -1,7 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="background_color">#F5F5F5</color>
-    <color name="button_color">#2196F3</color>
-    <color name="button_border_color">#1565C0</color>
 
+        <!-- Background Colors -->
+        <color name="background_color">#F5F5F5</color> <!-- Light Gray -->
+
+        <!-- Button Colors -->
+        <color name="button_background">#D1B3FF</color> <!-- Light Purple -->
+        <color name="button_text">#3A1D6E</color> <!-- Dark Purple -->
+
+    <color name="white">#FFFFFF</color>
+
+
+    <!-- Background Colors -->
+    <color name="card_background">#FFFFFF</color>
+
+    <!-- Button Colors (Purple Theme) -->
+    <color name="button_normal">#D1C4E9</color> <!-- Light Purple -->
+    <color name="button_pressed">#B39DDB</color> <!-- Darker Purple -->
+    <color name="button_text_color">#FFFFFF</color>
+    <color name="button_border_color">#9575CD</color> <!-- Mid Purple Border -->
+    <color name="button_disabled">#B0BEC5</color> <!-- Gray Disabled -->
+
+    <!-- Secondary Buttons -->
+    <color name="primary_button">#6200EE</color>
+    <color name="secondary_button">#3700B3</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#212121</color> <!-- Dark Gray -->
+    <color name="text_secondary">#757575</color> <!-- Lighter Gray -->
+
+    <!-- Accent and Highlights -->
+    <color name="accent_color">#FF9800</color> <!-- Orange Accent -->
+    <color name="highlight_color">#FFC107</color> <!-- Yellow Highlight -->
+
+    <!-- SeekBar Colors -->
+    <color name="seekbar_progress">#1976D2</color>
+    <color name="seekbar_thumb">#0D47A1</color>
+
+    <!-- EditText Border -->
+    <color name="edittext_border_color">#D3D3D3</color>
 </resources>

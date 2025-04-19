@@ -13,17 +13,18 @@
         android:layout_height="wrap_content"
         android:text="🎧 Audio Mode (For Blind Users)"
         android:textSize="20sp"
+        android:textColor="@color/button_text"
         android:padding="15dp"
         android:background="@drawable/button_style"
         android:contentDescription="Tap to enter audio mode for blind users" />
 
     <Button
-
         android:id="@+id/videoModeButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="🎥 Video Mode (For Deaf Users)"
         android:textSize="20sp"
+        android:textColor="@color/button_text"
         android:padding="15dp"
         android:background="@drawable/button_style"
         android:layout_marginTop="20dp"
