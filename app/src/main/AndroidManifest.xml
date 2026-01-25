@@ -3,11 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Required Permissions -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    
-    <!-- For voice commands (optional) -->
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -69,6 +65,7 @@
             android:label="@string/video_player_title"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:theme="@style/Theme.EduApp" />
+
 
     </application>
 </manifest>

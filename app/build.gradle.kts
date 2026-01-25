@@ -44,20 +44,6 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
-    implementation(libs.recyclerview)
-    implementation(libs.cardview)
-    
-    // Supabase REST API integration (Retrofit + OkHttp)
-    implementation(libs.retrofit)
-    implementation(libs.retrofit.gson)
-    implementation(libs.okhttp)
-    implementation(libs.okhttp.logging)
-    implementation(libs.gson)
-    
-    // ExoPlayer for video playback
-    implementation(libs.exoplayer)
-    implementation(libs.exoplayer.ui)
-    
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
