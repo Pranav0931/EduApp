@@ -1,9 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Base application theme -->
     <style name="Base.Theme.EduApp" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/primary_magenta</item>
+        <item name="colorPrimaryDark">@color/primary_magenta_dark</item>
+        <item name="colorOnPrimary">@color/text_on_primary</item>
+        
+        <!-- Secondary brand color -->
+        <item name="colorSecondary">@color/secondary_purple</item>
+        <item name="colorOnSecondary">@color/text_primary</item>
+        
+        <!-- Background colors -->
+        <item name="android:colorBackground">@color/background_white</item>
+        <item name="colorSurface">@color/background_white</item>
+        
+        <!-- Status bar -->
+        <item name="android:statusBarColor">@color/primary_magenta</item>
+        <item name="android:navigationBarColor">@color/background_white</item>
+        
+        <!-- Window properties -->
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
     </style>
 
     <style name="Theme.EduApp" parent="Base.Theme.EduApp" />
+    
+    <!-- Splash Screen Theme -->
+    <style name="Theme.EduApp.Splash" parent="Theme.EduApp">
+        <item name="android:windowBackground">@color/background_white</item>
+    </style>
+    
+    <!-- Header Toolbar Style -->
+    <style name="EduAppHeader">
+        <item name="android:background">@color/primary_magenta</item>
+        <item name="android:paddingTop">24dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+    </style>
+    
+    <!-- Mode Selection Button Style -->
+    <style name="EduAppModeButton" parent="Widget.Material3.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">80dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="backgroundTint">@color/secondary_purple</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="cornerRadius">16dp</item>
+        <item name="android:padding">20dp</item>
+    </style>
+    
+    <!-- Class Selection Circular Button Style -->
+    <style name="EduAppClassButton" parent="Widget.Material3.Button">
+        <item name="android:layout_width">90dp</item>
+        <item name="android:layout_height">90dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="backgroundTint">@color/primary_magenta</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="cornerRadius">45dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+    </style>
+    
+    <!-- List Item Card Style -->
+    <style name="EduAppListItemCard">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">56dp</item>
+        <item name="android:background">@drawable/bg_list_item</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+    
+    <!-- Badge Style (STD, CHAPTERS) -->
+    <style name="EduAppBadge">
+        <item name="android:background">@drawable/bg_badge</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:paddingStart">32dp</item>
+        <item name="android:paddingEnd">32dp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    
+    <!-- Player Control Button Style -->
+    <style name="EduAppPlayerButton">
+        <item name="android:layout_width">64dp</item>
+        <item name="android:layout_height">64dp</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:padding">8dp</item>
+    </style>
+    
+    <!-- Large Player Button (Play/Pause) -->
+    <style name="EduAppPlayerButtonLarge" parent="EduAppPlayerButton">
+        <item name="android:layout_width">80dp</item>
+        <item name="android:layout_height">80dp</item>
+    </style>
+    
+    <!-- Text Styles -->
+    <style name="EduAppHeaderTitle">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif-black</item>
+    </style>
+    
+    <style name="EduAppListItemText">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

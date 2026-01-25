@@ -3,7 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Required Permissions -->
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    
+    <!-- For voice commands (optional) -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
         android:allowBackup="true"
@@ -16,22 +20,55 @@
         android:theme="@style/Theme.EduApp"
         tools:targetApi="31">
 
-        <!-- Main Activity (Home Screen) -->
+        <!-- Splash Screen (Launcher) -->
         <activity
-            android:name=".MainActivity"
-            android:exported="true">  <!-- Add this line -->
+            android:name=".activities.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.EduApp.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <!-- Mode Selection Screen -->
+        <activity
+            android:name=".activities.ModeSelectionActivity"
+            android:exported="false"
+            android:label="@string/mode_selection_title" />
 
-        <!-- Audio Mode Activity -->
-        <activity android:name=".AudioModeActivity"/>
+        <!-- Class Selection Screen -->
+        <activity
+            android:name=".activities.ClassSelectionActivity"
+            android:exported="false"
+            android:label="@string/class_selection_title" />
 
-        <!-- Video Mode Activity -->
-        <activity android:name=".VideoModeActivity"/>
+        <!-- Books Screen -->
+        <activity
+            android:name=".activities.BooksActivity"
+            android:exported="false"
+            android:label="@string/books_title" />
+
+        <!-- Chapters Screen -->
+        <activity
+            android:name=".activities.ChaptersActivity"
+            android:exported="false"
+            android:label="@string/chapters_title" />
+
+        <!-- Audio Player Screen (for blind users) -->
+        <activity
+            android:name=".activities.AudioPlayerActivity"
+            android:exported="false"
+            android:label="@string/audio_player_title"
+            android:screenOrientation="portrait" />
+
+        <!-- Video Player Screen (for deaf users) -->
+        <activity
+            android:name=".activities.VideoPlayerActivity"
+            android:exported="false"
+            android:label="@string/video_player_title"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:theme="@style/Theme.EduApp" />
 
     </application>
 </manifest>

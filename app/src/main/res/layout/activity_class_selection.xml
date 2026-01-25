@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background_white"
+    tools:context=".activities.ClassSelectionActivity">
+
+    <!-- Logo at top -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingTop="32dp"
+        android:paddingBottom="16dp">
+
+        <ImageView
+            android:id="@+id/logoImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@mipmap/ic_launcher"
+            android:contentDescription="@string/app_name" />
+
+    </LinearLayout>
+
+    <!-- Toolbar with gradient -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_toolbar_gradient"
+        android:padding="12dp"
+        android:gravity="center_vertical">
+
+        <ImageButton
+            android:id="@+id/menuButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_menu"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/menu_description"
+            app:tint="@color/text_primary" />
+
+    </LinearLayout>
+
+    <!-- Class Selection Grid -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="24dp">
+
+            <!-- Row 1: 9th, 8th, 7th -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="24dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn9th"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:text="@string/class_9th"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:backgroundTint="@color/primary_magenta"
+                    app:cornerRadius="45dp"
+                    android:layout_marginEnd="24dp"
+                    android:contentDescription="Select class 9th standard" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn8th"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:text="@string/class_8th"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:backgroundTint="@color/primary_magenta"
+                    app:cornerRadius="45dp"
+                    android:layout_marginEnd="24dp"
+                    android:contentDescription="Select class 8th standard" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn7th"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:text="@string/class_7th"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:backgroundTint="@color/primary_magenta"
+                    app:cornerRadius="45dp"
+                    android:contentDescription="Select class 7th standard" />
+
+            </LinearLayout>
+
+            <!-- Row 2: 6th, 5th, 4th -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="24dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn6th"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:text="@string/class_6th"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:backgroundTint="@color/primary_magenta"
+                    app:cornerRadius="45dp"
+                    android:layout_marginEnd="24dp"
+                    android:contentDescription="Select class 6th standard" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn5th"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:text="@string/class_5th"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:backgroundTint="@color/primary_magenta"
+                    app:cornerRadius="45dp"
+                    android:layout_marginEnd="24dp"
+                    android:contentDescription="Select class 5th standard" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn4th"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:text="@string/class_4th"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:backgroundTint="@color/primary_magenta"
+                    app:cornerRadius="45dp"
+                    android:contentDescription="Select class 4th standard" />
+
+            </LinearLayout>
+
+            <!-- Row 3: 3rd, 2nd, 1st -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn3rd"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:text="@string/class_3rd"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:backgroundTint="@color/primary_magenta"
+                    app:cornerRadius="45dp"
+                    android:layout_marginEnd="24dp"
+                    android:contentDescription="Select class 3rd standard" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn2nd"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:text="@string/class_2nd"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:backgroundTint="@color/primary_magenta"
+                    app:cornerRadius="45dp"
+                    android:layout_marginEnd="24dp"
+                    android:contentDescription="Select class 2nd standard" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn1st"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:text="@string/class_1st"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:backgroundTint="@color/primary_magenta"
+                    app:cornerRadius="45dp"
+                    android:contentDescription="Select class 1st standard" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

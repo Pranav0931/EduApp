@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/background_white"
+    android:padding="32dp"
+    tools:context=".activities.ModeSelectionActivity">
+
+    <!-- Spacer to push buttons to center-bottom -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- Audio Mode Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/audioModeButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="100dp"
+        android:text="@string/audio_mode_button"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/text_primary"
+        android:background="@drawable/bg_mode_button"
+        android:padding="24dp"
+        android:gravity="center"
+        android:contentDescription="@string/audio_mode_description"
+        app:backgroundTint="@color/secondary_purple"
+        app:cornerRadius="16dp"
+        tools:ignore="VisualLintButtonSize" />
+
+    <!-- Spacer between buttons -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
+
+    <!-- Video Mode Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/videoModeButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="100dp"
+        android:text="@string/video_mode_button"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/text_primary"
+        android:background="@drawable/bg_mode_button"
+        android:padding="24dp"
+        android:gravity="center"
+        android:contentDescription="@string/video_mode_description"
+        app:backgroundTint="@color/secondary_purple"
+        app:cornerRadius="16dp"
+        tools:ignore="VisualLintButtonSize" />
+
+    <!-- Spacer at bottom -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>
