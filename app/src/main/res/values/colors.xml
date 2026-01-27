@@ -4,39 +4,45 @@
     <color name="primary_magenta">#FF00FF</color>
     <color name="primary_magenta_dark">#CC00CC</color>
     <color name="primary_magenta_light">#FF66FF</color>
-    
+
     <!-- Secondary Colors -->
     <color name="secondary_purple">#C4B5FD</color>
     <color name="secondary_purple_dark">#A78BFA</color>
     <color name="secondary_purple_light">#DDD6FE</color>
-    
+
     <!-- Background Colors -->
     <color name="background_white">#FFFFFF</color>
     <color name="background_light_gray">#F5F5F5</color>
     <color name="card_gray">#D9D9D9</color>
     <color name="card_gray_dark">#BFBFBF</color>
-    
+
     <!-- Text Colors -->
     <color name="text_primary">#000000</color>
     <color name="text_secondary">#666666</color>
     <color name="text_on_primary">#000000</color>
     <color name="text_white">#FFFFFF</color>
-    
+
     <!-- Status Colors -->
     <color name="success_green">#4CAF50</color>
     <color name="error_red">#F44336</color>
     <color name="warning_orange">#FF9800</color>
-    
+
     <!-- Player Colors -->
     <color name="player_button">#000000</color>
     <color name="player_background">#D9D9D9</color>
-    
+
     <!-- Accessibility - High Contrast -->
     <color name="high_contrast_background">#000000</color>
     <color name="high_contrast_text">#FFFFFF</color>
     <color name="high_contrast_accent">#FFFF00</color>
-    
+
     <!-- Default Material Colors (for compatibility) -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- EduAI Chat Colors -->
+    <color name="surface">#FFFFFF</color>
+    <color name="surface_variant">#F0F0F0</color>
+    <color name="divider">#E0E0E0</color>
+    <color name="eduai_primary">#007AFF</color>
 </resources>

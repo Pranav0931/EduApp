@@ -57,4 +57,41 @@ public final class Constants {
     public static final String VOICE_CMD_BACK = "back";
     public static final String VOICE_CMD_GO_BACK = "go back";
     public static final String VOICE_CMD_REPEAT = "repeat";
+
+    // EduAI Intent Extras
+    public static final String EXTRA_QUIZ_SUBJECT = "extra_quiz_subject";
+    public static final String EXTRA_QUIZ_CHAPTER = "extra_quiz_chapter";
+    public static final String EXTRA_QUIZ_CLASS = "extra_quiz_class";
+    public static final String EXTRA_QUIZ_QUESTIONS = "extra_quiz_questions";
+    public static final String EXTRA_QUIZ_TYPE = "extra_quiz_type";
+
+    // Quiz types
+    public static final String QUIZ_TYPE_CHAPTER = "chapter";
+    public static final String QUIZ_TYPE_DAILY = "daily";
+    public static final String QUIZ_TYPE_PRACTICE = "practice";
+
+    // EduAI Configuration
+    public static final String PREF_GEMINI_API_KEY = "gemini_api_key";
+    public static final String PREF_EDUAI_ENABLED = "eduai_enabled";
+    public static final String PREF_VOICE_INPUT_ENABLED = "voice_input_enabled";
+
+    // Learning Progress
+    public static final String COLLECTION_QUIZ_RESULTS = "quiz_results";
+    public static final String COLLECTION_LEARNING_PROGRESS = "learning_progress";
+
+    // EduAI Voice Commands (Hinglish)
+    public static final String VOICE_CMD_OPEN = "khol";
+    public static final String VOICE_CMD_QUIZ = "quiz";
+    public static final String VOICE_CMD_TEST = "test";
+    public static final String VOICE_CMD_EXPLAIN = "samjhao";
+    public static final String VOICE_CMD_HELP = "help";
+
+    // Subjects
+    public static final String[] SUBJECTS = {
+            "English", "Hindi", "Marathi", "Math", "Science", "Social Science"
+    };
+
+    // Classes (1st to 10th)
+    public static final int MIN_CLASS = 1;
+    public static final int MAX_CLASS = 10;
 }

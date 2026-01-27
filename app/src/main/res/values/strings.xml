@@ -2,14 +2,16 @@
 <resources>
     <!-- App Name -->
     <string name="app_name">EduApp</string>
-    
+
     <!-- Mode Selection Screen -->
     <string name="mode_selection_title">Choose Learning Mode</string>
     <string name="audio_mode_button">🎧 Audio Mode (For Blind Users)</string>
     <string name="video_mode_button">🎬 Video Mode (For Deaf Users)</string>
-    <string name="audio_mode_description">Learn through audio lessons with text-to-speech. Optimized for TalkBack.</string>
-    <string name="video_mode_description">Learn through video lessons with Indian Sign Language and captions.</string>
-    
+    <string name="audio_mode_description">Learn through audio lessons with text-to-speech. Optimized
+        for TalkBack.</string>
+    <string name="video_mode_description">Learn through video lessons with Indian Sign Language and
+        captions.</string>
+
     <!-- Class Selection Screen -->
     <string name="class_selection_title">Select Class</string>
     <string name="class_1st">1st</string>
@@ -22,16 +24,16 @@
     <string name="class_8th">8th</string>
     <string name="class_9th">9th</string>
     <string name="class_button_description">Select class %1$s standard</string>
-    
+
     <!-- Books Screen -->
     <string name="books_title">BOOKS</string>
     <string name="std_format">STD %1$s</string>
     <string name="book_item_description">Book: %1$s. Tap to view chapters.</string>
-    
+
     <!-- Chapters Screen -->
     <string name="chapters_title">CHAPTERS</string>
     <string name="chapter_item_description">Chapter: %1$s. Tap to start learning.</string>
-    
+
     <!-- Audio Player Screen -->
     <string name="audio_player_title">Audio Player</string>
     <string name="btn_play">Play</string>
@@ -45,14 +47,14 @@
     <string name="next_button_description">Go to next chapter</string>
     <string name="speed_control_description">Adjust speech speed</string>
     <string name="audio_visualization_description">Audio visualization area</string>
-    
+
     <!-- Video Player Screen -->
     <string name="video_player_title">Video Player</string>
     <string name="video_player_description">Video lesson player with subtitles</string>
     <string name="caption_toggle_description">Toggle captions on or off</string>
     <string name="fullscreen_description">Toggle fullscreen mode</string>
     <string name="playback_speed_description">Change playback speed</string>
-    
+
     <!-- Voice Commands -->
     <string name="voice_command_listening">Listening for command…</string>
     <string name="voice_command_play">Say \"Play\" to start</string>
@@ -60,7 +62,7 @@
     <string name="voice_command_next">Say \"Next\" for next chapter</string>
     <string name="voice_command_back">Say \"Go back\" for previous</string>
     <string name="voice_command_repeat">Say \"Repeat\" to replay</string>
-    
+
     <!-- Errors and Messages -->
     <string name="error_loading_content">Error loading content. Please try again.</string>
     <string name="error_no_internet">No internet connection. Showing offline content.</string>
@@ -70,19 +72,58 @@
     <string name="loading">Loading…</string>
     <string name="no_books_available">No books available for this class.</string>
     <string name="no_chapters_available">No chapters available for this book.</string>
-    
+
     <!-- Accessibility Announcements -->
-    <string name="talkback_mode_selection">Mode selection screen. Choose Audio Mode for blind users or Video Mode for deaf users.</string>
+    <string name="talkback_mode_selection">Mode selection screen. Choose Audio Mode for blind users
+        or Video Mode for deaf users.</string>
     <string name="talkback_class_selected">Class %1$s selected. Loading books.</string>
     <string name="talkback_book_selected">Book %1$s selected. Loading chapters.</string>
     <string name="talkback_chapter_selected">Chapter %1$s selected. Starting lesson.</string>
     <string name="talkback_audio_playing">Audio lesson is now playing.</string>
     <string name="talkback_audio_paused">Audio lesson paused.</string>
-    
+
     <!-- Navigation -->
     <string name="menu_description">Open navigation menu</string>
     <string name="back_description">Go back to previous screen</string>
-    
+
     <!-- Sample Content -->
-    <string name="sample_text_content">Welcome to the lesson. This is sample content for the audio mode. The text will be read aloud using text-to-speech technology.</string>
+    <string name="sample_text_content">Welcome to the lesson. This is sample content for the audio
+        mode. The text will be read aloud using text-to-speech technology.</string>
+
+    <!-- EduAI Chat Interface -->
+    <string name="eduai_name">EduAI</string>
+    <string name="eduai_tagline">Your Personal Study Buddy</string>
+    <string name="eduai_status_online">Online • Ready to help</string>
+    <string name="eduai_status_listening">🎤 Listening...</string>
+    <string name="eduai_status_thinking">🤔 Thinking...</string>
+    <string name="eduai_input_hint">Type your question...</string>
+    <string name="eduai_avatar_desc">EduAI Avatar</string>
+    <string name="voice_input_desc">Voice input - Tap to speak</string>
+    <string name="send_button_desc">Send message</string>
+    <string name="close_button_desc">Close chat</string>
+
+    <!-- EduAI Quick Actions -->
+    <string name="quick_action_open_class">📚 Open Class</string>
+    <string name="quick_action_start_quiz">📝 Start Quiz</string>
+    <string name="quick_action_play_audio">🎧 Play Audio</string>
+    <string name="quick_action_daily_challenge">🏆 Daily Challenge</string>
+
+    <!-- EduAI Responses -->
+    <string name="eduai_greeting">Hey! Main EduAI hoon, tumhara personal study buddy 😄📚\n\nBatao,
+        kya sikhna hai aaj?</string>
+    <string name="eduai_error_response">Oops! Kuch gadbad ho gayi 😅 Phir se try karo!</string>
+    <string name="eduai_thinking">Soch raha hoon... 🤔</string>
+
+    <!-- Quiz Screen -->
+    <string name="quiz_title">Quiz Time! 📝</string>
+    <string name="quiz_question_format">Question %1$d of %2$d</string>
+    <string name="quiz_score_format">Score: %1$d/%2$d</string>
+    <string name="quiz_next">Next</string>
+    <string name="quiz_submit">Submit</string>
+    <string name="quiz_finish">Finish</string>
+    <string name="quiz_correct">Shabash! 🎉 Sahi jawab!</string>
+    <string name="quiz_incorrect">Koi baat nahi! 😊 Sahi jawab hai: %1$s</string>
+
+    <!-- 10th Class -->
+    <string name="class_10th">10th</string>
 </resources>
