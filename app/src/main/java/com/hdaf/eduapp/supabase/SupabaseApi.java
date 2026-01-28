@@ -57,4 +57,18 @@ public interface SupabaseApi {
     @GET("chapters")
     Call<List<ChapterModel>> getAllChapters(
             @Query("order") String orderBy);
+
+    /**
+     * Upsert user profile (Insert or Update).
+     * Uses the "Prefer: resolution=merge-duplicates" header to handle upsert.
+     */
+    @retrofit2.http.POST("profiles")
+    @retrofit2.http.Headers("Prefer: resolution=merge-duplicates")
+    Call<Void> upsertProfile(@retrofit2.http.Body com.hdaf.eduapp.supabase.models.ProfileModel profile);
+
+    /**
+     * Insert a new analytics log.
+     */
+    @retrofit2.http.POST("analytics_logs")
+    Call<Void> createAnalyticsLog(@retrofit2.http.Body com.hdaf.eduapp.supabase.models.AnalyticsLogModel log);
 }

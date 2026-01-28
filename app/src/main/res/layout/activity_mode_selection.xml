@@ -15,6 +15,19 @@
         android:gravity="center"
         android:padding="32dp">
 
+        <ImageButton
+            android:id="@+id/btn_parent_zone"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="end"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_lock"
+            android:tint="@color/gray"
+            android:contentDescription="Parent Zone"
+            android:layout_marginEnd="-16dp"
+            android:layout_marginTop="-16dp"
+            tools:ignore="UseAppTint" />
+
         <!-- Spacer to push buttons to center-bottom -->
         <View
             android:layout_width="match_parent"
@@ -68,6 +81,21 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
     </LinearLayout>
+
+    <!-- Profile Floating Action Button -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/profileFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="96dp"
+        android:src="@drawable/ic_profile"
+        android:contentDescription="@string/profile_title"
+        app:fabSize="mini"
+        app:backgroundTint="@color/surface_variant"
+        app:tint="@color/primary"
+        app:elevation="4dp" />
 
     <!-- EduAI Floating Action Button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton

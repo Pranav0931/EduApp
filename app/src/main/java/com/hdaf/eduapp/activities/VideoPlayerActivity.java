@@ -16,12 +16,13 @@ import androidx.media3.exoplayer.ExoPlayer;
 import androidx.media3.ui.PlayerView;
 
 import com.hdaf.eduapp.R;
+import com.hdaf.eduapp.analytics.AnalyticsManager;
+import com.hdaf.eduapp.analytics.LearningSession;
 import com.hdaf.eduapp.utils.Constants;
 
 /**
  * Video Player screen for deaf users.
  * Plays ISL (Indian Sign Language) video lessons with captions.
- * Supports gesture navigation and playback speed control.
  */
 public class VideoPlayerActivity extends AppCompatActivity {
 
@@ -36,23 +37,17 @@ public class VideoPlayerActivity extends AppCompatActivity {
     private String chapterName;
     private String transcript;
 
-    private boolean isFullscreen = false;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Enable fullscreen
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         setContentView(R.layout.activity_video_player);
 
-        // Get extras from intent
         videoUrl = getIntent().getStringExtra(Constants.EXTRA_VIDEO_URL);
         chapterName = getIntent().getStringExtra(Constants.EXTRA_CHAPTER_NAME);
         transcript = getIntent().getStringExtra(Constants.EXTRA_LESSON_CONTENT);
 
-        // Default sample video if none provided
         if (videoUrl == null || videoUrl.isEmpty()) {
             videoUrl = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
         }
@@ -70,43 +65,31 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
         backButton.setOnClickListener(v -> onBackPressed());
 
-        // Set transcript as caption if available
         if (transcript != null && !transcript.isEmpty()) {
             captionText.setText(transcript);
         }
 
-        // Setup gesture detection for video controls
         setupGestureControls();
     }
 
     private void initializePlayer() {
         loadingProgress.setVisibility(View.VISIBLE);
 
-        // Create ExoPlayer instance
         player = new ExoPlayer.Builder(this).build();
         playerView.setPlayer(player);
 
-        // Create media item
         MediaItem mediaItem = MediaItem.fromUri(Uri.parse(videoUrl));
         player.setMediaItem(mediaItem);
 
-        // Add listener for player events
         player.addListener(new Player.Listener() {
             @Override
             public void onPlaybackStateChanged(int playbackState) {
-                switch (playbackState) {
-                    case Player.STATE_BUFFERING:
-                        loadingProgress.setVisibility(View.VISIBLE);
-                        break;
-                    case Player.STATE_READY:
-                        loadingProgress.setVisibility(View.GONE);
-                        break;
-                    case Player.STATE_ENDED:
-                        // Video finished
-                        announceForAccessibility("Video finished");
-                        break;
-                    case Player.STATE_IDLE:
-                        break;
+                if (playbackState == Player.STATE_BUFFERING) {
+                    loadingProgress.setVisibility(View.VISIBLE);
+                } else if (playbackState == Player.STATE_READY) {
+                    loadingProgress.setVisibility(View.GONE);
+                } else if (playbackState == Player.STATE_ENDED) {
+                    announceForAccessibility("Video finished");
                 }
             }
 
@@ -117,13 +100,11 @@ public class VideoPlayerActivity extends AppCompatActivity {
             }
         });
 
-        // Prepare and start playback
         player.prepare();
         player.play();
     }
 
     private void setupGestureControls() {
-        // Simple tap to toggle controls visibility
         playerView.setOnClickListener(v -> {
             if (playerView.isControllerFullyVisible()) {
                 playerView.hideController();
@@ -135,17 +116,6 @@ public class VideoPlayerActivity extends AppCompatActivity {
                 }
             }
         });
-
-        // Double tap to toggle fullscreen would go here
-        // For now, video is always fullscreen
-    }
-
-    private void toggleCaptions() {
-        if (captionContainer.getVisibility() == View.VISIBLE) {
-            captionContainer.setVisibility(View.GONE);
-        } else if (transcript != null && !transcript.isEmpty()) {
-            captionContainer.setVisibility(View.VISIBLE);
-        }
     }
 
     public void setPlaybackSpeed(float speed) {
@@ -164,6 +134,7 @@ public class VideoPlayerActivity extends AppCompatActivity {
         if (player != null) {
             player.pause();
         }
+        AnalyticsManager.getInstance(this).endSession();
     }
 
     @Override
@@ -172,6 +143,8 @@ public class VideoPlayerActivity extends AppCompatActivity {
         if (player != null) {
             player.play();
         }
+        AnalyticsManager.getInstance(this)
+                .startSession(LearningSession.ActivityType.VIDEO_LESSON, chapterName);
     }
 
     @Override

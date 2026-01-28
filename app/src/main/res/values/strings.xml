@@ -124,6 +124,31 @@
     <string name="quiz_correct">Shabash! 🎉 Sahi jawab!</string>
     <string name="quiz_incorrect">Koi baat nahi! 😊 Sahi jawab hai: %1$s</string>
 
+    <!-- Quiz Result Screen -->
+    <string name="quiz_result_title">Quiz Result</string>
+    <string name="next">Next</string>
+    <string name="finish">Finish</string>
+    <string name="close">Close</string>
+
     <!-- 10th Class -->
     <string name="class_10th">10th</string>
+
+    <!-- Profile Screen -->
+    <string name="profile_title">Profile</string>
+    <string name="profile_streak">Streak</string>
+    <string name="profile_quizzes">Quizzes</string>
+    <string name="profile_badges">Badges</string>
+    <string name="profile_daily_challenge">Daily Challenge</string>
+    <string name="profile_badges_title">Badges 🏅</string>
+    <string name="profile_badges_subtitle">Unlock badges by completing challenges</string>
+    <string name="profile_accessibility_intro">Profile screen. Showing your level, XP, streak, and
+        badges.</string>
+
+    <!-- Gamification -->
+    <string name="xp_earned_format">+%1$d XP</string>
+    <string name="level_up_message">🎉 Level Up!</string>
+    <string name="badge_earned_message">Tumne yeh badge earn kar liya!</string>
+    <string name="badge_reward_prefix">Reward:</string>
+    <string name="challenge_completed">Completed!</string>
+    <string name="streak_broken">Streak toot gayi 😢 Phir se shuru karo!</string>
 </resources>

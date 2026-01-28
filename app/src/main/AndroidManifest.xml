@@ -68,6 +68,26 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:theme="@style/Theme.EduApp" />
 
+        <!-- Quiz Activity -->
+        <activity
+            android:name=".activities.QuizActivity"
+            android:exported="false"
+            android:label="@string/quiz_title"
+            android:screenOrientation="portrait" />
+
+        <!-- Quiz Result Activity -->
+        <activity
+            android:name=".activities.QuizResultActivity"
+            android:exported="false"
+            android:label="@string/quiz_result_title"
+            android:screenOrientation="portrait" />
+
+        <!-- Profile Activity -->
+        <activity
+            android:name=".activities.ProfileActivity"
+            android:exported="false"
+            android:label="@string/profile_title"
+            android:screenOrientation="portrait" />
 
     </application>
 </manifest>

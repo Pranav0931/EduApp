@@ -1,0 +1,19 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Streak 7 Badge - Double flame -->
+    <path
+        android:fillColor="#FF5722"
+        android:pathData="M11.5,0.67s0.74,2.65 0.74,4.8c0,2.06 -1.35,3.73 -3.41,3.73 -2.07,0 -3.63,-1.67 -3.63,-3.73l0.03,-0.36C3.21,7.51 2,10.62 2,14c0,4.42 3.58,8 8,8s8,-3.58 8,-8C18,8.61 15.41,3.8 11.5,0.67zM9.71,19c-1.78,0 -3.22,-1.4 -3.22,-3.14 0,-1.62 1.05,-2.76 2.81,-3.12 1.77,-0.36 3.6,-1.21 4.62,-2.58 0.39,1.29 0.59,2.65 0.59,4.04 0,2.65 -2.15,4.8 -4.8,4.8z" />
+    <path
+        android:fillColor="#FFC107"
+        android:pathData="M9.71,19c-1.78,0 -3.22,-1.4 -3.22,-3.14 0,-1.62 1.05,-2.76 2.81,-3.12 1.77,-0.36 3.6,-1.21 4.62,-2.58 0.39,1.29 0.59,2.65 0.59,4.04 0,2.65 -2.15,4.8 -4.8,4.8z" />
+    <path
+        android:fillColor="#FF9800"
+        android:pathData="M17,6c-0.5,1.5 -1.5,3 -3,4c0.5,-2 0,-3 -0.5,-4c1,0.5 2,0 3.5,0z" />
+    <path
+        android:fillColor="#FF5722"
+        android:pathData="M19,10c0,2.5 -1.5,4.5 -4,5.5c0.5,-1.5 0.5,-3 0,-4.5c1.5,0.5 2.5,0 4,-1z" />
+</vector>

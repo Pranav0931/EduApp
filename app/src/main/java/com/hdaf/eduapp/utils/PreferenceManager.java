@@ -23,7 +23,8 @@ public class PreferenceManager {
         return instance;
     }
 
-    // Mode preference
+    // ---------------- MODE ----------------
+
     public void setLastMode(String mode) {
         preferences.edit().putString(Constants.PREF_LAST_MODE, mode).apply();
     }
@@ -32,7 +33,8 @@ public class PreferenceManager {
         return preferences.getString(Constants.PREF_LAST_MODE, Constants.MODE_AUDIO);
     }
 
-    // TTS Speed preference
+    // ---------------- TTS ----------------
+
     public void setTtsSpeed(float speed) {
         preferences.edit().putFloat(Constants.PREF_TTS_SPEED, speed).apply();
     }
@@ -41,7 +43,8 @@ public class PreferenceManager {
         return preferences.getFloat(Constants.PREF_TTS_SPEED, Constants.DEFAULT_TTS_SPEED);
     }
 
-    // Last class preference
+    // ---------------- NAVIGATION STATE ----------------
+
     public void setLastClass(String classId) {
         preferences.edit().putString(Constants.PREF_LAST_CLASS, classId).apply();
     }
@@ -50,7 +53,6 @@ public class PreferenceManager {
         return preferences.getString(Constants.PREF_LAST_CLASS, null);
     }
 
-    // Last book preference
     public void setLastBook(String bookId) {
         preferences.edit().putString(Constants.PREF_LAST_BOOK, bookId).apply();
     }
@@ -59,7 +61,6 @@ public class PreferenceManager {
         return preferences.getString(Constants.PREF_LAST_BOOK, null);
     }
 
-    // Last chapter preference
     public void setLastChapter(String chapterId) {
         preferences.edit().putString(Constants.PREF_LAST_CHAPTER, chapterId).apply();
     }
@@ -68,7 +69,18 @@ public class PreferenceManager {
         return preferences.getString(Constants.PREF_LAST_CHAPTER, null);
     }
 
-    // Clear all preferences
+    // ---------------- GENERIC STRING STORAGE ----------------
+
+    public String getStringPref(String key) {
+        return preferences.getString(key, null);
+    }
+
+    public void putString(String key, String value) {
+        preferences.edit().putString(key, value).apply();
+    }
+
+    // ---------------- CLEAR ----------------
+
     public void clearAll() {
         preferences.edit().clear().apply();
     }

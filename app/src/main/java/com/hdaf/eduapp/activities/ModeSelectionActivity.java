@@ -2,7 +2,9 @@ package com.hdaf.eduapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,23 +12,28 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.hdaf.eduapp.R;
 import com.hdaf.eduapp.accessibility.TTSManager;
 import com.hdaf.eduapp.ai.EduAIService;
+import com.hdaf.eduapp.gamification.GamificationManager;
+import com.hdaf.eduapp.parent.ParentDashboardActivity;
+import com.hdaf.eduapp.parent.ParentLoginDialog;
 import com.hdaf.eduapp.ui.EduAIChatBottomSheet;
 import com.hdaf.eduapp.utils.Constants;
 import com.hdaf.eduapp.utils.PreferenceManager;
 
 /**
- * Mode selection screen - choose between Audio Mode (blind) and Video Mode
- * (deaf).
+ * Mode selection screen - choose between Audio Mode (blind) and Video Mode (deaf).
  * Optimized for TalkBack accessibility.
- * Now includes EduAI FAB for AI assistant access.
+ * Includes EduAI FAB for AI assistant and Profile FAB for gamification.
  */
 public class ModeSelectionActivity extends AppCompatActivity {
 
     private Button audioModeButton;
     private Button videoModeButton;
+    private ImageButton parentZoneButton;
     private FloatingActionButton eduaiFab;
+    private FloatingActionButton profileFab;
     private PreferenceManager prefManager;
     private TTSManager ttsManager;
+    private GamificationManager gamificationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,29 +42,36 @@ public class ModeSelectionActivity extends AppCompatActivity {
 
         prefManager = PreferenceManager.getInstance(this);
         ttsManager = TTSManager.getInstance();
-        
-        // Initialize TTS if not already done
+        gamificationManager = GamificationManager.getInstance(this);
+
+        // Initialize TTS
         if (!ttsManager.isReady()) {
             ttsManager.initialize(this);
         }
-        
-        // Initialize EduAI with Gemini API key
-        EduAIService.getInstance().initialize(this, "AIzaSyBrB5PlfjdNm4fwMBmDWSt8oAkc0fEWb4Y");
+
+        // Initialize EduAI (Gemini)
+        EduAIService.getInstance().initialize(
+                this,
+                "AIzaSyBrB5PlfjdNm4fwMBmDWSt8oAkc0fEWb4Y"
+        );
 
         initializeViews();
         setupClickListeners();
 
-        // Announce screen for TalkBack
+        // Accessibility announcement
         announceForAccessibility(getString(R.string.talkback_mode_selection));
     }
 
     private void initializeViews() {
         audioModeButton = findViewById(R.id.audioModeButton);
         videoModeButton = findViewById(R.id.videoModeButton);
+        parentZoneButton = findViewById(R.id.btn_parent_zone);
         eduaiFab = findViewById(R.id.eduaiFab);
+        profileFab = findViewById(R.id.profileFab);
     }
 
     private void setupClickListeners() {
+
         audioModeButton.setOnClickListener(v -> {
             prefManager.setLastMode(Constants.MODE_AUDIO);
             navigateToClassSelection(Constants.MODE_AUDIO);
@@ -67,9 +81,26 @@ public class ModeSelectionActivity extends AppCompatActivity {
             prefManager.setLastMode(Constants.MODE_VIDEO);
             navigateToClassSelection(Constants.MODE_VIDEO);
         });
-        
-        // EduAI FAB click - open chat bottom sheet
+
+        // EduAI FAB
         eduaiFab.setOnClickListener(v -> openEduAIChat());
+
+        // Profile FAB
+        profileFab.setOnClickListener(v -> openProfile());
+
+        // Parent Zone
+        if (parentZoneButton != null) {
+            parentZoneButton.setOnClickListener(this::onParentZoneClicked);
+        }
+    }
+
+    public void onParentZoneClicked(View v) {
+        ParentLoginDialog dialog = new ParentLoginDialog();
+        dialog.setOnSuccessListener(() -> {
+            Intent intent = new Intent(this, ParentDashboardActivity.class);
+            startActivity(intent);
+        });
+        dialog.show(getSupportFragmentManager(), "ParentLoginDialog");
     }
 
     private void navigateToClassSelection(String mode) {
@@ -77,13 +108,21 @@ public class ModeSelectionActivity extends AppCompatActivity {
         intent.putExtra(Constants.EXTRA_MODE, mode);
         startActivity(intent);
     }
-    
+
     /**
-     * Opens the EduAI chat bottom sheet.
+     * Opens EduAI Chat Bottom Sheet
      */
     private void openEduAIChat() {
-        EduAIChatBottomSheet chatSheet = EduAIChatBottomSheet.newInstance();
-        chatSheet.show(getSupportFragmentManager(), "EduAIChatBottomSheet");
+        EduAIChatBottomSheet sheet = EduAIChatBottomSheet.newInstance();
+        sheet.show(getSupportFragmentManager(), "EduAIChatBottomSheet");
+    }
+
+    /**
+     * Opens Profile Activity
+     */
+    private void openProfile() {
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
     }
 
     private void announceForAccessibility(String message) {
@@ -93,7 +132,6 @@ public class ModeSelectionActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        // Re-announce when returning to this screen
+        gamificationManager.updateStreak();
     }
 }
-

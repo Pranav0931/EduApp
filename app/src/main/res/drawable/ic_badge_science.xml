@@ -1,0 +1,28 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Science Expert Badge - Flask -->
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M6,22a2,2 0,0 0,2 2h8a2,2 0,0 0,2 -2v-3.5l-4,-4L14,9V3h1V1H9v2h1v6l-0.01,5.5 -4,4V22M11,5h2v4.55l0.01,0.68 2.93,2.93 -0.93,0.93 -3,-3L12,9.41V5h-1z" />
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M9,3L15,3L15,5L9,5z" />
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M8,14L16,14L18,17L18,20C18,20.55 17.55,21 17,21L7,21C6.45,21 6,20.55 6,20L6,17z" />
+    <path
+        android:fillColor="#81C784"
+        android:pathData="M10,9L14,9L14,11L10,11z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M9,17m-1,0a1,1 0,1 1,2 0a1,1 0,1 1,-2 0" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M12,19m-0.8,0a0.8,0.8 0,1 1,1.6 0a0.8,0.8 0,1 1,-1.6 0" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M15,17m-0.7,0a0.7,0.7 0,1 1,1.4 0a0.7,0.7 0,1 1,-1.4 0" />
+</vector>
