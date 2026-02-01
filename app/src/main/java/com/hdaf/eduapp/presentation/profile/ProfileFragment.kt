@@ -88,8 +88,8 @@ class ProfileFragment : Fragment() {
     private fun setupClickListeners() {
         binding.apply {
             cardStreak.setOnClickListener {
-                // TODO: Implement streak detail screen
-                Toast.makeText(requireContext(), "Coming soon", Toast.LENGTH_SHORT).show()
+                // Navigate to stats screen
+                findNavController().navigate(R.id.statsFragment)
             }
 
             cardLeaderboard.setOnClickListener {
@@ -97,8 +97,8 @@ class ProfileFragment : Fragment() {
             }
 
             btnViewAllBadges.setOnClickListener {
-                // TODO: Implement all badges screen
-                Toast.makeText(requireContext(), "Coming soon", Toast.LENGTH_SHORT).show()
+                // Navigate to all badges screen
+                findNavController().navigate(R.id.badgesFragment)
             }
 
             btnDownloads.setOnClickListener {
