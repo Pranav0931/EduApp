@@ -227,6 +227,9 @@ dependencies {
     // ==================== AI ====================
     implementation(libs.gemini)
     
+    // ==================== ML Kit (Accessibility OCR) ====================
+    implementation("com.google.mlkit:text-recognition:16.0.0")
+    
     // ==================== Coroutines ====================
     implementation(libs.bundles.coroutines)
     
