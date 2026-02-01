@@ -49,16 +49,23 @@
         android:enableOnBackInvokedCallback="true"
         tools:targetApi="34">
 
-        <!-- Splash Screen (Launcher) -->
+        <!-- NEW Kotlin MainActivity (Launcher) -->
         <activity
-            android:name=".activities.SplashActivity"
+            android:name=".presentation.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.EduApp.Splash">
+            android:theme="@style/Theme.EduApp"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- OLD Splash Screen (kept for compatibility, not launcher) -->
+        <activity
+            android:name=".activities.SplashActivity"
+            android:exported="false"
+            android:theme="@style/Theme.EduApp.Splash" />
 
         <!-- Mode Selection Screen -->
         <activity
