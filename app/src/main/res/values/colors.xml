@@ -53,4 +53,31 @@
     <color name="divider_color">#E0E0E0</color>
     <color name="correct_answer">#4CAF50</color>
     <color name="wrong_answer">#F44336</color>
+    
+    <!-- Leaderboard Medal Colors -->
+    <color name="gold_light">#FFF8E1</color>
+    <color name="silver_light">#F5F5F5</color>
+    <color name="bronze_light">#FBE9E7</color>
+    
+    <!-- Additional UI Colors -->
+    <color name="background">#FFFBFE</color>
+    <color name="on_background">#1C1B1F</color>
+    <color name="primary_container">#EADDFF</color>
+    <color name="on_primary_container">#21005D</color>
+    <color name="secondary">#625B71</color>
+    <color name="secondary_container">#E8DEF8</color>
+    <color name="on_secondary_container">#1D192B</color>
+    <color name="tertiary">#7D5260</color>
+    <color name="tertiary_container">#FFD8E4</color>
+    <color name="outline">#79747E</color>
+    <color name="outline_variant">#CAC4D0</color>
+    
+    <!-- Overlay -->
+    <color name="overlay_dark">#80000000</color>
+    <color name="overlay_light">#40FFFFFF</color>
+    
+    <!-- Status colors for UI -->
+    <color name="success">#4CAF50</color>
+    <color name="error">#F44336</color>
+    <color name="warning">#FF9800</color>
 </resources>

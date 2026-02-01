@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+    <!-- Background circle -->
+    <path
+        android:fillColor="#E8F5E9"
+        android:pathData="M50,50m-45,0a45,45 0,1 1,90 0a45,45 0,1 1,-90 0"/>
+    <!-- Message bubble -->
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M20,30h60c3.3,0 6,2.7 6,6v28c0,3.3 -2.7,6 -6,6h-40l-12,12v-12h-8c-3.3,0 -6,-2.7 -6,-6v-28c0,-3.3 2.7,-6 6,-6z"/>
+    <!-- OTP digits -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M30,45h8v12h-8z"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M42,45h8v12h-8z"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,45h8v12h-8z"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M66,45h8v12h-8z"/>
+    <!-- Lock icon -->
+    <path
+        android:fillColor="#388E3C"
+        android:pathData="M50,18c-4.4,0 -8,3.6 -8,8v4h-2c-1.1,0 -2,0.9 -2,2v8c0,1.1 0.9,2 2,2h20c1.1,0 2,-0.9 2,-2v-8c0,-1.1 -0.9,-2 -2,-2h-2v-4c0,-4.4 -3.6,-8 -8,-8zM50,22c2.2,0 4,1.8 4,4v4h-8v-4c0,-2.2 1.8,-4 4,-4z"/>
+</vector>

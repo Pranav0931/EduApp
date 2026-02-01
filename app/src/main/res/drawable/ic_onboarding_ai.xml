@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+    <!-- Background circle -->
+    <path
+        android:fillColor="#FFF3E0"
+        android:pathData="M100,100m-90,0a90,90 0,1 1,180 0a90,90 0,1 1,-180 0"/>
+    <!-- Robot head -->
+    <path
+        android:fillColor="#FF9800"
+        android:pathData="M60,60h80c11,0 20,9 20,20v50c0,11 -9,20 -20,20h-80c-11,0 -20,-9 -20,-20v-50c0,-11 9,-20 20,-20z"/>
+    <!-- Eyes -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M70,85m-12,0a12,12 0,1 1,24 0a12,12 0,1 1,-24 0"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M130,85m-12,0a12,12 0,1 1,24 0a12,12 0,1 1,-24 0"/>
+    <!-- Pupils -->
+    <path
+        android:fillColor="#424242"
+        android:pathData="M72,85m-5,0a5,5 0,1 1,10 0a5,5 0,1 1,-10 0"/>
+    <path
+        android:fillColor="#424242"
+        android:pathData="M132,85m-5,0a5,5 0,1 1,10 0a5,5 0,1 1,-10 0"/>
+    <!-- Smile -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M75,110Q100,130 125,110"
+        android:strokeWidth="4"
+        android:strokeColor="#FFFFFF"/>
+    <!-- Antenna -->
+    <path
+        android:fillColor="#FF9800"
+        android:pathData="M97,45h6v15h-6z"/>
+    <path
+        android:fillColor="#FFB74D"
+        android:pathData="M100,40m-8,0a8,8 0,1 1,16 0a8,8 0,1 1,-16 0"/>
+    <!-- Chat bubbles -->
+    <path
+        android:fillColor="#FFCC80"
+        android:pathData="M155,50h30c3,0 5,2 5,5v15c0,3 -2,5 -5,5h-25l-7,7v-7h-3c-3,0 -5,-2 -5,-5v-15c0,-3 2,-5 5,-5z"/>
+    <path
+        android:fillColor="#FFE0B2"
+        android:pathData="M10,80h30c3,0 5,2 5,5v15c0,3 -2,5 -5,5h-25l-7,7v-7h-3c-3,0 -5,-2 -5,-5v-15c0,-3 2,-5 5,-5z"/>
+</vector>

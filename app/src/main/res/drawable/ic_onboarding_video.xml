@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+    <!-- Background circle -->
+    <path
+        android:fillColor="#E8F5E9"
+        android:pathData="M100,100m-90,0a90,90 0,1 1,180 0a90,90 0,1 1,-180 0"/>
+    <!-- Video screen -->
+    <path
+        android:fillColor="#388E3C"
+        android:pathData="M45,60h110c5.5,0 10,4.5 10,10v60c0,5.5 -4.5,10 -10,10h-110c-5.5,0 -10,-4.5 -10,-10v-60c0,-5.5 4.5,-10 10,-10z"/>
+    <!-- Play button -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M90,85l30,15l-30,15z"/>
+    <!-- Captions bar -->
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M50,115h100v10h-100z"/>
+    <!-- Sign language hands hint -->
+    <path
+        android:fillColor="#81C784"
+        android:pathData="M65,145c0,-8.3 6.7,-15 15,-15h40c8.3,0 15,6.7 15,15v10h-70z"/>
+</vector>

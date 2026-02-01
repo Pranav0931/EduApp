@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+    <!-- Background circle -->
+    <path
+        android:fillColor="#E3F2FD"
+        android:pathData="M100,100m-90,0a90,90 0,1 1,180 0a90,90 0,1 1,-180 0"/>
+    <!-- Headphones -->
+    <path
+        android:fillColor="#1976D2"
+        android:pathData="M100,50c-27.6,0 -50,22.4 -50,50v30c0,5.5 4.5,10 10,10h10v-40h-10v-10c0,-22.1 17.9,-40 40,-40s40,17.9 40,40v10h-10v40h10c5.5,0 10,-4.5 10,-10v-30c0,-27.6 -22.4,-50 -50,-50z"/>
+    <!-- Sound waves -->
+    <path
+        android:fillColor="#2196F3"
+        android:pathData="M70,100l0,20"
+        android:strokeWidth="4"
+        android:strokeColor="#2196F3"/>
+    <path
+        android:fillColor="#2196F3"
+        android:pathData="M85,90l0,40"
+        android:strokeWidth="4"
+        android:strokeColor="#2196F3"/>
+    <path
+        android:fillColor="#2196F3"
+        android:pathData="M100,95l0,30"
+        android:strokeWidth="4"
+        android:strokeColor="#2196F3"/>
+    <path
+        android:fillColor="#2196F3"
+        android:pathData="M115,90l0,40"
+        android:strokeWidth="4"
+        android:strokeColor="#2196F3"/>
+    <path
+        android:fillColor="#2196F3"
+        android:pathData="M130,100l0,20"
+        android:strokeWidth="4"
+        android:strokeColor="#2196F3"/>
+</vector>

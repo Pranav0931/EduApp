@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <!-- ==================== Splash / Onboarding ==================== -->
+    
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.hdaf.eduapp.presentation.splash.SplashFragment"
+        android:label="Splash"
+        tools:layout="@layout/fragment_splash">
+        
+        <action
+            android:id="@+id/action_splash_to_onboarding"
+            app:destination="@id/onboardingFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+            
+        <action
+            android:id="@+id/action_splash_to_auth"
+            app:destination="@id/authNavGraph"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+            
+        <action
+            android:id="@+id/action_splash_to_home"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    
+    <fragment
+        android:id="@+id/onboardingFragment"
+        android:name="com.hdaf.eduapp.presentation.onboarding.OnboardingFragment"
+        android:label="Onboarding"
+        tools:layout="@layout/fragment_onboarding">
+        
+        <action
+            android:id="@+id/action_onboarding_to_modeSelection"
+            app:destination="@id/modeSelectionFragment"
+            app:popUpTo="@id/onboardingFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- ==================== Mode Selection ==================== -->
+    
+    <fragment
+        android:id="@+id/modeSelectionFragment"
+        android:name="com.hdaf.eduapp.presentation.mode.ModeSelectionFragment"
+        android:label="Mode Selection"
+        tools:layout="@layout/fragment_mode_selection">
+        
+        <action
+            android:id="@+id/action_modeSelection_to_phoneInput"
+            app:destination="@id/authNavGraph" />
+    </fragment>
+
+    <!-- ==================== Auth Navigation Graph ==================== -->
+    
+    <navigation
+        android:id="@+id/authNavGraph"
+        app:startDestination="@id/phoneInputFragment">
+        
+        <fragment
+            android:id="@+id/phoneInputFragment"
+            android:name="com.hdaf.eduapp.presentation.auth.PhoneInputFragment"
+            android:label="Phone Input"
+            tools:layout="@layout/fragment_phone_input">
+            
+            <action
+                android:id="@+id/action_phoneInput_to_otpVerification"
+                app:destination="@id/otpVerificationFragment" />
+        </fragment>
+        
+        <fragment
+            android:id="@+id/otpVerificationFragment"
+            android:name="com.hdaf.eduapp.presentation.auth.OtpVerificationFragment"
+            android:label="OTP Verification"
+            tools:layout="@layout/fragment_otp_verification">
+            
+            <argument
+                android:name="phone"
+                app:argType="string" />
+                
+            <action
+                android:id="@+id/action_otpVerification_to_registration"
+                app:destination="@id/registrationFragment" />
+                
+            <action
+                android:id="@+id/action_otpVerification_to_home"
+                app:destination="@id/homeFragment"
+                app:popUpTo="@id/authNavGraph"
+                app:popUpToInclusive="true" />
+        </fragment>
+        
+        <fragment
+            android:id="@+id/registrationFragment"
+            android:name="com.hdaf.eduapp.presentation.auth.RegistrationFragment"
+            android:label="Registration"
+            tools:layout="@layout/fragment_registration">
+            
+            <argument
+                android:name="phone"
+                app:argType="string" />
+            
+            <action
+                android:id="@+id/action_registration_to_home"
+                app:destination="@id/homeFragment"
+                app:popUpTo="@id/authNavGraph"
+                app:popUpToInclusive="true" />
+        </fragment>
+    </navigation>
+
+    <!-- ==================== Main App Screens ==================== -->
+    
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.hdaf.eduapp.presentation.home.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+        
+        <action
+            android:id="@+id/action_home_to_bookList"
+            app:destination="@id/bookListFragment" />
+            
+        <action
+            android:id="@+id/action_home_to_quizList"
+            app:destination="@id/quizListFragment" />
+            
+        <action
+            android:id="@+id/action_home_to_profile"
+            app:destination="@id/profileFragment" />
+            
+        <action
+            android:id="@+id/action_home_to_settings"
+            app:destination="@id/settingsFragment" />
+            
+        <action
+            android:id="@+id/action_home_to_leaderboard"
+            app:destination="@id/leaderboardFragment" />
+            
+        <action
+            android:id="@+id/action_home_to_chapterList"
+            app:destination="@id/chapterListFragment" />
+    </fragment>
+
+    <!-- ==================== Books & Chapters ==================== -->
+    
+    <fragment
+        android:id="@+id/bookListFragment"
+        android:name="com.hdaf.eduapp.presentation.book.BookListFragment"
+        android:label="Books"
+        tools:layout="@layout/fragment_book_list">
+        
+        <argument
+            android:name="classId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+            
+        <action
+            android:id="@+id/action_bookList_to_chapterList"
+            app:destination="@id/chapterListFragment" />
+    </fragment>
+    
+    <fragment
+        android:id="@+id/chapterListFragment"
+        android:name="com.hdaf.eduapp.presentation.chapter.ChapterListFragment"
+        android:label="Chapters"
+        tools:layout="@layout/fragment_chapter_list">
+        
+        <argument
+            android:name="bookId"
+            app:argType="string" />
+            
+        <argument
+            android:name="bookTitle"
+            app:argType="string"
+            android:defaultValue="" />
+            
+        <action
+            android:id="@+id/action_chapterList_to_reader"
+            app:destination="@id/readerFragment" />
+            
+        <action
+            android:id="@+id/action_chapterList_to_quiz"
+            app:destination="@id/quizFragment" />
+            
+        <action
+            android:id="@+id/action_chapterList_to_audioPlayer"
+            app:destination="@id/audioPlayerFragment" />
+            
+        <action
+            android:id="@+id/action_chapterList_to_videoPlayer"
+            app:destination="@id/videoPlayerFragment" />
+    </fragment>
+    
+    <fragment
+        android:id="@+id/readerFragment"
+        android:name="com.hdaf.eduapp.presentation.reader.ReaderFragment"
+        android:label="Reader"
+        tools:layout="@layout/fragment_reader">
+        
+        <argument
+            android:name="chapterId"
+            app:argType="string" />
+            
+        <action
+            android:id="@+id/action_reader_to_quiz"
+            app:destination="@id/quizFragment" />
+            
+        <action
+            android:id="@+id/action_reader_to_videoPlayer"
+            app:destination="@id/videoPlayerFragment" />
+            
+        <action
+            android:id="@+id/action_reader_to_audioPlayer"
+            app:destination="@id/audioPlayerFragment" />
+    </fragment>
+
+    <!-- ==================== Media Players ==================== -->
+    
+    <fragment
+        android:id="@+id/videoPlayerFragment"
+        android:name="com.hdaf.eduapp.presentation.media.VideoPlayerFragment"
+        android:label="Video Player"
+        tools:layout="@layout/fragment_video_player">
+        
+        <argument
+            android:name="chapterId"
+            app:argType="string" />
+            
+        <argument
+            android:name="videoUrl"
+            app:argType="string" />
+            
+        <argument
+            android:name="signLanguageUrl"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+            
+        <argument
+            android:name="title"
+            app:argType="string"
+            android:defaultValue="" />
+    </fragment>
+    
+    <fragment
+        android:id="@+id/audioPlayerFragment"
+        android:name="com.hdaf.eduapp.presentation.media.AudioPlayerFragment"
+        android:label="Audio Player"
+        tools:layout="@layout/fragment_audio_player">
+        
+        <argument
+            android:name="chapterId"
+            app:argType="string" />
+            
+        <argument
+            android:name="audioUrl"
+            app:argType="string" />
+            
+        <argument
+            android:name="title"
+            app:argType="string"
+            android:defaultValue="" />
+    </fragment>
+
+    <!-- ==================== Quiz ==================== -->
+    
+    <fragment
+        android:id="@+id/quizListFragment"
+        android:name="com.hdaf.eduapp.presentation.quiz.QuizListFragment"
+        android:label="Quizzes"
+        tools:layout="@layout/fragment_quiz_list">
+        
+        <action
+            android:id="@+id/action_quizList_to_quiz"
+            app:destination="@id/quizFragment" />
+    </fragment>
+    
+    <fragment
+        android:id="@+id/quizFragment"
+        android:name="com.hdaf.eduapp.presentation.quiz.QuizActiveFragment"
+        android:label="Quiz"
+        tools:layout="@layout/fragment_quiz_active">
+        
+        <argument
+            android:name="quizId"
+            app:argType="string" />
+            
+        <argument
+            android:name="isAiGenerated"
+            app:argType="boolean"
+            android:defaultValue="false" />
+            
+        <action
+            android:id="@+id/action_quiz_to_result"
+            app:destination="@id/quizResultFragment"
+            app:popUpTo="@id/quizFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    
+    <fragment
+        android:id="@+id/quizResultFragment"
+        android:name="com.hdaf.eduapp.presentation.quiz.QuizResultFragment"
+        android:label="Quiz Result"
+        tools:layout="@layout/fragment_quiz_result">
+        
+        <argument
+            android:name="quizId"
+            app:argType="string" />
+            
+        <argument
+            android:name="attemptId"
+            app:argType="string" />
+            
+        <action
+            android:id="@+id/action_quizResult_to_home"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false" />
+            
+        <action
+            android:id="@+id/action_quizResult_to_retakeQuiz"
+            app:destination="@id/quizFragment"
+            app:popUpTo="@id/quizResultFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- ==================== Profile & Settings ==================== -->
+    
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.hdaf.eduapp.presentation.profile.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile">
+        
+        <action
+            android:id="@+id/action_profile_to_editProfile"
+            app:destination="@id/editProfileFragment" />
+            
+        <action
+            android:id="@+id/action_profile_to_badges"
+            app:destination="@id/badgesFragment" />
+            
+        <action
+            android:id="@+id/action_profile_to_stats"
+            app:destination="@id/statsFragment" />
+    </fragment>
+    
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.hdaf.eduapp.presentation.profile.EditProfileFragment"
+        android:label="Edit Profile"
+        tools:layout="@layout/fragment_edit_profile" />
+    
+    <fragment
+        android:id="@+id/badgesFragment"
+        android:name="com.hdaf.eduapp.presentation.profile.BadgesFragment"
+        android:label="Badges"
+        tools:layout="@layout/fragment_badges" />
+    
+    <fragment
+        android:id="@+id/statsFragment"
+        android:name="com.hdaf.eduapp.presentation.profile.StatsFragment"
+        android:label="Statistics"
+        tools:layout="@layout/fragment_stats" />
+    
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.hdaf.eduapp.presentation.settings.SettingsFragment"
+        android:label="Settings"
+        tools:layout="@layout/fragment_settings">
+        
+        <action
+            android:id="@+id/action_settings_to_accessibility"
+            app:destination="@id/accessibilitySettingsFragment" />
+            
+        <action
+            android:id="@+id/action_settings_to_notifications"
+            app:destination="@id/notificationSettingsFragment" />
+            
+        <action
+            android:id="@+id/action_settings_to_about"
+            app:destination="@id/aboutFragment" />
+    </fragment>
+    
+    <fragment
+        android:id="@+id/accessibilitySettingsFragment"
+        android:name="com.hdaf.eduapp.presentation.settings.AccessibilitySettingsFragment"
+        android:label="Accessibility Settings"
+        tools:layout="@layout/fragment_accessibility_settings" />
+    
+    <fragment
+        android:id="@+id/notificationSettingsFragment"
+        android:name="com.hdaf.eduapp.presentation.settings.NotificationSettingsFragment"
+        android:label="Notification Settings"
+        tools:layout="@layout/fragment_notification_settings" />
+    
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.hdaf.eduapp.presentation.settings.AboutFragment"
+        android:label="About"
+        tools:layout="@layout/fragment_about" />
+
+    <!-- ==================== Leaderboard ==================== -->
+    
+    <fragment
+        android:id="@+id/leaderboardFragment"
+        android:name="com.hdaf.eduapp.presentation.leaderboard.LeaderboardFragment"
+        android:label="Leaderboard"
+        tools:layout="@layout/fragment_leaderboard" />
+
+</navigation>
