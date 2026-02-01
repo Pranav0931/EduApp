@@ -49,23 +49,16 @@
         android:enableOnBackInvokedCallback="true"
         tools:targetApi="34">
 
-        <!-- NEW Kotlin MainActivity (Launcher) -->
+        <!-- Splash Screen (Launcher) -->
         <activity
-            android:name=".presentation.MainActivity"
+            android:name=".activities.SplashActivity"
             android:exported="true"
-            android:theme="@style/Theme.EduApp"
-            android:windowSoftInputMode="adjustResize">
+            android:theme="@style/Theme.EduApp.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!-- OLD Splash Screen (kept for compatibility, not launcher) -->
-        <activity
-            android:name=".activities.SplashActivity"
-            android:exported="false"
-            android:theme="@style/Theme.EduApp.Splash" />
 
         <!-- Mode Selection Screen -->
         <activity
@@ -125,6 +118,20 @@
             android:name=".activities.ProfileActivity"
             android:exported="false"
             android:label="@string/profile_title"
+            android:screenOrientation="portrait" />
+
+        <!-- Quiz List Activity -->
+        <activity
+            android:name=".activities.QuizListActivity"
+            android:exported="false"
+            android:label="@string/quiz_list_title"
+            android:screenOrientation="portrait" />
+
+        <!-- Settings Activity -->
+        <activity
+            android:name=".activities.SettingsActivity"
+            android:exported="false"
+            android:label="@string/settings_title"
             android:screenOrientation="portrait" />
 
     </application>

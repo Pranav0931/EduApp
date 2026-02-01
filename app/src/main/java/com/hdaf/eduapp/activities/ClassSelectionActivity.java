@@ -4,10 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.hdaf.eduapp.R;
+import com.hdaf.eduapp.ui.EduAIChatBottomSheet;
 import com.hdaf.eduapp.utils.Constants;
 import com.hdaf.eduapp.utils.PreferenceManager;
 
@@ -22,6 +26,8 @@ public class ClassSelectionActivity extends AppCompatActivity {
 
     // Class buttons
     private Button btn1st, btn2nd, btn3rd, btn4th, btn5th, btn6th, btn7th, btn8th, btn9th;
+    private FloatingActionButton fabAiChat;
+    private BottomNavigationView bottomNavigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +44,8 @@ public class ClassSelectionActivity extends AppCompatActivity {
 
         initializeViews();
         setupClickListeners();
+        setupBottomNavigation();
+        setupAiChat();
 
         // Announce screen
         announceForAccessibility(getString(R.string.class_selection_title));
@@ -45,6 +53,8 @@ public class ClassSelectionActivity extends AppCompatActivity {
 
     private void initializeViews() {
         ImageButton menuButton = findViewById(R.id.menuButton);
+        fabAiChat = findViewById(R.id.fabAiChat);
+        bottomNavigation = findViewById(R.id.bottomNavigation);
 
         btn1st = findViewById(R.id.btn1st);
         btn2nd = findViewById(R.id.btn2nd);
@@ -72,6 +82,34 @@ public class ClassSelectionActivity extends AppCompatActivity {
         btn7th.setOnClickListener(v -> selectClass("class_7", "7th"));
         btn8th.setOnClickListener(v -> selectClass("class_8", "8th"));
         btn9th.setOnClickListener(v -> selectClass("class_9", "9th"));
+    }
+
+    private void setupBottomNavigation() {
+        bottomNavigation.setSelectedItemId(R.id.nav_home);
+        bottomNavigation.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.nav_home) {
+                // Already on home
+                return true;
+            } else if (itemId == R.id.nav_quiz) {
+                startActivity(new Intent(this, QuizListActivity.class));
+                return true;
+            } else if (itemId == R.id.nav_profile) {
+                startActivity(new Intent(this, ProfileActivity.class));
+                return true;
+            } else if (itemId == R.id.nav_settings) {
+                startActivity(new Intent(this, SettingsActivity.class));
+                return true;
+            }
+            return false;
+        });
+    }
+
+    private void setupAiChat() {
+        fabAiChat.setOnClickListener(v -> {
+            EduAIChatBottomSheet chatSheet = EduAIChatBottomSheet.newInstance();
+            chatSheet.show(getSupportFragmentManager(), "EduAIChat");
+        });
     }
 
     private void selectClass(String classId, String className) {

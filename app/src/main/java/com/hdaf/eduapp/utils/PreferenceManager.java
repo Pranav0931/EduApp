@@ -79,6 +79,16 @@ public class PreferenceManager {
         preferences.edit().putString(key, value).apply();
     }
 
+    // ---------------- BOOLEAN STORAGE ----------------
+
+    public void setBoolean(String key, boolean value) {
+        preferences.edit().putBoolean(key, value).apply();
+    }
+
+    public boolean getBoolean(String key, boolean defaultValue) {
+        return preferences.getBoolean(key, defaultValue);
+    }
+
     // ---------------- CLEAR ----------------
 
     public void clearAll() {

@@ -118,6 +118,7 @@
     <!-- Navigation -->
     <string name="menu_description">Open navigation menu</string>
     <string name="back_description">Go back to previous screen</string>
+    <string name="back">Back</string>
 
     <!-- Sample Content -->
     <string name="sample_text_content">Welcome to the lesson. This is sample content for the audio
@@ -177,6 +178,36 @@
     <string name="profile_accessibility_intro">Profile screen. Showing your level, XP, streak, and
         badges.</string>
     <string name="view_all">सभी देखें</string>
+
+    <!-- Quiz List Screen -->
+    <string name="quiz_list_title">Quizzes</string>
+    <string name="quiz_list_subtitle">Test Your Knowledge</string>
+    <string name="quiz_list_empty">No quizzes available yet</string>
+    <string name="quiz_loading">Loading quizzes…</string>
+    <string name="quiz_questions">%d Questions</string>
+    <string name="quiz_duration">%d min</string>
+    <string name="quiz_ai_generated">AI Generated</string>
+
+    <!-- Settings Screen -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_accessibility">Accessibility</string>
+    <string name="settings_talkback">TalkBack Support</string>
+    <string name="settings_talkback_desc">Enable screen reader support</string>
+    <string name="settings_high_contrast">High Contrast Mode</string>
+    <string name="settings_high_contrast_desc">Enhanced visibility for low vision</string>
+    <string name="settings_large_text">Large Text</string>
+    <string name="settings_large_text_desc">Increase text size throughout the app</string>
+    <string name="settings_haptic">Haptic Feedback</string>
+    <string name="settings_haptic_desc">Vibration feedback for actions</string>
+    <string name="settings_mode">Learning Mode</string>
+    <string name="settings_change_mode">Change Mode</string>
+    <string name="settings_current_mode">Current: %s</string>
+    <string name="settings_notifications">Notifications</string>
+    <string name="settings_notifications_desc">Enable push notifications</string>
+    <string name="settings_about">About</string>
+    <string name="settings_privacy">Privacy Policy</string>
+    <string name="settings_version">Version %s</string>
+    <string name="settings_logout">Logout</string>
 
     <!-- Gamification -->
     <string name="xp_earned_format">+%1$d XP</string>
