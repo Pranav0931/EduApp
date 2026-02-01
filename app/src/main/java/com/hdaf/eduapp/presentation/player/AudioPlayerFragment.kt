@@ -1,5 +1,6 @@
 package com.hdaf.eduapp.presentation.player
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -16,9 +17,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import com.hdaf.eduapp.R
+import com.hdaf.eduapp.accessibility.TTSEngine
+import com.hdaf.eduapp.accessibility.VoiceNavigationManager
 import com.hdaf.eduapp.core.accessibility.EduAccessibilityManager
 import com.hdaf.eduapp.core.accessibility.HapticType
 import com.hdaf.eduapp.databinding.FragmentAudioPlayerBinding
+import com.hdaf.eduapp.domain.model.AccessibilityModeType
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -41,6 +45,17 @@ class AudioPlayerFragment : Fragment() {
 
     @Inject
     lateinit var accessibilityManager: EduAccessibilityManager
+    
+    @Inject
+    lateinit var ttsEngine: TTSEngine
+    
+    @Inject
+    lateinit var voiceNavigationManager: VoiceNavigationManager
+    
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
+    
+    private var isBlindMode = false
 
     private val handler = Handler(Looper.getMainLooper())
     private val updateProgressRunnable = object : Runnable {
@@ -72,9 +87,63 @@ class AudioPlayerFragment : Fragment() {
         setupPlayerControls()
         setupSeekBar()
         setupSpeedControl()
+        setupAccessibilityFeatures()
         observeUiState()
 
         viewModel.loadChapter(chapterId)
+    }
+    
+    private fun setupAccessibilityFeatures() {
+        // Check if blind mode is enabled
+        val modeOrdinal = sharedPreferences.getInt("accessibility_mode", 0)
+        val mode = AccessibilityModeType.entries.getOrElse(modeOrdinal) { AccessibilityModeType.NORMAL }
+        isBlindMode = mode == AccessibilityModeType.BLIND
+        
+        if (isBlindMode) {
+            // Announce screen for blind users
+            accessibilityManager.speak("ऑडियो प्लेयर खुला। $chapterTitle")
+            
+            // Listen for voice commands
+            viewLifecycleOwner.lifecycleScope.launch {
+                viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    voiceNavigationManager.recognizedText.collect { text ->
+                        text?.let { handleVoiceCommand(it) }
+                    }
+                }
+            }
+            
+            // Set slower default speed for better comprehension
+            viewModel.setPlaybackSpeed(0.75f)
+        }
+    }
+    
+    private fun handleVoiceCommand(command: String) {
+        when {
+            command.contains("play", ignoreCase = true) || 
+            command.contains("चलाओ", ignoreCase = true) -> {
+                viewModel.togglePlayPause()
+                accessibilityManager.speak("चल रहा है")
+            }
+            command.contains("pause", ignoreCase = true) || 
+            command.contains("stop", ignoreCase = true) ||
+            command.contains("रुको", ignoreCase = true) -> {
+                viewModel.togglePlayPause()
+                accessibilityManager.speak("रुका हुआ")
+            }
+            command.contains("next", ignoreCase = true) || 
+            command.contains("अगला", ignoreCase = true) -> {
+                viewModel.playNext()
+            }
+            command.contains("previous", ignoreCase = true) || 
+            command.contains("पिछला", ignoreCase = true) -> {
+                viewModel.playPrevious()
+            }
+            command.contains("repeat", ignoreCase = true) || 
+            command.contains("दोहराओ", ignoreCase = true) -> {
+                viewModel.seekTo(0)
+                viewModel.togglePlayPause()
+            }
+        }
     }
 
     private fun setupToolbar() {

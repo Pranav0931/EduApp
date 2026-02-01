@@ -52,6 +52,19 @@
                         android:textColor="?attr/colorOnSurfaceVariant" />
                 </LinearLayout>
 
+                <!-- OCR Scanner Button - for blind users -->
+                <ImageButton
+                    android:id="@+id/btn_ocr_scan"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/ocr_scan"
+                    android:src="@drawable/ic_qr_scanner"
+                    android:visibility="gone"
+                    app:tint="?attr/colorPrimary"
+                    tools:visibility="visible" />
+
                 <ImageButton
                     android:id="@+id/btn_settings"
                     android:layout_width="48dp"

@@ -185,4 +185,13 @@
         android:visibility="gone"
         app:indicatorColor="?attr/colorPrimary" />
 
+    <!-- Subtitle Overlay Container -->
+    <FrameLayout
+        android:id="@+id/subtitle_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="100dp"
+        android:paddingHorizontal="16dp" />
+
 </FrameLayout>

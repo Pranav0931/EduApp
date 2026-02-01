@@ -384,6 +384,57 @@ class AccessibilityViewHelper @Inject constructor(
         return accessibilityManager?.isTouchExplorationEnabled == true
     }
     
+    // ==================== Simplified Public Methods ====================
+    
+    /**
+     * Ensure all views have content descriptions.
+     */
+    fun ensureContentDescriptions(rootView: View) {
+        processViewHierarchy(rootView) { view ->
+            ensureContentDescription(view)
+        }
+    }
+    
+    /**
+     * Enlarge touch targets for all clickable views.
+     */
+    fun enlargeTouchTargets(rootView: View, minSizeDp: Int) {
+        processViewHierarchy(rootView) { view ->
+            if (view.isClickable || view is Button || view is ImageButton) {
+                enlargeTouchTarget(view, minSizeDp)
+            }
+        }
+    }
+    
+    /**
+     * Apply high contrast to all views.
+     */
+    fun applyHighContrast(rootView: View) {
+        processViewHierarchy(rootView) { view ->
+            when (view) {
+                is TextView -> {
+                    view.setTextColor(Color.BLACK)
+                }
+                is MaterialCardView -> {
+                    view.strokeWidth = 4
+                    view.strokeColor = Color.BLACK
+                }
+            }
+        }
+    }
+    
+    /**
+     * Apply large text to all TextViews.
+     */
+    fun applyLargeText(rootView: View, scaleFactor: Float) {
+        processViewHierarchy(rootView) { view ->
+            if (view is TextView) {
+                val currentSize = view.textSize / context.resources.displayMetrics.scaledDensity
+                view.setTextSize(TypedValue.COMPLEX_UNIT_SP, currentSize * scaleFactor)
+            }
+        }
+    }
+    
     /**
      * Convert dp to pixels.
      */

@@ -1,9 +1,17 @@
 package com.hdaf.eduapp.presentation.home
 
+import android.Manifest
+import android.content.SharedPreferences
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -12,11 +20,15 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hdaf.eduapp.R
+import com.hdaf.eduapp.accessibility.OCREngine
 import com.hdaf.eduapp.core.accessibility.EduAccessibilityManager
 import com.hdaf.eduapp.databinding.FragmentHomeBinding
+import com.hdaf.eduapp.domain.model.AccessibilityModeType
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.io.File
 import javax.inject.Inject
 
 /**
@@ -39,6 +51,36 @@ class HomeFragment : Fragment() {
     
     @Inject
     lateinit var accessibilityManager: EduAccessibilityManager
+    
+    @Inject
+    lateinit var ocrEngine: OCREngine
+    
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
+    
+    private var currentPhotoUri: Uri? = null
+    
+    // Camera permission launcher
+    private val cameraPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            launchCamera()
+        } else {
+            Toast.makeText(requireContext(), R.string.camera_permission_denied, Toast.LENGTH_SHORT).show()
+        }
+    }
+    
+    // Camera result launcher
+    private val cameraLauncher = registerForActivityResult(
+        ActivityResultContracts.TakePicture()
+    ) { success ->
+        if (success) {
+            currentPhotoUri?.let { uri ->
+                processOcrImage(uri)
+            }
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,6 +97,100 @@ class HomeFragment : Fragment() {
         setupViews()
         setupObservers()
         setupClickListeners()
+        setupAccessibilityFeatures()
+    }
+    
+    private fun setupAccessibilityFeatures() {
+        // Show OCR button based on accessibility mode
+        val modeOrdinal = sharedPreferences.getInt("accessibility_mode", 0)
+        val mode = AccessibilityModeType.entries.getOrElse(modeOrdinal) { AccessibilityModeType.NORMAL }
+        
+        binding.btnOcrScan.visibility = when (mode) {
+            AccessibilityModeType.BLIND, AccessibilityModeType.LOW_VISION -> View.VISIBLE
+            else -> View.GONE
+        }
+        
+        binding.btnOcrScan.setOnClickListener {
+            checkCameraPermissionAndScan()
+        }
+    }
+    
+    private fun checkCameraPermissionAndScan() {
+        when {
+            ContextCompat.checkSelfPermission(
+                requireContext(), Manifest.permission.CAMERA
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                launchCamera()
+            }
+            else -> {
+                cameraPermissionLauncher.launch(Manifest.permission.CAMERA)
+            }
+        }
+    }
+    
+    private fun launchCamera() {
+        val photoFile = File.createTempFile(
+            "ocr_scan_${System.currentTimeMillis()}",
+            ".jpg",
+            requireContext().cacheDir
+        )
+        currentPhotoUri = FileProvider.getUriForFile(
+            requireContext(),
+            "${requireContext().packageName}.provider",
+            photoFile
+        )
+        currentPhotoUri?.let { uri ->
+            cameraLauncher.launch(uri)
+            accessibilityManager.announceForAccessibility(getString(R.string.ocr_scanning))
+        }
+    }
+    
+    private fun processOcrImage(uri: Uri) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                Toast.makeText(requireContext(), R.string.ocr_scanning, Toast.LENGTH_SHORT).show()
+                
+                val inputStream = requireContext().contentResolver.openInputStream(uri)
+                val bytes = inputStream?.readBytes()
+                inputStream?.close()
+                
+                if (bytes != null) {
+                    val result = ocrEngine.processImage(bytes)
+                    
+                    when (result) {
+                        is com.hdaf.eduapp.core.common.Resource.Success -> {
+                            val ocrResult = result.data
+                            if (ocrResult.text.isNotBlank()) {
+                                showOcrResultDialog(ocrResult.text)
+                                accessibilityManager.speak(ocrResult.text)
+                            } else {
+                                Toast.makeText(requireContext(), R.string.ocr_no_text_found, Toast.LENGTH_SHORT).show()
+                                accessibilityManager.announceForAccessibility(getString(R.string.ocr_no_text_found))
+                            }
+                        }
+                        is com.hdaf.eduapp.core.common.Resource.Error -> {
+                            Toast.makeText(requireContext(), "OCR Error: ${result.message}", Toast.LENGTH_SHORT).show()
+                        }
+                        is com.hdaf.eduapp.core.common.Resource.Loading -> {
+                            // Still loading
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), "OCR Error: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+    
+    private fun showOcrResultDialog(text: String) {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(R.string.ocr_scan_complete)
+            .setMessage(text)
+            .setPositiveButton(R.string.btn_play) { _, _ ->
+                accessibilityManager.speak(text)
+            }
+            .setNegativeButton(R.string.cancel, null)
+            .show()
     }
 
     private fun setupViews() {

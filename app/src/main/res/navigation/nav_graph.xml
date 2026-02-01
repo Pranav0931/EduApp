@@ -225,7 +225,7 @@
     
     <fragment
         android:id="@+id/videoPlayerFragment"
-        android:name="com.hdaf.eduapp.presentation.media.VideoPlayerFragment"
+        android:name="com.hdaf.eduapp.presentation.player.VideoPlayerFragment"
         android:label="Video Player"
         tools:layout="@layout/fragment_video_player">
         
@@ -251,7 +251,7 @@
     
     <fragment
         android:id="@+id/audioPlayerFragment"
-        android:name="com.hdaf.eduapp.presentation.media.AudioPlayerFragment"
+        android:name="com.hdaf.eduapp.presentation.player.AudioPlayerFragment"
         android:label="Audio Player"
         tools:layout="@layout/fragment_audio_player">
         
@@ -280,6 +280,10 @@
         <action
             android:id="@+id/action_quizList_to_quiz"
             app:destination="@id/quizFragment" />
+            
+        <action
+            android:id="@+id/action_quizList_to_bookList"
+            app:destination="@id/bookListFragment" />
     </fragment>
     
     <fragment

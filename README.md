@@ -67,17 +67,20 @@ EduApp is an **Android-based inclusive learning application** built with **acces
 
 ## 🚀 Key Features
 
-### 📖 Learning Content
-- **6 Subjects:** English, Marathi, Mathematics, Science, Hindi, Social Science
-- **Multi-format Content:** Text, Audio, Video with accessibility layers
-- **Chapter-based Learning:** Structured curriculum progression
-- **Interactive Quizzes:** Accessible quiz system with immediate feedback
-
 ### 🤖 AI-Powered Features
 - **Google Gemini Integration** — Intelligent tutoring and content explanations
 - **ML Kit OCR** — Camera-based text recognition for print materials
 - **Adaptive Learning Engine** — Personalized study recommendations
 - **Voice Command Recognition** — Natural language navigation
+- **AI Chat Assistant** — Floating AI chat accessible from any screen
+- **AI Quiz Generation** — Generate quizzes from any chapter content
+
+### 📖 Learning Content
+- **6 Subjects:** English, Marathi, Mathematics, Science, Hindi, Social Science
+- **Multi-format Content:** Text, Audio, Video with accessibility layers
+- **Chapter-based Learning:** Structured curriculum progression
+- **Interactive Quizzes:** Accessible quiz system with immediate feedback
+- **Text Reader:** Dedicated reading experience with TTS and adjustable font sizes
 
 ### 👨‍👩‍👧‍👦 Multi-User Support
 - **Student Profiles** — Individual accessibility preferences saved
@@ -151,7 +154,26 @@ app/
 
 ---
 
-## 🚀 Getting Started
+## � Recent Updates (v2.0)
+
+### ✨ New Features
+- **AI Chat Floating Button** — Access the AI assistant from any screen via the floating action button
+- **Quiz System** — Complete quiz browsing with AI-generated quizzes from chapter content
+- **Text Reader** — Dedicated reader with adjustable text sizes and read-aloud functionality
+- **Profile Sub-screens** — Edit profile, view badges, and detailed learning statistics
+- **Settings Sub-screens** — Dedicated accessibility settings, notification preferences, and about page
+- **Improved Navigation** — All navigation paths properly connected and verified
+
+### 🛠️ Technical Improvements
+- Fixed navigation graph paths for media players
+- Created all missing fragments for complete user flows
+- Added haptic feedback throughout the app
+- Improved accessibility mode integration across all screens
+- Enhanced quiz adapter with AI quiz badges and difficulty chips
+
+---
+
+## �🚀 Getting Started
 
 ### Prerequisites
 - Android Studio Hedgehog (2023.1.1) or later

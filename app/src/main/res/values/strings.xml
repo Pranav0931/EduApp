@@ -84,6 +84,17 @@
     <string name="voice_command_next">Say \"Next\" for next chapter</string>
     <string name="voice_command_back">Say \"Go back\" for previous</string>
     <string name="voice_command_repeat">Say \"Repeat\" to replay</string>
+    <string name="voice_control">Voice Control</string>
+    <string name="voice_listening">Listening… Say a command</string>
+    <string name="voice_command_not_recognized">Command not recognized. Try again.</string>
+    <string name="voice_command_executed">Executed: %s</string>
+    <string name="mic_permission_denied">Microphone permission required for voice control</string>
+    <string name="mode_blind_activated">Blind mode activated. Voice control enabled.</string>
+    <string name="ocr_scan">Scan Text</string>
+    <string name="ocr_scanning">Scanning text…</string>
+    <string name="ocr_no_text_found">No text found in image</string>
+    <string name="ocr_scan_complete">Text scanned. Tap to hear.</string>
+    <string name="camera_permission_denied">Camera permission required for text scanning</string>
 
     <!-- Errors and Messages -->
     <string name="error_loading_content">Error loading content. Please try again.</string>
@@ -343,6 +354,21 @@
     <string name="mode_video">वीडियो मोड</string>
     <string name="mode_both">दोनों मोड</string>
     
+    <!-- Accessibility Mode Settings -->
+    <string name="accessibility_mode">Accessibility Mode</string>
+    <string name="accessibility_mode_description">Choose learning mode optimized for your needs</string>
+    <string name="mode_regular">Regular Mode</string>
+    <string name="mode_blind">Blind Mode (Screen Reader)</string>
+    <string name="mode_deaf">Deaf Mode (Visual Learning)</string>
+    <string name="mode_low_vision">Low Vision Mode</string>
+    <string name="mode_slow_learner">Slow Learner Mode</string>
+    <string name="mode_regular_desc">Standard learning experience</string>
+    <string name="mode_blind_desc">Voice navigation, TTS, haptic feedback</string>
+    <string name="mode_deaf_desc">Subtitles, visual alerts, sign language</string>
+    <string name="mode_low_vision_desc">Large text, high contrast, screen magnification</string>
+    <string name="mode_slow_learner_desc">Adaptive pacing, extra practice, encouragement</string>
+    <string name="mode_changed">Mode changed to %s</string>
+    
     <!-- Content Description -->
     <string name="content_description_back">वापस जाएं</string>
     <string name="content_description_avatar">प्रोफ़ाइल अवतार</string>
@@ -352,4 +378,43 @@
     <string name="error_generic">कुछ गलत हो गया</string>
     <string name="error_network">नेटवर्क त्रुटि</string>
     <string name="error_load_failed">लोड करने में विफल</string>
+    
+    <!-- Quiz List Screen -->
+    <string name="quizzes_title">प्रश्नोत्तरी</string>
+    <string name="no_quizzes_available">कोई प्रश्नोत्तरी उपलब्ध नहीं</string>
+    <string name="generate_ai_quiz">AI से बनाएं</string>
+    <string name="create_quiz">प्रश्नोत्तरी बनाएं</string>
+    <string name="ai_quiz">AI Quiz</string>
+    <string name="question_count_format">%d प्रश्न</string>
+    <string name="duration_format">%d मिनट</string>
+    <string name="difficulty_easy">आसान</string>
+    <string name="difficulty_medium">मध्यम</string>
+    <string name="difficulty_hard">कठिन</string>
+    <string name="ai_generated">AI Generated</string>
+    <string name="start_quiz">प्रश्नोत्तरी शुरू करें</string>
+    <string name="quiz_item_description">%1$s - %2$d प्रश्न, %3$d मिनट</string>
+    <string name="starting_quiz">%s प्रश्नोत्तरी शुरू हो रही है</string>
+    <string name="select_chapter">अध्याय चुनें</string>
+    <string name="select_chapter_for_quiz">AI प्रश्नोत्तरी बनाने के लिए अध्याय चुनें</string>
+    <string name="browse_chapters">अध्याय देखें</string>
+    
+    <!-- Reader Screen -->
+    <string name="reader_title">पढ़ें</string>
+    <string name="no_content_available">कोई सामग्री उपलब्ध नहीं</string>
+    <string name="text_size">टेक्स्ट आकार</string>
+    <string name="read_aloud">जोर से पढ़ें</string>
+    <string name="stop_reading">पढ़ना बंद करें</string>
+    
+    <!-- Profile Sub-screens -->
+    <string name="edit_profile">प्रोफ़ाइल संपादित करें</string>
+    <string name="stats_title">सांख्यिकी</string>
+    <string name="all_badges">सभी बैज</string>
+    
+    <!-- Settings Sub-screens -->
+    <string name="accessibility_settings">पहुंच सेटिंग्स</string>
+    <string name="notification_settings">सूचना सेटिंग्स</string>
+    <string name="about_title">के बारे में</string>
+    <string name="app_version">ऐप संस्करण</string>
+    <string name="terms_of_service">सेवा की शर्तें</string>
+    <string name="contact_us">संपर्क करें</string>
 </resources>

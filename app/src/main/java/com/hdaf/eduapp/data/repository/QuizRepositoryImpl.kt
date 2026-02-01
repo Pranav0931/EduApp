@@ -43,6 +43,31 @@ class QuizRepositoryImpl @Inject constructor(
 
     // ==================== Quiz Retrieval ====================
 
+    override fun getAllQuizzes(): Flow<Resource<List<Quiz>>> = flow {
+        emit(Resource.Loading())
+        
+        try {
+            val quizzes = quizDao.getAllQuizzes()
+            if (quizzes.isNotEmpty()) {
+                val domainQuizzes = quizzes.map { quiz ->
+                    val questions = quizDao.getQuestionsByQuizId(quiz.id)
+                    quizMapper.entityToDomain(quiz, questions)
+                }
+                emit(Resource.Success(domainQuizzes))
+            } else {
+                // Return sample quizzes for development
+                emit(Resource.Success(listOf(
+                    createSampleQuiz("sample_math"),
+                    createSampleQuiz("sample_science"),
+                    createSampleQuiz("sample_hindi")
+                )))
+            }
+        } catch (e: Exception) {
+            Timber.e(e, "Error fetching all quizzes")
+            emit(Resource.Error(e.message ?: "Failed to load quizzes"))
+        }
+    }
+
     override fun getQuizById(quizId: String): Flow<Resource<Quiz>> = flow {
         emit(Resource.Loading())
         

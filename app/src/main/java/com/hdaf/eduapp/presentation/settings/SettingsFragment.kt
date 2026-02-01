@@ -15,6 +15,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.hdaf.eduapp.R
 import com.hdaf.eduapp.core.accessibility.EduAccessibilityManager
 import com.hdaf.eduapp.databinding.FragmentSettingsBinding
+import com.hdaf.eduapp.domain.model.AccessibilityModeType
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -60,6 +61,11 @@ class SettingsFragment : Fragment() {
 
     private fun setupClickListeners() {
         binding.apply {
+            // Accessibility Mode Selector
+            layoutAccessibilityMode.setOnClickListener {
+                showAccessibilityModeDialog()
+            }
+            
             // Accessibility settings
             switchTalkback.setOnCheckedChangeListener { _, isChecked ->
                 viewModel.setTalkbackEnabled(isChecked)
@@ -153,6 +159,10 @@ class SettingsFragment : Fragment() {
 
     private fun updateUi(state: SettingsUiState) {
         binding.apply {
+            // Accessibility Mode
+            tvAccessibilityModeValue.text = getAccessibilityModeName(state.accessibilityMode)
+            tvAccessibilityModeDesc.text = getAccessibilityModeDescription(state.accessibilityMode)
+            
             // Accessibility
             switchTalkback.isChecked = state.talkbackEnabled
             switchHighContrast.isChecked = state.highContrastEnabled
@@ -174,6 +184,62 @@ class SettingsFragment : Fragment() {
             // App info
             tvAppVersion.text = state.appVersion
         }
+    }
+    
+    private fun getAccessibilityModeName(mode: AccessibilityModeType): String {
+        return when (mode) {
+            AccessibilityModeType.NORMAL -> getString(R.string.mode_regular)
+            AccessibilityModeType.BLIND -> getString(R.string.mode_blind)
+            AccessibilityModeType.DEAF -> getString(R.string.mode_deaf)
+            AccessibilityModeType.LOW_VISION -> getString(R.string.mode_low_vision)
+            AccessibilityModeType.SLOW_LEARNER -> getString(R.string.mode_slow_learner)
+        }
+    }
+    
+    private fun getAccessibilityModeDescription(mode: AccessibilityModeType): String {
+        return when (mode) {
+            AccessibilityModeType.NORMAL -> getString(R.string.mode_regular_desc)
+            AccessibilityModeType.BLIND -> getString(R.string.mode_blind_desc)
+            AccessibilityModeType.DEAF -> getString(R.string.mode_deaf_desc)
+            AccessibilityModeType.LOW_VISION -> getString(R.string.mode_low_vision_desc)
+            AccessibilityModeType.SLOW_LEARNER -> getString(R.string.mode_slow_learner_desc)
+        }
+    }
+    
+    private fun showAccessibilityModeDialog() {
+        val modes = arrayOf(
+            getString(R.string.mode_regular),
+            getString(R.string.mode_blind),
+            getString(R.string.mode_deaf),
+            getString(R.string.mode_low_vision),
+            getString(R.string.mode_slow_learner)
+        )
+        
+        val currentMode = viewModel.uiState.value.accessibilityMode.ordinal
+        
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(R.string.accessibility_mode)
+            .setSingleChoiceItems(modes, currentMode) { dialog, which ->
+                val selectedMode = AccessibilityModeType.entries[which]
+                viewModel.setAccessibilityMode(selectedMode)
+                
+                // Show confirmation
+                val modeName = modes[which]
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.mode_changed, modeName),
+                    Toast.LENGTH_SHORT
+                ).show()
+                
+                // Announce for accessibility
+                accessibilityManager.announceForAccessibility(
+                    getString(R.string.mode_changed, modeName)
+                )
+                
+                dialog.dismiss()
+            }
+            .setNegativeButton(R.string.cancel, null)
+            .show()
     }
 
     private fun showContentModeDialog() {

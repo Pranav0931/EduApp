@@ -1,5 +1,6 @@
 package com.hdaf.eduapp.presentation.quiz
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +16,9 @@ import com.hdaf.eduapp.R
 import com.hdaf.eduapp.core.accessibility.EduAccessibilityManager
 import com.hdaf.eduapp.core.accessibility.HapticType
 import com.hdaf.eduapp.databinding.FragmentQuizActiveBinding
+import com.hdaf.eduapp.domain.model.AccessibilityModeType
 import com.hdaf.eduapp.domain.model.QuizQuestion
+import com.hdaf.eduapp.ui.accessibility.VisualAlertManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -38,6 +41,15 @@ class QuizActiveFragment : Fragment() {
 
     @Inject
     lateinit var accessibilityManager: EduAccessibilityManager
+    
+    @Inject
+    lateinit var visualAlertManager: VisualAlertManager
+    
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
+    
+    private var isDeafMode = false
+    private var isSlowLearnerMode = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,9 +66,48 @@ class QuizActiveFragment : Fragment() {
         setupToolbar()
         setupOptionClicks()
         setupNavigationButtons()
+        setupAccessibilityFeatures()
         observeUiState()
 
         viewModel.startQuiz(chapterId)
+    }
+    
+    private fun setupAccessibilityFeatures() {
+        val modeOrdinal = sharedPreferences.getInt("accessibility_mode", 0)
+        val mode = AccessibilityModeType.entries.getOrElse(modeOrdinal) { AccessibilityModeType.NORMAL }
+        
+        isDeafMode = mode == AccessibilityModeType.DEAF
+        isSlowLearnerMode = mode == AccessibilityModeType.SLOW_LEARNER
+        
+        if (isDeafMode) {
+            visualAlertManager.initialize(requireContext())
+        }
+        
+        if (isSlowLearnerMode) {
+            // Show encouraging message
+            accessibilityManager.speak("क्विज शुरू। आप अच्छा कर सकते हैं!")
+        }
+    }
+    
+    /**
+     * Show visual feedback for correct/incorrect answers (for deaf users)
+     */
+    private fun showAnswerFeedback(isCorrect: Boolean) {
+        if (isDeafMode) {
+            if (isCorrect) {
+                visualAlertManager.showSuccessAlert("सही जवाब! 🎉")
+            } else {
+                visualAlertManager.showErrorAlert("गलत जवाब")
+            }
+        }
+        
+        if (isSlowLearnerMode) {
+            if (isCorrect) {
+                accessibilityManager.speak("बहुत अच्छा! सही जवाब!")
+            } else {
+                accessibilityManager.speak("कोई बात नहीं। अगला सवाल आज़माएं।")
+            }
+        }
     }
 
     private fun setupToolbar() {

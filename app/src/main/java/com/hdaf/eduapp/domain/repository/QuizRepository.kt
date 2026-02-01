@@ -17,6 +17,11 @@ interface QuizRepository {
     // ==================== Quiz Fetching ====================
 
     /**
+     * Get all available quizzes.
+     */
+    fun getAllQuizzes(): Flow<Resource<List<Quiz>>>
+
+    /**
      * Get quizzes for a specific chapter.
      */
     fun getQuizzesByChapter(chapterId: String): Flow<Resource<List<Quiz>>>

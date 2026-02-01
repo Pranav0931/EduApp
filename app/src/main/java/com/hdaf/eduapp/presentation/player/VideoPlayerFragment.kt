@@ -1,5 +1,6 @@
 package com.hdaf.eduapp.presentation.player
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -19,6 +20,8 @@ import com.hdaf.eduapp.R
 import com.hdaf.eduapp.core.accessibility.EduAccessibilityManager
 import com.hdaf.eduapp.core.accessibility.HapticType
 import com.hdaf.eduapp.databinding.FragmentVideoPlayerBinding
+import com.hdaf.eduapp.domain.model.AccessibilityModeType
+import com.hdaf.eduapp.ui.accessibility.VisualAlertManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -47,6 +50,14 @@ class VideoPlayerFragment : Fragment() {
 
     @Inject
     lateinit var accessibilityManager: EduAccessibilityManager
+    
+    @Inject
+    lateinit var visualAlertManager: VisualAlertManager
+    
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
+    
+    private var isDeafMode = false
 
     private val handler = Handler(Looper.getMainLooper())
     private val updateProgressRunnable = object : Runnable {
@@ -86,9 +97,36 @@ class VideoPlayerFragment : Fragment() {
         setupSeekBar()
         setupSignLanguageToggle()
         setupVideoSurfaceClick()
+        setupAccessibilityFeatures()
         observeUiState()
 
         viewModel.loadChapter(chapterId)
+    }
+    
+    private fun setupAccessibilityFeatures() {
+        // Check if deaf mode is enabled
+        val modeOrdinal = sharedPreferences.getInt("accessibility_mode", 0)
+        val mode = AccessibilityModeType.entries.getOrElse(modeOrdinal) { AccessibilityModeType.NORMAL }
+        isDeafMode = mode == AccessibilityModeType.DEAF
+        
+        if (isDeafMode) {
+            // Auto-enable sign language for deaf users
+            viewModel.toggleSignLanguage()
+            
+            // Show visual feedback for audio events
+            visualAlertManager.initialize(requireContext())
+        }
+    }
+    
+    private fun showSubtitle(text: String) {
+        if (isDeafMode && text.isNotBlank()) {
+            // In a real implementation, we would show subtitles in the UI
+            // For now, just log it
+        }
+    }
+    
+    private fun hideSubtitle() {
+        // Hide subtitles
     }
 
     private fun setupToolbar() {

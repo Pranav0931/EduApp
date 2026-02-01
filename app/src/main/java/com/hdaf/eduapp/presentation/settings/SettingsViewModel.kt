@@ -3,6 +3,7 @@ package com.hdaf.eduapp.presentation.settings
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hdaf.eduapp.core.security.SecurePreferences
+import com.hdaf.eduapp.domain.model.AccessibilityModeType
 import com.hdaf.eduapp.domain.repository.AuthRepository
 import com.hdaf.eduapp.domain.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,12 +25,22 @@ class SettingsViewModel @Inject constructor(
     val uiState: StateFlow<SettingsUiState> = _uiState.asStateFlow()
 
     fun loadSettings() {
+        val savedMode = securePreferences.getString(KEY_ACCESSIBILITY_MODE, AccessibilityModeType.NORMAL.name)
+        val accessibilityMode = try {
+            AccessibilityModeType.valueOf(savedMode ?: AccessibilityModeType.NORMAL.name)
+        } catch (e: Exception) {
+            AccessibilityModeType.NORMAL
+        }
+        
         _uiState.update { currentState ->
             currentState.copy(
+                accessibilityMode = accessibilityMode,
                 talkbackEnabled = securePreferences.getBoolean(KEY_TALKBACK, false),
                 highContrastEnabled = securePreferences.getBoolean(KEY_HIGH_CONTRAST, false),
                 largeTextEnabled = securePreferences.getBoolean(KEY_LARGE_TEXT, false),
                 hapticFeedbackEnabled = securePreferences.getBoolean(KEY_HAPTIC_FEEDBACK, true),
+                subtitlesEnabled = securePreferences.getBoolean(KEY_SUBTITLES, false),
+                voiceNavigationEnabled = securePreferences.getBoolean(KEY_VOICE_NAVIGATION, false),
                 contentMode = securePreferences.getString(KEY_CONTENT_MODE, "ऑडियो") ?: "ऑडियो",
                 language = securePreferences.getString(KEY_LANGUAGE, "हिंदी") ?: "हिंदी",
                 downloadQuality = securePreferences.getString(KEY_DOWNLOAD_QUALITY, "मध्यम") ?: "मध्यम",
@@ -37,9 +48,38 @@ class SettingsViewModel @Inject constructor(
                 offlineModeEnabled = securePreferences.getBoolean(KEY_OFFLINE_MODE, false),
                 notificationsEnabled = securePreferences.getBoolean(KEY_NOTIFICATIONS, true),
                 dailyReminderEnabled = securePreferences.getBoolean(KEY_DAILY_REMINDER, true),
-                appVersion = "1.0.0" // TODO: Get from BuildConfig
+                appVersion = "1.0.0"
             )
         }
+    }
+    
+    fun setAccessibilityMode(mode: AccessibilityModeType) {
+        securePreferences.putString(KEY_ACCESSIBILITY_MODE, mode.name)
+        
+        // Auto-configure related settings based on mode
+        when (mode) {
+            AccessibilityModeType.BLIND -> {
+                setTalkbackEnabled(true)
+                setVoiceNavigationEnabled(true)
+                setHapticFeedbackEnabled(true)
+            }
+            AccessibilityModeType.DEAF -> {
+                setSubtitlesEnabled(true)
+                setHapticFeedbackEnabled(true)
+            }
+            AccessibilityModeType.LOW_VISION -> {
+                setHighContrastEnabled(true)
+                setLargeTextEnabled(true)
+            }
+            AccessibilityModeType.SLOW_LEARNER -> {
+                // Keep defaults but slower pace handled elsewhere
+            }
+            AccessibilityModeType.NORMAL -> {
+                // Keep user preferences
+            }
+        }
+        
+        _uiState.update { it.copy(accessibilityMode = mode) }
     }
 
     fun setTalkbackEnabled(enabled: Boolean) {
@@ -60,6 +100,16 @@ class SettingsViewModel @Inject constructor(
     fun setHapticFeedbackEnabled(enabled: Boolean) {
         securePreferences.putBoolean(KEY_HAPTIC_FEEDBACK, enabled)
         _uiState.update { it.copy(hapticFeedbackEnabled = enabled) }
+    }
+    
+    fun setSubtitlesEnabled(enabled: Boolean) {
+        securePreferences.putBoolean(KEY_SUBTITLES, enabled)
+        _uiState.update { it.copy(subtitlesEnabled = enabled) }
+    }
+    
+    fun setVoiceNavigationEnabled(enabled: Boolean) {
+        securePreferences.putBoolean(KEY_VOICE_NAVIGATION, enabled)
+        _uiState.update { it.copy(voiceNavigationEnabled = enabled) }
     }
 
     fun setContentMode(mode: String) {
@@ -127,10 +177,13 @@ class SettingsViewModel @Inject constructor(
     }
 
     companion object {
+        private const val KEY_ACCESSIBILITY_MODE = "accessibility_mode"
         private const val KEY_TALKBACK = "talkback_enabled"
         private const val KEY_HIGH_CONTRAST = "high_contrast_enabled"
         private const val KEY_LARGE_TEXT = "large_text_enabled"
         private const val KEY_HAPTIC_FEEDBACK = "haptic_feedback_enabled"
+        private const val KEY_SUBTITLES = "subtitles_enabled"
+        private const val KEY_VOICE_NAVIGATION = "voice_navigation_enabled"
         private const val KEY_CONTENT_MODE = "content_mode"
         private const val KEY_LANGUAGE = "language"
         private const val KEY_DOWNLOAD_QUALITY = "download_quality"
@@ -142,10 +195,13 @@ class SettingsViewModel @Inject constructor(
 }
 
 data class SettingsUiState(
+    val accessibilityMode: AccessibilityModeType = AccessibilityModeType.NORMAL,
     val talkbackEnabled: Boolean = false,
     val highContrastEnabled: Boolean = false,
     val largeTextEnabled: Boolean = false,
     val hapticFeedbackEnabled: Boolean = true,
+    val subtitlesEnabled: Boolean = false,
+    val voiceNavigationEnabled: Boolean = false,
     val contentMode: String = "ऑडियो",
     val language: String = "हिंदी",
     val downloadQuality: String = "मध्यम",

@@ -1,9 +1,15 @@
 package com.hdaf.eduapp.presentation
 
+import android.Manifest
+import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -12,9 +18,12 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.hdaf.eduapp.R
+import com.hdaf.eduapp.accessibility.VoiceNavigationManager
 import com.hdaf.eduapp.core.accessibility.EduAccessibilityManager
 import com.hdaf.eduapp.core.network.NetworkMonitor
 import com.hdaf.eduapp.databinding.ActivityMainBinding
+import com.hdaf.eduapp.domain.model.AccessibilityModeType
+import com.hdaf.eduapp.ui.EduAIChatBottomSheet
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -45,6 +54,25 @@ class MainActivity : AppCompatActivity() {
     
     @Inject
     lateinit var accessibilityManager: EduAccessibilityManager
+    
+    @Inject
+    lateinit var voiceNavigationManager: VoiceNavigationManager
+    
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
+    
+    private var isVoiceListening = false
+    
+    // Permission launcher for microphone
+    private val micPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            startVoiceListening()
+        } else {
+            Toast.makeText(this, R.string.mic_permission_denied, Toast.LENGTH_SHORT).show()
+        }
+    }
 
     // Destinations where bottom nav should be visible
     private val bottomNavDestinations = setOf(
@@ -73,6 +101,149 @@ class MainActivity : AppCompatActivity() {
         observeNetworkStatus()
         observeUiState()
         setupAccessibility()
+        setupVoiceControl()
+        setupAccessibilityMode()
+        setupAiChatFab()
+    }
+    
+    private fun setupAiChatFab() {
+        binding.fabAiChat.setOnClickListener {
+            accessibilityManager.provideHapticFeedback(com.hdaf.eduapp.core.accessibility.HapticType.CLICK)
+            showAiChat()
+        }
+    }
+    
+    private fun showAiChat() {
+        val chatBottomSheet = EduAIChatBottomSheet.newInstance()
+        chatBottomSheet.show(supportFragmentManager, "EduAIChat")
+    }
+    
+    private fun setupVoiceControl() {
+        binding.fabVoiceControl.setOnClickListener {
+            if (isVoiceListening) {
+                stopVoiceListening()
+            } else {
+                checkMicPermissionAndListen()
+            }
+        }
+        
+        // Observe voice navigation commands
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                voiceNavigationManager.recognizedText.collect { text ->
+                    text?.let { handleVoiceCommand(it) }
+                }
+            }
+        }
+    }
+    
+    private fun checkMicPermissionAndListen() {
+        when {
+            ContextCompat.checkSelfPermission(
+                this, Manifest.permission.RECORD_AUDIO
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                startVoiceListening()
+            }
+            else -> {
+                micPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
+            }
+        }
+    }
+    
+    private fun startVoiceListening() {
+        isVoiceListening = true
+        binding.fabVoiceControl.setImageResource(R.drawable.ic_mic_active)
+        voiceNavigationManager.startListening()
+        accessibilityManager.announceForAccessibility(getString(R.string.voice_listening))
+        Toast.makeText(this, R.string.voice_listening, Toast.LENGTH_SHORT).show()
+    }
+    
+    private fun stopVoiceListening() {
+        isVoiceListening = false
+        binding.fabVoiceControl.setImageResource(R.drawable.ic_mic)
+        voiceNavigationManager.stopListening()
+    }
+    
+    private fun handleVoiceCommand(command: String) {
+        stopVoiceListening()
+        
+        when {
+            command.contains("home", ignoreCase = true) || 
+            command.contains("होम", ignoreCase = true) -> {
+                navController.navigate(R.id.homeFragment)
+            }
+            command.contains("book", ignoreCase = true) || 
+            command.contains("किताब", ignoreCase = true) -> {
+                navController.navigate(R.id.bookListFragment)
+            }
+            command.contains("quiz", ignoreCase = true) || 
+            command.contains("क्विज़", ignoreCase = true) -> {
+                navController.navigate(R.id.quizListFragment)
+            }
+            command.contains("profile", ignoreCase = true) || 
+            command.contains("प्रोफाइल", ignoreCase = true) -> {
+                navController.navigate(R.id.profileFragment)
+            }
+            command.contains("leaderboard", ignoreCase = true) || 
+            command.contains("लीडरबोर्ड", ignoreCase = true) -> {
+                navController.navigate(R.id.leaderboardFragment)
+            }
+            command.contains("setting", ignoreCase = true) || 
+            command.contains("सेटिंग", ignoreCase = true) -> {
+                navController.navigate(R.id.settingsFragment)
+            }
+            command.contains("back", ignoreCase = true) || 
+            command.contains("वापस", ignoreCase = true) -> {
+                navController.popBackStack()
+            }
+            else -> {
+                Toast.makeText(this, getString(R.string.voice_command_not_recognized), Toast.LENGTH_SHORT).show()
+            }
+        }
+        
+        accessibilityManager.announceForAccessibility(getString(R.string.voice_command_executed, command))
+    }
+    
+    private fun setupAccessibilityMode() {
+        // Load saved accessibility mode and update UI accordingly
+        val modeOrdinal = sharedPreferences.getInt("accessibility_mode", 0)
+        val mode = AccessibilityModeType.entries.getOrElse(modeOrdinal) { AccessibilityModeType.NORMAL }
+        applyAccessibilityMode(mode)
+        
+        // Observe preference changes
+        sharedPreferences.registerOnSharedPreferenceChangeListener { prefs, key ->
+            if (key == "accessibility_mode") {
+                val newModeOrdinal = prefs.getInt(key, 0)
+                val newMode = AccessibilityModeType.entries.getOrElse(newModeOrdinal) { AccessibilityModeType.NORMAL }
+                applyAccessibilityMode(newMode)
+            }
+        }
+    }
+    
+    private fun applyAccessibilityMode(mode: AccessibilityModeType) {
+        when (mode) {
+            AccessibilityModeType.NORMAL -> {
+                binding.fabVoiceControl.visibility = View.GONE
+                binding.subtitleContainer.visibility = View.GONE
+            }
+            AccessibilityModeType.BLIND -> {
+                binding.fabVoiceControl.visibility = View.VISIBLE
+                binding.subtitleContainer.visibility = View.GONE
+                accessibilityManager.announceForAccessibility(getString(R.string.mode_blind_activated))
+            }
+            AccessibilityModeType.DEAF -> {
+                binding.fabVoiceControl.visibility = View.GONE
+                binding.subtitleContainer.visibility = View.VISIBLE
+            }
+            AccessibilityModeType.LOW_VISION -> {
+                binding.fabVoiceControl.visibility = View.VISIBLE
+                binding.subtitleContainer.visibility = View.GONE
+            }
+            AccessibilityModeType.SLOW_LEARNER -> {
+                binding.fabVoiceControl.visibility = View.GONE
+                binding.subtitleContainer.visibility = View.GONE
+            }
+        }
     }
 
     private fun setupNavigation() {
@@ -207,6 +378,7 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         accessibilityManager.shutdown()
+        voiceNavigationManager.stopListening()
     }
 }
 

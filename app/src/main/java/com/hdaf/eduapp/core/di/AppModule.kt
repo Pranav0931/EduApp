@@ -1,6 +1,7 @@
 package com.hdaf.eduapp.core.di
 
 import android.content.Context
+import android.content.SharedPreferences
 import com.hdaf.eduapp.core.network.NetworkMonitor
 import com.hdaf.eduapp.core.network.NetworkMonitorImpl
 import com.hdaf.eduapp.core.security.SecurePreferences
@@ -34,6 +35,15 @@ object AppModule {
     @Provides
     @Singleton
     fun provideApplicationContext(@ApplicationContext context: Context): Context = context
+    
+    /**
+     * Provides SharedPreferences for app settings.
+     */
+    @Provides
+    @Singleton
+    fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences {
+        return context.getSharedPreferences("eduapp_prefs", Context.MODE_PRIVATE)
+    }
 
     /**
      * Provides IO Dispatcher for background operations.
