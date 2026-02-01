@@ -20,11 +20,19 @@ import com.hdaf.eduapp.databinding.FragmentBookListBinding
 import com.hdaf.eduapp.domain.model.Book
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 /**
  * Displays list of books for a selected class.
  * Supports grid layout with accessibility optimizations.
+ * 
+ * Features:
+ * - Offline-first book loading
+ * - Pull-to-refresh
+ * - Error handling with retry
+ * - Accessibility announcements
+ * - Book download support
  */
 @AndroidEntryPoint
 class BookListFragment : Fragment() {
@@ -39,6 +47,8 @@ class BookListFragment : Fragment() {
     lateinit var accessibilityManager: EduAccessibilityManager
 
     private lateinit var bookAdapter: BookAdapter
+    
+    private var hasAnnouncedBooks = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,14 +65,22 @@ class BookListFragment : Fragment() {
         setupToolbar()
         setupRecyclerView()
         setupSwipeRefresh()
+        setupRetryButton()
         observeUiState()
 
         // Load books for the specified class
-        args.classId?.let { viewModel.loadBooks(it) }
+        args.classId?.let { classId ->
+            Timber.d("Loading books for class: $classId")
+            viewModel.loadBooks(classId)
+        } ?: run {
+            Timber.e("No classId provided to BookListFragment")
+            showError(getString(R.string.error_no_class_selected))
+        }
     }
 
     private fun setupToolbar() {
         binding.toolbar.setNavigationOnClickListener {
+            accessibilityManager.provideHapticFeedback(HapticType.NAVIGATION)
             findNavController().popBackStack()
         }
         
@@ -82,12 +100,34 @@ class BookListFragment : Fragment() {
             adapter = bookAdapter
             layoutManager = GridLayoutManager(requireContext(), 2)
             setHasFixedSize(true)
+            
+            // Improve scroll performance
+            setItemViewCacheSize(10)
         }
     }
 
     private fun setupSwipeRefresh() {
+        binding.swipeRefresh.setColorSchemeResources(
+            R.color.primary_magenta,
+            R.color.secondary_purple
+        )
+        
         binding.swipeRefresh.setOnRefreshListener {
+            hasAnnouncedBooks = false
             args.classId?.let { viewModel.refreshBooks(it) }
+        }
+    }
+    
+    private fun setupRetryButton() {
+        // Add retry functionality to empty state 
+        binding.btnRetry.setOnClickListener {
+            accessibilityManager.provideHapticFeedback(HapticType.CLICK)
+            args.classId?.let { viewModel.loadBooks(it) }
+        }
+        
+        // Fallback: also allow clicking on the empty layout
+        binding.layoutEmpty.setOnClickListener {
+            args.classId?.let { viewModel.loadBooks(it) }
         }
     }
 
@@ -110,39 +150,92 @@ class BookListFragment : Fragment() {
     }
 
     private fun updateUi(state: BookListUiState) {
-        binding.swipeRefresh.isRefreshing = state.isLoading
-        binding.progressBar.visibility = if (state.isLoading && state.books.isEmpty()) View.VISIBLE else View.GONE
-
-        bookAdapter.submitList(state.books)
-
+        // Update refresh indicator
+        binding.swipeRefresh.isRefreshing = state.isRefreshing
+        
+        // Loading state (only show spinner when no content)
+        binding.progressBar.visibility = if (state.isLoading && state.books.isEmpty()) {
+            View.VISIBLE
+        } else {
+            View.GONE
+        }
+        
+        // Update book list
+        if (state.books.isNotEmpty()) {
+            bookAdapter.submitList(state.books)
+            binding.rvBooks.visibility = View.VISIBLE
+            binding.layoutEmpty.visibility = View.GONE
+            
+            // Accessibility announcement (only once per load)
+            if (!hasAnnouncedBooks && accessibilityManager.isAccessibilityEnabled()) {
+                hasAnnouncedBooks = true
+                val announcement = getString(R.string.books_loaded_announcement, state.books.size)
+                accessibilityManager.announceForAccessibility(announcement)
+            }
+        }
+        
         // Empty state
-        binding.layoutEmpty.visibility = if (state.books.isEmpty() && !state.isLoading) View.VISIBLE else View.GONE
-        binding.rvBooks.visibility = if (state.books.isNotEmpty()) View.VISIBLE else View.GONE
-
-        // Accessibility announcement
-        if (state.books.isNotEmpty() && accessibilityManager.isAccessibilityEnabled()) {
-            accessibilityManager.announceForAccessibility(
-                "${state.books.size} किताबें उपलब्ध हैं"
-            )
+        if (state.showEmptyState) {
+            binding.layoutEmpty.visibility = View.VISIBLE
+            binding.rvBooks.visibility = View.GONE
+            
+            if (accessibilityManager.isAccessibilityEnabled()) {
+                accessibilityManager.announceForAccessibility(getString(R.string.no_books_available))
+            }
+        }
+        
+        // Error state
+        if (state.showErrorState) {
+            binding.layoutEmpty.visibility = View.VISIBLE
+            binding.rvBooks.visibility = View.GONE
+            
+            // Announce error for accessibility
+            if (accessibilityManager.isAccessibilityEnabled()) {
+                state.error?.let { accessibilityManager.announceForAccessibility(it) }
+            }
         }
     }
 
     private fun handleEvent(event: BookListEvent) {
         when (event) {
             is BookListEvent.ShowError -> {
-                Snackbar.make(binding.root, event.message, Snackbar.LENGTH_LONG).show()
+                showError(event.message)
             }
             is BookListEvent.DownloadStarted -> {
-                Snackbar.make(binding.root, "डाउनलोड शुरू हो गया", Snackbar.LENGTH_SHORT).show()
+                showSnackbar(getString(R.string.download_started))
+                accessibilityManager.provideHapticFeedback(HapticType.CLICK)
             }
             is BookListEvent.DownloadComplete -> {
-                Snackbar.make(binding.root, "डाउनलोड पूर्ण", Snackbar.LENGTH_SHORT).show()
+                showSnackbar(getString(R.string.download_complete))
+                accessibilityManager.provideHapticFeedback(HapticType.SUCCESS)
+            }
+            is BookListEvent.DownloadFailed -> {
+                showError(event.error)
+                accessibilityManager.provideHapticFeedback(HapticType.ERROR)
             }
         }
+    }
+    
+    private fun showError(message: String) {
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
+            .setAction(R.string.retry) {
+                args.classId?.let { viewModel.loadBooks(it) }
+            }
+            .show()
+    }
+    
+    private fun showSnackbar(message: String) {
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
     }
 
     private fun navigateToChapters(book: Book) {
         accessibilityManager.provideHapticFeedback(HapticType.CLICK)
+        
+        // Announce navigation for accessibility
+        if (accessibilityManager.isAccessibilityEnabled()) {
+            accessibilityManager.speak("${book.title} खोल रहे हैं")
+        }
+        
         findNavController().navigate(
             BookListFragmentDirections.actionBookListToChapterList(book.id, book.title)
         )

@@ -111,12 +111,13 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="64dp"
         android:layout_gravity="bottom"
-        android:background="@color/primary_magenta"
-        app:itemIconTint="@color/text_primary"
-        app:itemTextColor="@color/text_primary"
+        android:background="@color/background_white"
+        app:itemIconTint="@color/bottom_nav_item_color"
+        app:itemTextColor="@color/bottom_nav_item_color"
         app:labelVisibilityMode="labeled"
+        app:elevation="12dp"
         app:menu="@menu/bottom_nav_main" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

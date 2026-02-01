@@ -5,6 +5,8 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/splashFragment">
 
+    <!-- Default Navigation Animations for smoother transitions -->
+    
     <!-- ==================== Splash / Onboarding ==================== -->
     
     <fragment
@@ -17,19 +19,25 @@
             android:id="@+id/action_splash_to_onboarding"
             app:destination="@id/onboardingFragment"
             app:popUpTo="@id/splashFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/nav_enter"
+            app:exitAnim="@anim/nav_exit" />
             
         <action
             android:id="@+id/action_splash_to_auth"
             app:destination="@id/authNavGraph"
             app:popUpTo="@id/splashFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/nav_enter"
+            app:exitAnim="@anim/nav_exit" />
             
         <action
             android:id="@+id/action_splash_to_home"
             app:destination="@id/homeFragment"
             app:popUpTo="@id/splashFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/nav_enter"
+            app:exitAnim="@anim/nav_exit" />
     </fragment>
     
     <fragment
@@ -42,7 +50,9 @@
             android:id="@+id/action_onboarding_to_modeSelection"
             app:destination="@id/modeSelectionFragment"
             app:popUpTo="@id/onboardingFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/nav_enter"
+            app:exitAnim="@anim/nav_exit" />
     </fragment>
 
     <!-- ==================== Mode Selection ==================== -->
@@ -124,27 +134,51 @@
         
         <action
             android:id="@+id/action_home_to_bookList"
-            app:destination="@id/bookListFragment" />
+            app:destination="@id/bookListFragment"
+            app:enterAnim="@anim/nav_enter"
+            app:exitAnim="@anim/nav_exit"
+            app:popEnterAnim="@anim/nav_pop_enter"
+            app:popExitAnim="@anim/nav_pop_exit" />
             
         <action
             android:id="@+id/action_home_to_quizList"
-            app:destination="@id/quizListFragment" />
+            app:destination="@id/quizListFragment"
+            app:enterAnim="@anim/nav_enter"
+            app:exitAnim="@anim/nav_exit"
+            app:popEnterAnim="@anim/nav_pop_enter"
+            app:popExitAnim="@anim/nav_pop_exit" />
             
         <action
             android:id="@+id/action_home_to_profile"
-            app:destination="@id/profileFragment" />
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/nav_enter"
+            app:exitAnim="@anim/nav_exit"
+            app:popEnterAnim="@anim/nav_pop_enter"
+            app:popExitAnim="@anim/nav_pop_exit" />
             
         <action
             android:id="@+id/action_home_to_settings"
-            app:destination="@id/settingsFragment" />
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/nav_enter"
+            app:exitAnim="@anim/nav_exit"
+            app:popEnterAnim="@anim/nav_pop_enter"
+            app:popExitAnim="@anim/nav_pop_exit" />
             
         <action
             android:id="@+id/action_home_to_leaderboard"
-            app:destination="@id/leaderboardFragment" />
+            app:destination="@id/leaderboardFragment"
+            app:enterAnim="@anim/nav_enter"
+            app:exitAnim="@anim/nav_exit"
+            app:popEnterAnim="@anim/nav_pop_enter"
+            app:popExitAnim="@anim/nav_pop_exit" />
             
         <action
             android:id="@+id/action_home_to_chapterList"
-            app:destination="@id/chapterListFragment" />
+            app:destination="@id/chapterListFragment"
+            app:enterAnim="@anim/nav_enter"
+            app:exitAnim="@anim/nav_exit"
+            app:popEnterAnim="@anim/nav_pop_enter"
+            app:popExitAnim="@anim/nav_pop_exit" />
     </fragment>
 
     <!-- ==================== Books & Chapters ==================== -->
@@ -163,7 +197,11 @@
             
         <action
             android:id="@+id/action_bookList_to_chapterList"
-            app:destination="@id/chapterListFragment" />
+            app:destination="@id/chapterListFragment"
+            app:enterAnim="@anim/nav_enter"
+            app:exitAnim="@anim/nav_exit"
+            app:popEnterAnim="@anim/nav_pop_enter"
+            app:popExitAnim="@anim/nav_pop_exit" />
     </fragment>
     
     <fragment
@@ -183,19 +221,35 @@
             
         <action
             android:id="@+id/action_chapterList_to_reader"
-            app:destination="@id/readerFragment" />
+            app:destination="@id/readerFragment"
+            app:enterAnim="@anim/nav_enter"
+            app:exitAnim="@anim/nav_exit"
+            app:popEnterAnim="@anim/nav_pop_enter"
+            app:popExitAnim="@anim/nav_pop_exit" />
             
         <action
             android:id="@+id/action_chapterList_to_quiz"
-            app:destination="@id/quizFragment" />
+            app:destination="@id/quizFragment"
+            app:enterAnim="@anim/nav_enter"
+            app:exitAnim="@anim/nav_exit"
+            app:popEnterAnim="@anim/nav_pop_enter"
+            app:popExitAnim="@anim/nav_pop_exit" />
             
         <action
             android:id="@+id/action_chapterList_to_audioPlayer"
-            app:destination="@id/audioPlayerFragment" />
+            app:destination="@id/audioPlayerFragment"
+            app:enterAnim="@anim/nav_enter"
+            app:exitAnim="@anim/nav_exit"
+            app:popEnterAnim="@anim/nav_pop_enter"
+            app:popExitAnim="@anim/nav_pop_exit" />
             
         <action
             android:id="@+id/action_chapterList_to_videoPlayer"
-            app:destination="@id/videoPlayerFragment" />
+            app:destination="@id/videoPlayerFragment"
+            app:enterAnim="@anim/nav_enter"
+            app:exitAnim="@anim/nav_exit"
+            app:popEnterAnim="@anim/nav_pop_enter"
+            app:popExitAnim="@anim/nav_pop_exit" />
     </fragment>
     
     <fragment

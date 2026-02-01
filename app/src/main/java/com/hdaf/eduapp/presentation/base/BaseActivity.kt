@@ -1,5 +1,6 @@
 package com.hdaf.eduapp.presentation.base
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +8,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewbinding.ViewBinding
+import com.hdaf.eduapp.utils.LocaleHelper
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -18,6 +20,7 @@ import kotlinx.coroutines.launch
  * - Type-safe ViewBinding
  * - Lifecycle-aware Flow collection
  * - Common UI setup patterns
+ * - Locale/language support
  * 
  * @param VB The ViewBinding type
  */
@@ -34,6 +37,10 @@ abstract class BaseActivity<VB : ViewBinding>(
         get() = _binding ?: throw IllegalStateException(
             "ViewBinding is only valid between onCreate and onDestroy"
         )
+        
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(LocaleHelper.applyLocale(newBase))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

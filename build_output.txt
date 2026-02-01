@@ -1,43 +1,232 @@
-﻿> Task :app:preBuild UP-TO-DATE
-> Task :app:preDebugBuild UP-TO-DATE
-> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
-> Task :app:javaPreCompileDebug UP-TO-DATE
-> Task :app:checkDebugAarMetadata UP-TO-DATE
-> Task :app:generateDebugResValues UP-TO-DATE
-> Task :app:mapDebugSourceSetPaths UP-TO-DATE
-> Task :app:generateDebugResources UP-TO-DATE
-> Task :app:mergeDebugResources UP-TO-DATE
-> Task :app:packageDebugResources UP-TO-DATE
-> Task :app:parseDebugLocalResources UP-TO-DATE
-> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
-> Task :app:extractDeepLinksDebug UP-TO-DATE
-> Task :app:processDebugMainManifest UP-TO-DATE
-> Task :app:processDebugManifest UP-TO-DATE
-> Task :app:processDebugManifestForPackage UP-TO-DATE
-> Task :app:processDebugResources UP-TO-DATE
-> Task :app:compileDebugJavaWithJavac UP-TO-DATE
-> Task :app:mergeDebugShaders UP-TO-DATE
-> Task :app:compileDebugShaders NO-SOURCE
-> Task :app:generateDebugAssets UP-TO-DATE
-> Task :app:mergeDebugAssets UP-TO-DATE
-> Task :app:compressDebugAssets UP-TO-DATE
-> Task :app:processDebugJavaRes NO-SOURCE
-> Task :app:mergeDebugJavaResource UP-TO-DATE
-> Task :app:checkDebugDuplicateClasses UP-TO-DATE
-> Task :app:desugarDebugFileDependencies UP-TO-DATE
-> Task :app:mergeExtDexDebug UP-TO-DATE
-> Task :app:mergeLibDexDebug UP-TO-DATE
-> Task :app:dexBuilderDebug UP-TO-DATE
-> Task :app:mergeProjectDexDebug UP-TO-DATE
-> Task :app:mergeDebugJniLibFolders UP-TO-DATE
-> Task :app:mergeDebugNativeLibs NO-SOURCE
-> Task :app:stripDebugDebugSymbols NO-SOURCE
-> Task :app:validateSigningDebug UP-TO-DATE
-> Task :app:writeDebugAppMetadata UP-TO-DATE
-> Task :app:writeDebugSigningConfigVersions UP-TO-DATE
-> Task :app:packageDebug UP-TO-DATE
-> Task :app:createDebugApkListingFileRedirect UP-TO-DATE
-> Task :app:assembleDebug UP-TO-DATE
+﻿
+> Configure project :app
+WARNING: BuildType 'staging' is both debuggable and has 'isMinifyEnabled' set to true.
+All code optimizations and obfuscation are disabled for debuggable builds.
+WARNING: BuildType 'staging' is both debuggable and has 'isMinifyEnabled' set to true.
+All code optimizations and obfuscation are disabled for debuggable builds.
 
-BUILD SUCCESSFUL in 1s
-31 actionable tasks: 31 up-to-date
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDevDebugBuild UP-TO-DATE
+> Task :app:mergeDevDebugNativeDebugMetadata NO-SOURCE
+> Task :app:checkKotlinGradlePluginConfigurationErrors
+> Task :app:dataBindingMergeDependencyArtifactsDevDebug UP-TO-DATE
+> Task :app:generateDevDebugResValues UP-TO-DATE
+> Task :app:generateDevDebugResources UP-TO-DATE
+> Task :app:injectCrashlyticsMappingFileIdDevDebug UP-TO-DATE
+> Task :app:processDevDebugGoogleServices UP-TO-DATE
+> Task :app:mergeDevDebugResources UP-TO-DATE
+> Task :app:packageDevDebugResources UP-TO-DATE
+> Task :app:parseDevDebugLocalResources UP-TO-DATE
+> Task :app:dataBindingGenBaseClassesDevDebug UP-TO-DATE
+> Task :app:dataBindingTriggerDevDebug UP-TO-DATE
+> Task :app:generateDevDebugBuildConfig UP-TO-DATE
+> Task :app:generateSafeArgsDevDebug UP-TO-DATE
+> Task :app:checkDevDebugAarMetadata UP-TO-DATE
+> Task :app:mapDevDebugSourceSetPaths UP-TO-DATE
+> Task :app:createDevDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDevDebug UP-TO-DATE
+> Task :app:processDevDebugMainManifest UP-TO-DATE
+> Task :app:processDevDebugManifest UP-TO-DATE
+> Task :app:processDevDebugManifestForPackage UP-TO-DATE
+> Task :app:processDevDebugResources UP-TO-DATE
+> Task :app:javaPreCompileDevDebug UP-TO-DATE
+> Task :app:mergeDevDebugShaders UP-TO-DATE
+> Task :app:compileDevDebugShaders NO-SOURCE
+> Task :app:generateDevDebugAssets UP-TO-DATE
+> Task :app:mergeDevDebugAssets UP-TO-DATE
+> Task :app:compressDevDebugAssets UP-TO-DATE
+> Task :app:l8DexDesugarLibDevDebug UP-TO-DATE
+> Task :app:desugarDevDebugFileDependencies UP-TO-DATE
+> Task :app:checkDevDebugDuplicateClasses UP-TO-DATE
+> Task :app:mergeExtDexDevDebug UP-TO-DATE
+> Task :app:mergeLibDexDevDebug UP-TO-DATE
+> Task :app:mergeDevDebugJniLibFolders UP-TO-DATE
+> Task :app:mergeDevDebugNativeLibs UP-TO-DATE
+> Task :app:stripDevDebugDebugSymbols UP-TO-DATE
+> Task :app:validateSigningDevDebug UP-TO-DATE
+> Task :app:writeDevDebugAppMetadata UP-TO-DATE
+> Task :app:writeDevDebugSigningConfigVersions UP-TO-DATE
+> Task :app:preProdDebugBuild UP-TO-DATE
+> Task :app:mergeProdDebugNativeDebugMetadata NO-SOURCE
+> Task :app:dataBindingMergeDependencyArtifactsProdDebug UP-TO-DATE
+> Task :app:generateProdDebugResValues UP-TO-DATE
+> Task :app:generateProdDebugResources UP-TO-DATE
+> Task :app:injectCrashlyticsMappingFileIdProdDebug UP-TO-DATE
+> Task :app:processProdDebugGoogleServices UP-TO-DATE
+> Task :app:mergeProdDebugResources UP-TO-DATE
+> Task :app:packageProdDebugResources UP-TO-DATE
+> Task :app:parseProdDebugLocalResources UP-TO-DATE
+> Task :app:dataBindingGenBaseClassesProdDebug UP-TO-DATE
+> Task :app:dataBindingTriggerProdDebug UP-TO-DATE
+> Task :app:generateProdDebugBuildConfig UP-TO-DATE
+> Task :app:generateSafeArgsProdDebug UP-TO-DATE
+> Task :app:checkProdDebugAarMetadata UP-TO-DATE
+> Task :app:mapProdDebugSourceSetPaths UP-TO-DATE
+> Task :app:createProdDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksProdDebug UP-TO-DATE
+> Task :app:processProdDebugMainManifest UP-TO-DATE
+> Task :app:processProdDebugManifest UP-TO-DATE
+> Task :app:processProdDebugManifestForPackage UP-TO-DATE
+> Task :app:processProdDebugResources UP-TO-DATE
+> Task :app:javaPreCompileProdDebug UP-TO-DATE
+> Task :app:mergeProdDebugShaders UP-TO-DATE
+> Task :app:compileProdDebugShaders NO-SOURCE
+> Task :app:generateProdDebugAssets UP-TO-DATE
+> Task :app:mergeProdDebugAssets UP-TO-DATE
+> Task :app:compressProdDebugAssets UP-TO-DATE
+> Task :app:l8DexDesugarLibProdDebug UP-TO-DATE
+> Task :app:checkProdDebugDuplicateClasses UP-TO-DATE
+> Task :app:desugarProdDebugFileDependencies UP-TO-DATE
+> Task :app:mergeExtDexProdDebug UP-TO-DATE
+> Task :app:mergeLibDexProdDebug UP-TO-DATE
+> Task :app:mergeProdDebugJniLibFolders UP-TO-DATE
+> Task :app:mergeProdDebugNativeLibs UP-TO-DATE
+> Task :app:stripProdDebugDebugSymbols UP-TO-DATE
+> Task :app:validateSigningProdDebug UP-TO-DATE
+> Task :app:writeProdDebugAppMetadata UP-TO-DATE
+> Task :app:writeProdDebugSigningConfigVersions UP-TO-DATE
+> Task :app:kspDevDebugKotlin
+> Task :app:kspProdDebugKotlin
+> Task :app:kaptGenerateStubsDevDebugKotlin
+> Task :app:kaptGenerateStubsProdDebugKotlin
+> Task :app:kaptProdDebugKotlin
+> Task :app:kaptDevDebugKotlin
+
+> Task :app:compileProdDebugKotlin
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/ScreenReaderHelper.kt:53:24 Parameter 'view' is never used
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/ScreenReaderHelper.kt:54:40 'obtain(Int): AccessibilityEvent!' is deprecated. Deprecated in Java
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/book/BookListViewModel.kt:73:57 Elvis operator (?:) always returns the left operand of non-nullable type List<Book>
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/book/BookListViewModel.kt:94:85 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/leaderboard/LeaderboardFragment.kt:59:51 Parameter 'user' is never used, could be renamed to _
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:73:55 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:73:73 Elvis operator (?:) always returns the left operand of non-nullable type Int
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:74:51 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:74:66 Elvis operator (?:) always returns the left operand of non-nullable type Float
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:77:49 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:78:39 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:85:50 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:85:58 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:87:59 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:87:67 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:94:55 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:94:63 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:95:52 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:104:80 Elvis operator (?:) always returns the left operand of non-nullable type String
+
+> Task :app:compileProdDebugJavaWithJavac
+.\gradlew : Note: Some input files use or override a deprecated API.
+At line:1 char:1
++ .\gradlew assembleDebug 2>&1 | Out-File -FilePath "build_output.txt"  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Note: Some inpu...deprecated API.:String) [], R 
+   emoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Note: Recompile with -Xlint:deprecation for details.
+
+> Task :app:compileDevDebugKotlin
+> Task :app:hiltAggregateDepsProdDebug UP-TO-DATE
+> Task :app:hiltJavaCompileProdDebug
+> Task :app:processProdDebugJavaRes
+> Task :app:mergeProdDebugJavaResource
+> Task :app:transformProdDebugClassesWithAsm
+> Task :app:dexBuilderProdDebug
+> Task :app:mergeProdDebugGlobalSynthetics UP-TO-DATE
+> Task :app:mergeProjectDexProdDebug
+> Task :app:packageProdDebug
+> Task :app:createProdDebugApkListingFileRedirect UP-TO-DATE
+> Task :app:assembleProdDebug
+
+> Task :app:compileDevDebugKotlin
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/accessibility/AdaptiveStudyEngine.kt:139:37 Parameter 'isCorrect' is never used
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/accessibility/AdaptiveStudyEngine.kt:220:17 Variable 'existing' is never used
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/accessibility/AdaptiveStudyEngine.kt:338:25 Variable 'totalInteractions' is never used
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/accessibility/AdaptiveStudyEngine.kt:356:17 Variable 'recentSubjects' is never used
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/accessibility/OCREngine.kt:105:44 Unnecessary safe call on a non-null receiver of type Float
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/EduAccessibilityManager.kt:101:26 This declaration overrides deprecated member but not marked as deprecated itself. Please add @Deprecated annotation or suppress. See https://youtrack.jetbrains.com/issue/KT-47902 for details
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/EduAccessibilityManager.kt:140:26 This declaration overrides deprecated member but not marked as deprecated itself. Please add @Deprecated annotation or suppress. See https://youtrack.jetbrains.com/issue/KT-47902 for details
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/ScreenReaderHelper.kt:53:24 Parameter 'view' is never used
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/ScreenReaderHelper.kt:54:40 'obtain(Int): AccessibilityEvent!' is deprecated. Deprecated in Java
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/data/repository/AIChatRepositoryImpl.kt:158:9 Parameter 'responseMode' is never used
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/data/repository/AuthRepositoryImpl.kt:284:17 Variable 'token' is never used
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/data/repository/ProgressRepositoryImpl.kt:389:17 Variable 'progress' is never used
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/auth/AuthViewModel.kt:119:57 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/auth/AuthViewModel.kt:122:68 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/auth/AuthViewModel.kt:170:39 Unnecessary safe call on a non-null receiver of type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/auth/AuthViewModel.kt:171:39 Unnecessary safe call on a non-null receiver of type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/auth/AuthViewModel.kt:293:59 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/auth/AuthViewModel.kt:296:68 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/auth/AuthViewModel.kt:379:57 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/auth/AuthViewModel.kt:382:68 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/book/BookListViewModel.kt:73:57 Elvis operator (?:) always returns the left operand of non-nullable type List<Book>
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/book/BookListViewModel.kt:94:85 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/chapter/ChapterListViewModel.kt:39:52 Elvis operator (?:) always returns the left operand of non-nullable type List<Chapter>
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/chapter/ChapterListViewModel.kt:51:80 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/leaderboard/LeaderboardFragment.kt:59:51 Parameter 'user' is never used, could be renamed to _
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/leaderboard/LeaderboardViewModel.kt:36:55 Elvis operator (?:) always returns the left operand of non-nullable type List<LeaderboardEntryData>
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:73:55 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:73:73 Elvis operator (?:) always returns the left operand of non-nullable type Int
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:74:51 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:74:66 Elvis operator (?:) always returns the left operand of non-nullable type Float
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:77:49 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:78:39 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:85:50 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:85:58 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:87:59 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:87:67 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:94:55 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:94:63 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:95:52 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:104:80 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/VideoPlayerViewModel.kt:44:55 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/VideoPlayerViewModel.kt:44:73 Elvis operator (?:) always returns the left operand of non-nullable type Int
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/VideoPlayerViewModel.kt:45:51 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/VideoPlayerViewModel.kt:45:66 Elvis operator (?:) always returns the left operand of non-nullable type Float
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/VideoPlayerViewModel.kt:47:46 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/VideoPlayerViewModel.kt:51:55 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/VideoPlayerViewModel.kt:51:63 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/VideoPlayerViewModel.kt:52:52 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/VideoPlayerViewModel.kt:61:80 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/BadgesFragment.kt:57:30 Parameter 'badge' is never used, could be renamed to _
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileViewModel.kt:68:54 Elvis operator (?:) always returns the left operand of non-nullable type List<Badge>
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/quiz/QuizListViewModel.kt:43:55 Elvis operator (?:) always returns the left operand of non-nullable type List<Quiz>
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/quiz/QuizViewModel.kt:115:58 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/quiz/QuizViewModel.kt:145:52 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/quiz/QuizViewModel.kt:339:13 Variable 'xpResult' is never used
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/quiz/QuizViewModel.kt:489:13 Variable 'result' is never used
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/ui/accessibility/AccessibilityViewHelper.kt:73:52 Parameter 'profile' is never used
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/ui/accessibility/AccessibilityViewHelper.kt:123:58 Parameter 'profile' is never used
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/ui/accessibility/AccessibilityViewHelper.kt:129:74 'scaledDensity: Float' is deprecated. Deprecated in Java
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/ui/accessibility/AccessibilityViewHelper.kt:148:88 'scaledDensity: Float' is deprecated. Deprecated in Java
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/ui/accessibility/AccessibilityViewHelper.kt:158:56 Parameter 'profile' is never used
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/ui/accessibility/AccessibilityViewHelper.kt:184:80 'scaledDensity: Float' is deprecated. Deprecated in Java
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/ui/accessibility/AccessibilityViewHelper.kt:432:84 'scaledDensity: Float' is deprecated. Deprecated in Java
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/ui/accessibility/AccessibilityViewModel.kt:233:81 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/ui/accessibility/AccessibilityViewModel.kt:305:32 Unnecessary safe call on a non-null receiver of type OCRResult
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/ui/accessibility/AccessibilityViewModel.kt:315:69 Elvis operator (?:) always returns the left operand of non-nullable type String
+
+> Task :app:compileDevDebugJavaWithJavac
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+
+> Task :app:hiltAggregateDepsDevDebug UP-TO-DATE
+> Task :app:hiltJavaCompileDevDebug
+> Task :app:processDevDebugJavaRes
+> Task :app:mergeDevDebugJavaResource UP-TO-DATE
+> Task :app:transformDevDebugClassesWithAsm
+> Task :app:dexBuilderDevDebug
+> Task :app:mergeDevDebugGlobalSynthetics UP-TO-DATE
+> Task :app:mergeProjectDexDevDebug
+> Task :app:packageDevDebug
+> Task :app:createDevDebugApkListingFileRedirect
+> Task :app:assembleDevDebug
+> Task :app:assembleDebug
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.10.2/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 2m 35s
+101 actionable tasks: 25 executed, 76 up-to-date

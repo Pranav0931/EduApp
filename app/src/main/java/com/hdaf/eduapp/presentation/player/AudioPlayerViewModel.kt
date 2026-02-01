@@ -1,7 +1,9 @@
 package com.hdaf.eduapp.presentation.player
 
+import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.hdaf.eduapp.accessibility.TTSEngine
 import com.hdaf.eduapp.core.common.Resource
 import com.hdaf.eduapp.domain.usecase.content.GetChapterDetailUseCase
 import com.hdaf.eduapp.domain.usecase.progress.UpdateChapterProgressUseCase
@@ -13,12 +15,15 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
 class AudioPlayerViewModel @Inject constructor(
     private val getChapterDetailUseCase: GetChapterDetailUseCase,
-    private val updateProgressUseCase: UpdateChapterProgressUseCase
+    private val updateProgressUseCase: UpdateChapterProgressUseCase,
+    private val ttsEngine: TTSEngine,
+    private val sharedPreferences: SharedPreferences
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(AudioPlayerUiState())
@@ -28,6 +33,30 @@ class AudioPlayerViewModel @Inject constructor(
     val events = _events.receiveAsFlow()
 
     private var chapterId: String = ""
+    private var chapterContent: String = ""
+
+    init {
+        // Initialize TTS engine
+        viewModelScope.launch {
+            val initialized = ttsEngine.initialize()
+            if (initialized) {
+                // Get language preference from SharedPreferences (default: English)
+                val langCode = sharedPreferences.getString("app_language", "en") ?: "en"
+                val locale = when (langCode) {
+                    "hi" -> Locale("hi", "IN")
+                    else -> Locale.ENGLISH
+                }
+                ttsEngine.setLanguage(locale)
+            }
+        }
+        
+        // Observe TTS speaking state
+        viewModelScope.launch {
+            ttsEngine.isSpeaking.collect { isSpeaking ->
+                _uiState.update { it.copy(isPlaying = isSpeaking) }
+            }
+        }
+    }
 
     fun loadChapter(chapterId: String) {
         this.chapterId = chapterId
@@ -43,19 +72,36 @@ class AudioPlayerViewModel @Inject constructor(
                         val chapter = result.data
                         val durationSeconds = (chapter?.durationMinutes ?: 0) * 60
                         val currentPos = ((chapter?.readProgress ?: 0f) * durationSeconds).toInt()
+                        
+                        // Store chapter content for TTS - use contentText, description, or fallback
+                        chapterContent = chapter?.contentText 
+                            ?: chapter?.description 
+                            ?: "Content is loading. Please wait or try again."
+                        
+                        // If content is still too short, provide fallback with chapter info
+                        if (chapterContent.length < 10) {
+                            val langCode = sharedPreferences.getString("app_language", "en") ?: "en"
+                            chapterContent = if (langCode == "hi") {
+                                "अध्याय ${chapter?.title ?: ""} लोड हो रहा है। कृपया प्रतीक्षा करें।"
+                            } else {
+                                "Loading chapter ${chapter?.title ?: ""}. Please wait."
+                            }
+                        }
+                        
                         _uiState.update {
                             it.copy(
                                 isLoading = false,
                                 chapterTitle = chapter?.title ?: "",
                                 bookTitle = chapter?.bookTitle ?: "",
                                 duration = durationSeconds,
-                                currentPosition = currentPos
+                                currentPosition = currentPos,
+                                contentAvailable = chapterContent.isNotEmpty()
                             )
                         }
                     }
                     is Resource.Error -> {
                         _uiState.update { it.copy(isLoading = false) }
-                        _events.send(AudioPlayerEvent.ShowError(result.message ?: "Failed to load chapter"))
+                        _events.send(AudioPlayerEvent.ShowError(result.message ?: "अध्याय लोड करने में विफल"))
                     }
                 }
             }
@@ -63,8 +109,31 @@ class AudioPlayerViewModel @Inject constructor(
     }
 
     fun togglePlayPause() {
-        _uiState.update { it.copy(isPlaying = !it.isPlaying) }
-        // TODO: Integrate with actual media player (ExoPlayer)
+        if (_uiState.value.isPlaying) {
+            // Pause TTS
+            ttsEngine.stop()
+        } else {
+            // Start TTS with content
+            if (chapterContent.isNotEmpty()) {
+                val speechRate = when (_uiState.value.playbackSpeed) {
+                    0.75f -> com.hdaf.eduapp.domain.model.SpeechRate.SLOW
+                    1.25f -> com.hdaf.eduapp.domain.model.SpeechRate.FAST
+                    1.5f -> com.hdaf.eduapp.domain.model.SpeechRate.VERY_FAST
+                    else -> com.hdaf.eduapp.domain.model.SpeechRate.NORMAL
+                }
+                ttsEngine.setSpeechRate(speechRate)
+                ttsEngine.speak(chapterContent)
+                
+                // Update UI to show playing state immediately for better UX
+                _uiState.update { it.copy(isPlaying = true) }
+            } else {
+                viewModelScope.launch {
+                    val langCode = sharedPreferences.getString("app_language", "en") ?: "en"
+                    val errorMsg = if (langCode == "hi") "सामग्री उपलब्ध नहीं है" else "Content not available"
+                    _events.send(AudioPlayerEvent.ShowError(errorMsg))
+                }
+            }
+        }
     }
 
     fun seekForward() {
@@ -89,15 +158,30 @@ class AudioPlayerViewModel @Inject constructor(
 
     fun setPlaybackSpeed(speed: Float) {
         _uiState.update { it.copy(playbackSpeed = speed) }
-        // TODO: Integrate with actual media player
+        // Apply speed to TTS
+        val speechRate = when (speed) {
+            0.75f -> com.hdaf.eduapp.domain.model.SpeechRate.SLOW
+            1.25f -> com.hdaf.eduapp.domain.model.SpeechRate.FAST
+            1.5f -> com.hdaf.eduapp.domain.model.SpeechRate.VERY_FAST
+            else -> com.hdaf.eduapp.domain.model.SpeechRate.NORMAL
+        }
+        ttsEngine.setSpeechRate(speechRate)
     }
 
     fun playNext() {
-        // TODO: Implement next chapter navigation
+        // Stop current TTS and announce
+        ttsEngine.stop()
+        val langCode = sharedPreferences.getString("app_language", "en") ?: "en"
+        val message = if (langCode == "hi") "अगला अध्याय उपलब्ध नहीं है" else "Next chapter not available"
+        ttsEngine.speak(message)
     }
 
     fun playPrevious() {
-        // TODO: Implement previous chapter navigation
+        // Stop current TTS and announce
+        ttsEngine.stop()
+        val langCode = sharedPreferences.getString("app_language", "en") ?: "en"
+        val message = if (langCode == "hi") "पिछला अध्याय उपलब्ध नहीं है" else "Previous chapter not available"
+        ttsEngine.speak(message)
     }
 
     fun updateProgress() {
@@ -129,6 +213,11 @@ class AudioPlayerViewModel @Inject constructor(
             )
         }
     }
+    
+    override fun onCleared() {
+        super.onCleared()
+        ttsEngine.stop()
+    }
 }
 
 data class AudioPlayerUiState(
@@ -138,7 +227,8 @@ data class AudioPlayerUiState(
     val bookTitle: String = "",
     val duration: Int = 0,
     val currentPosition: Int = 0,
-    val playbackSpeed: Float = 1.0f
+    val playbackSpeed: Float = 1.0f,
+    val contentAvailable: Boolean = false
 )
 
 sealed interface AudioPlayerEvent {

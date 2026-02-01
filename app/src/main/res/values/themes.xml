@@ -2,21 +2,22 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme -->
     <style name="Base.Theme.EduApp" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Primary brand color -->
-        <item name="colorPrimary">@color/primary_magenta</item>
-        <item name="colorPrimaryDark">@color/primary_magenta_dark</item>
-        <item name="colorOnPrimary">@color/text_on_primary</item>
+        <!-- Primary brand color - Modern Indigo -->
+        <item name="colorPrimary">@color/brand_primary</item>
+        <item name="colorPrimaryDark">@color/brand_primary_dark</item>
+        <item name="colorOnPrimary">@color/text_white</item>
 
         <!-- Secondary brand color -->
-        <item name="colorSecondary">@color/secondary_purple</item>
-        <item name="colorOnSecondary">@color/text_primary</item>
+        <item name="colorSecondary">@color/brand_secondary</item>
+        <item name="colorOnSecondary">@color/text_white</item>
 
         <!-- Background colors -->
         <item name="android:colorBackground">@color/background_white</item>
         <item name="colorSurface">@color/background_white</item>
+        <item name="colorSurfaceVariant">@color/background_light_gray</item>
 
         <!-- Status bar -->
-        <item name="android:statusBarColor">@color/primary_magenta</item>
+        <item name="android:statusBarColor">@color/brand_primary</item>
         <item name="android:navigationBarColor">@color/background_white</item>
 
         <!-- Window properties -->
@@ -33,7 +34,7 @@
 
     <!-- Header Toolbar Style -->
     <style name="EduAppHeader">
-        <item name="android:background">@color/primary_magenta</item>
+        <item name="android:background">@drawable/bg_header_gradient</item>
         <item name="android:paddingTop">24dp</item>
         <item name="android:paddingBottom">16dp</item>
         <item name="android:paddingStart">16dp</item>
@@ -143,4 +144,127 @@
         <item name="tint">@color/white</item>
         <item name="elevation">6dp</item>
     </style>
+    
+    <!-- ==================== Production-Ready Styles ==================== -->
+    
+    <!-- Premium Card Style - Glassmorphism inspired -->
+    <style name="EduApp.Card.Premium" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardCornerRadius">20dp</item>
+        <item name="cardElevation">4dp</item>
+        <item name="contentPadding">16dp</item>
+        <item name="android:layout_margin">8dp</item>
+    </style>
+    
+    <!-- Book Card Style -->
+    <style name="EduApp.Card.Book" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">3dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+    
+    <!-- Quiz Card Style -->
+    <style name="EduApp.Card.Quiz" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">2dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:minHeight">80dp</item>
+    </style>
+    
+    <!-- Primary Button - Rounded, Accessible -->
+    <style name="EduApp.Button.Primary" parent="Widget.Material3.Button">
+        <item name="cornerRadius">24dp</item>
+        <item name="android:minHeight">52dp</item>
+        <item name="android:paddingStart">24dp</item>
+        <item name="android:paddingEnd">24dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+    
+    <!-- Secondary Button - Outlined -->
+    <style name="EduApp.Button.Secondary" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="cornerRadius">24dp</item>
+        <item name="android:minHeight">52dp</item>
+        <item name="android:paddingStart">24dp</item>
+        <item name="android:paddingEnd">24dp</item>
+        <item name="strokeWidth">2dp</item>
+    </style>
+    
+    <!-- Text Button Style -->
+    <style name="EduApp.Button.Text" parent="Widget.Material3.Button.TextButton">
+        <item name="android:minHeight">48dp</item>
+        <item name="cornerRadius">12dp</item>
+    </style>
+    
+    <!-- Icon Button Style - For accessibility -->
+    <style name="EduApp.IconButton" parent="Widget.Material3.Button.IconButton">
+        <item name="iconSize">24dp</item>
+        <item name="android:minWidth">48dp</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+    
+    <!-- Chip Style for Tags -->
+    <style name="EduApp.Chip" parent="Widget.Material3.Chip.Assist">
+        <item name="chipCornerRadius">16dp</item>
+        <item name="chipMinHeight">36dp</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+    
+    <!-- Input Field Style -->
+    <style name="EduApp.TextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusTopStart">16dp</item>
+        <item name="boxCornerRadiusTopEnd">16dp</item>
+        <item name="boxCornerRadiusBottomStart">16dp</item>
+        <item name="boxCornerRadiusBottomEnd">16dp</item>
+        <item name="android:minHeight">56dp</item>
+    </style>
+    
+    <!-- Typography Styles -->
+    <style name="EduApp.Text.Display" parent="TextAppearance.Material3.DisplaySmall">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="fontFamily">sans-serif-medium</item>
+    </style>
+    
+    <style name="EduApp.Text.Headline" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="fontFamily">sans-serif-medium</item>
+    </style>
+    
+    <style name="EduApp.Text.Title" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+    
+    <style name="EduApp.Text.Body" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+        <item name="android:lineSpacingExtra">4dp</item>
+    </style>
+    
+    <style name="EduApp.Text.Label" parent="TextAppearance.Material3.LabelMedium">
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+    </style>
+    
+    <!-- Progress Indicator -->
+    <style name="EduApp.ProgressIndicator.Circular" parent="Widget.Material3.CircularProgressIndicator">
+        <item name="indicatorSize">48dp</item>
+        <item name="trackThickness">4dp</item>
+        <item name="indicatorColor">?attr/colorPrimary</item>
+    </style>
+    
+    <!-- Snackbar Style -->
+    <style name="EduApp.Snackbar" parent="Widget.Material3.Snackbar">
+        <item name="actionTextColorAlpha">1</item>
+    </style>
+    
+    <!-- Dialog Style -->
+    <style name="EduApp.Dialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="shapeAppearanceOverlay">@style/EduApp.Dialog.ShapeAppearance</item>
+    </style>
+    
+    <style name="EduApp.Dialog.ShapeAppearance" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerSize">28dp</item>
+    </style>
+    
 </resources>

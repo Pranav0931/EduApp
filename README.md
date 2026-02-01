@@ -96,13 +96,13 @@ EduApp is an **Android-based inclusive learning application** built with **acces
 app/
 ├── data/                    # Data Layer
 │   ├── local/              
-│   │   ├── dao/            # Room DAOs
-│   │   ├── entity/         # Database Entities
+│   │   ├── dao/            # Room DAOs (StudyToolsDao, etc.)
+│   │   ├── entity/         # Database Entities (Flashcard, Bookmark, etc.)
 │   │   └── EduAppDatabase.kt
 │   ├── remote/             # Network APIs
 │   └── repository/         # Repository Implementations
 ├── domain/                  # Domain Layer
-│   ├── model/              # Business Models
+│   ├── model/              # Business Models (Flashcard, StudyTools, etc.)
 │   ├── repository/         # Repository Interfaces
 │   └── usecase/            # Use Cases
 ├── accessibility/           # Accessibility Engine
@@ -111,13 +111,20 @@ app/
 │   ├── VoiceNavigationManager.kt
 │   ├── DeafSupportManager.kt
 │   └── AdaptiveStudyEngine.kt
-├── ui/                      # Presentation Layer
-│   ├── accessibility/      # Accessibility UI Components
-│   ├── activities/         # App Activities
-│   └── fragments/          # Fragments
-└── core/                    # Core Utilities
-    ├── di/                 # Hilt Dependency Injection
-    └── utils/              # Helper Classes
+├── presentation/            # Presentation Layer (MVVM)
+│   ├── base/               # Base classes (BaseActivity, BaseFragment)
+│   ├── book/               # Book list feature
+│   ├── player/             # Audio/Video players
+│   └── ...                 # Other features
+├── core/                    # Core Utilities
+│   ├── accessibility/      # ScreenReaderHelper, EduAccessibilityManager
+│   ├── ui/                 # UiState, StateView, VisualFeedbackView
+│   ├── di/                 # Hilt Dependency Injection
+│   └── logging/            # CrashlyticsTree
+└── utils/                   # Helper Classes
+    ├── LocaleHelper.kt     # Language/Locale management
+    ├── Constants.kt        # App constants
+    └── PreferenceManager.kt
 ```
 
 ### 🛠️ Tech Stack
@@ -154,9 +161,32 @@ app/
 
 ---
 
-## � Recent Updates (v2.0)
+## 🆕 Recent Updates (v2.1)
 
 ### ✨ New Features
+- **📚 Study Tools Suite** — Complete study companion with Flashcards, Bookmarks, Highlights, Study Notes, and Homework Reminders
+- **🗂️ Flashcard System** — Spaced repetition learning with customizable decks, TTS support, and progress tracking
+- **📖 Bookmark & Highlight** — Save important content with color-coded highlights and personal notes
+- **📝 Study Notes** — Create rich text notes with voice note support and chapter/book associations
+- **⏰ Homework Reminders** — Track assignments with due dates, priorities, and smart notifications
+- **🌐 Hindi Localization** — Complete Hindi language support for all features (350+ strings)
+- **🔄 Visual Feedback System** — Enhanced visual alerts and subtitles for deaf users
+- **♿ Screen Reader Helper** — Optimized TalkBack announcements with Hindi + English support
+
+### 🛠️ Technical Improvements
+- **UiState Architecture** — Unified state management with Loading, Success, Error, and Empty states
+- **StateView Component** — Reusable UI component for consistent state display across screens
+- **VisualFeedbackView** — Animated visual alerts and subtitle overlays for deaf users
+- **Navigation Animations** — Smooth enter/exit transitions for better UX
+- **Room Database Extensions** — New DAOs and entities for study tools (Flashcards, Bookmarks, Highlights, Notes, Reminders)
+- **LocaleHelper** — Runtime language switching with proper configuration handling
+- **Premium Drawables** — Glassmorphism backgrounds, gradient headers, and shimmer loading placeholders
+
+---
+
+## 📌 Previous Updates (v2.0)
+
+### ✨ Features
 - **AI Chat Floating Button** — Access the AI assistant from any screen via the floating action button
 - **Quiz System** — Complete quiz browsing with AI-generated quizzes from chapter content
 - **Text Reader** — Dedicated reader with adjustable text sizes and read-aloud functionality

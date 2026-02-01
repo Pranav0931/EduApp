@@ -1,8 +1,10 @@
 package com.hdaf.eduapp
 
 import android.app.Application
+import android.content.Context
+import android.content.res.Configuration
 import androidx.hilt.work.HiltWorkerFactory
-import androidx.work.Configuration
+import androidx.work.Configuration as WorkConfig
 import coil.ImageLoader
 import coil.ImageLoaderFactory
 import coil.disk.DiskCache
@@ -10,6 +12,7 @@ import coil.memory.MemoryCache
 import com.google.firebase.FirebaseApp
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.hdaf.eduapp.core.logging.CrashlyticsTree
+import com.hdaf.eduapp.utils.LocaleHelper
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 import javax.inject.Inject
@@ -23,11 +26,12 @@ import javax.inject.Inject
  * - Setup logging (Timber + Crashlytics)
  * - Initialize Firebase services
  * - Configure Coil image loader
+ * - Handle app locale configuration
  * 
  * @see HiltAndroidApp
  */
 @HiltAndroidApp
-class EduApplication : Application(), Configuration.Provider, ImageLoaderFactory {
+class EduApplication : Application(), WorkConfig.Provider, ImageLoaderFactory {
 
     @Inject
     lateinit var workerFactory: HiltWorkerFactory
@@ -38,6 +42,15 @@ class EduApplication : Application(), Configuration.Provider, ImageLoaderFactory
         initializeFirebase()
         initializeLogging()
         initializeCrashlytics()
+    }
+    
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(LocaleHelper.applyLocale(base))
+    }
+    
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        LocaleHelper.applyLocale(this)
     }
 
     /**
@@ -74,8 +87,8 @@ class EduApplication : Application(), Configuration.Provider, ImageLoaderFactory
     /**
      * WorkManager configuration with Hilt support.
      */
-    override val workManagerConfiguration: Configuration
-        get() = Configuration.Builder()
+    override val workManagerConfiguration: WorkConfig
+        get() = WorkConfig.Builder()
             .setWorkerFactory(workerFactory)
             .setMinimumLoggingLevel(
                 if (BuildConfig.ENABLE_LOGGING) android.util.Log.DEBUG 

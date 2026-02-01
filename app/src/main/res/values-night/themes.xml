@@ -2,25 +2,26 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme for night/dark mode -->
     <style name="Base.Theme.EduApp" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Primary brand color -->
-        <item name="colorPrimary">@color/primary_magenta</item>
-        <item name="colorPrimaryDark">@color/primary_magenta_dark</item>
-        <item name="colorOnPrimary">@color/text_on_primary</item>
+        <!-- Primary brand color - Modern Indigo (darker for night) -->
+        <item name="colorPrimary">@color/brand_primary_light</item>
+        <item name="colorPrimaryDark">@color/brand_primary</item>
+        <item name="colorOnPrimary">@color/text_primary</item>
         
         <!-- Secondary brand color -->
-        <item name="colorSecondary">@color/secondary_purple</item>
+        <item name="colorSecondary">@color/secondary_purple_light</item>
         <item name="colorOnSecondary">@color/text_primary</item>
         
-        <!-- Background colors -->
-        <item name="android:colorBackground">@color/background_white</item>
-        <item name="colorSurface">@color/background_white</item>
+        <!-- Background colors - Dark mode -->
+        <item name="android:colorBackground">#121212</item>
+        <item name="colorSurface">#1E1E1E</item>
+        <item name="colorSurfaceVariant">#2D2D2D</item>
         
         <!-- Status bar -->
-        <item name="android:statusBarColor">@color/primary_magenta</item>
-        <item name="android:navigationBarColor">@color/background_white</item>
+        <item name="android:statusBarColor">#121212</item>
+        <item name="android:navigationBarColor">#121212</item>
         
         <!-- Window properties -->
         <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
-        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
     </style>
 </resources>

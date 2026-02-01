@@ -14,6 +14,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.hdaf.eduapp.R;
 import com.hdaf.eduapp.ui.EduAIChatBottomSheet;
+import com.hdaf.eduapp.utils.LocaleHelper;
 import com.hdaf.eduapp.utils.PreferenceManager;
 
 /**
@@ -31,6 +32,12 @@ public class SettingsActivity extends AppCompatActivity {
     private Switch switchHapticFeedback;
     private Switch switchNotifications;
     private TextView tvCurrentMode;
+    private TextView tvCurrentLanguage;
+    
+    @Override
+    protected void attachBaseContext(android.content.Context newBase) {
+        super.attachBaseContext(LocaleHelper.INSTANCE.applyLocale(newBase));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +58,7 @@ public class SettingsActivity extends AppCompatActivity {
         bottomNavigation = findViewById(R.id.bottomNavigation);
         
         tvCurrentMode = findViewById(R.id.tvCurrentMode);
+        tvCurrentLanguage = findViewById(R.id.tvCurrentLanguage);
         switchTalkback = findViewById(R.id.switchTalkback);
         switchHighContrast = findViewById(R.id.switchHighContrast);
         switchLargeText = findViewById(R.id.switchLargeText);
@@ -61,6 +69,12 @@ public class SettingsActivity extends AppCompatActivity {
 
         // Mode selection
         findViewById(R.id.layoutChangeMode).setOnClickListener(v -> showModeSelectionDialog());
+        
+        // Language selection
+        findViewById(R.id.layoutLanguage).setOnClickListener(v -> showLanguageSelectionDialog());
+        
+        // Update current language display
+        updateLanguageDisplay();
         
         // About
         findViewById(R.id.layoutAbout).setOnClickListener(v -> {
@@ -86,6 +100,52 @@ public class SettingsActivity extends AppCompatActivity {
                 .setNegativeButton(R.string.cancel, null)
                 .show();
         });
+    }
+    
+    private void updateLanguageDisplay() {
+        String currentLang = LocaleHelper.INSTANCE.getLanguage(this);
+        String displayName = currentLang.equals("hi") ? "हिंदी (Hindi)" : "English";
+        if (tvCurrentLanguage != null) {
+            tvCurrentLanguage.setText(displayName);
+        }
+    }
+    
+    private void showLanguageSelectionDialog() {
+        String[] languages = {"English", "हिंदी (Hindi)"};
+        String[] codes = {"en", "hi"};
+        String currentLang = LocaleHelper.INSTANCE.getLanguage(this);
+        int selectedIndex = currentLang.equals("hi") ? 1 : 0;
+        
+        new AlertDialog.Builder(this)
+            .setTitle(R.string.select_language)
+            .setSingleChoiceItems(languages, selectedIndex, (dialog, which) -> {
+                String selectedCode = codes[which];
+                if (!selectedCode.equals(currentLang)) {
+                    LocaleHelper.INSTANCE.setLanguage(this, selectedCode);
+                    dialog.dismiss();
+                    
+                    // Show restart dialog
+                    new AlertDialog.Builder(this)
+                        .setTitle(R.string.language)
+                        .setMessage(R.string.language_changed)
+                        .setPositiveButton(R.string.restart_now, (d, w) -> {
+                            // Restart app
+                            Intent intent = new Intent(this, SplashActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                            finishAffinity();
+                        })
+                        .setNegativeButton(R.string.restart_later, (d, w) -> {
+                            updateLanguageDisplay();
+                        })
+                        .setCancelable(false)
+                        .show();
+                } else {
+                    dialog.dismiss();
+                }
+            })
+            .setNegativeButton(R.string.cancel, null)
+            .show();
     }
 
     private void setupBottomNavigation() {

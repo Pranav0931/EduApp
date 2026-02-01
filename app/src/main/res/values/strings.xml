@@ -3,32 +3,35 @@
     <!-- App Name -->
     <string name="app_name">EduApp</string>
     
+    <!-- Class Selection -->
+    <string name="select_your_class">Select Your Class</string>
+    <string name="class_label">Class</string>
+    <string name="eduai_ask">Ask AI</string>
+    
     <!-- Splash Screen -->
-    <string name="splash_tagline">सबके लिए शिक्षा</string>
+    <string name="splash_tagline">Education for Everyone</string>
     
     <!-- Onboarding -->
-    <string name="onboarding_skip">छोड़ें</string>
-    <string name="onboarding_next">आगे</string>
-    <string name="onboarding_get_started">शुरू करें</string>
+    <string name="onboarding_skip">Skip</string>
+    <string name="onboarding_next">Next</string>
+    <string name="onboarding_get_started">Get Started</string>
     <string-array name="onboarding_titles">
-        <item>ऑडियो मोड</item>
-        <item>वीडियो मोड</item>
-        <item>AI सहायक</item>
+        <item>Audio Mode</item>
+        <item>Video Mode</item>
+        <item>AI Assistant</item>
     </string-array>
     <string-array name="onboarding_descriptions">
-        <item>TalkBack के साथ ऑडियो पाठों के माध्यम से सीखें। दृष्टिहीन छात्रों के लिए उपयुक्त।</item>
-        <item>भारतीय सांकेतिक भाषा के साथ वीडियो पाठ। बधिर छात्रों के लिए उपयुक्त।</item>
-        <item>EduAI आपका निजी अध्ययन मित्र है। किसी भी सवाल का जवाब तुरंत पाएं!</item>
+        <item>Learn through audio lessons with TalkBack. Suitable for visually impaired students.</item>
+        <item>Video lessons with Indian Sign Language. Suitable for deaf students.</item>
+        <item>EduAI is your personal study buddy. Get instant answers to any question!</item>
     </string-array>
 
     <!-- Mode Selection Screen -->
     <string name="mode_selection_title">Choose Learning Mode</string>
     <string name="audio_mode_button">🎧 Audio Mode (For Blind Users)</string>
     <string name="video_mode_button">🎬 Video Mode (For Deaf Users)</string>
-    <string name="audio_mode_description">Learn through audio lessons with text-to-speech. Optimized
-        for TalkBack.</string>
-    <string name="video_mode_description">Learn through video lessons with Indian Sign Language and
-        captions.</string>
+    <string name="audio_mode_description">Learn through audio lessons with text-to-speech. Optimized for TalkBack.</string>
+    <string name="video_mode_description">Learn through video lessons with Indian Sign Language and captions.</string>
 
     <!-- Class Selection Screen -->
     <string name="class_selection_title">Select Class</string>
@@ -41,13 +44,14 @@
     <string name="class_7th">7th</string>
     <string name="class_8th">8th</string>
     <string name="class_9th">9th</string>
+    <string name="class_10th">10th</string>
     <string name="class_button_description">Select class %1$s standard</string>
 
     <!-- Books Screen -->
     <string name="books_title">BOOKS</string>
     <string name="std_format">STD %1$s</string>
     <string name="book_item_description">Book: %1$s. Tap to view chapters.</string>
-    <string name="download_description">डाउनलोड करें</string>
+    <string name="download_description">Download</string>
 
     <!-- Chapters Screen -->
     <string name="chapters_title">CHAPTERS</string>
@@ -55,7 +59,7 @@
 
     <!-- Audio Player Screen -->
     <string name="audio_player_title">Audio Player</string>
-    <string name="audio_player">ऑडियो प्लेयर</string>
+    <string name="audio_player">Audio Player</string>
     <string name="btn_play">Play</string>
     <string name="btn_pause">Pause</string>
     <string name="btn_previous">Previous</string>
@@ -67,8 +71,21 @@
     <string name="next_button_description">Go to next chapter</string>
     <string name="speed_control_description">Adjust speech speed</string>
     <string name="audio_visualization_description">Audio visualization area</string>
-    <string name="previous">पिछला</string>
-    <string name="next">अगला</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+    <string name="audio_cover">Audio Cover</string>
+    <string name="play_pause">Play/Pause</string>
+    <string name="rewind_10_seconds">Rewind 10 seconds</string>
+    <string name="forward_10_seconds">Forward 10 seconds</string>
+    <string name="previous_chapter">Previous Chapter</string>
+    <string name="next_chapter">Next Chapter</string>
+    <string name="playback_speed">Playback Speed</string>
+    <string name="speed_0_5x">0.5x</string>
+    <string name="speed_0_75x">0.75x</string>
+    <string name="speed_1x">1x</string>
+    <string name="speed_1_25x">1.25x</string>
+    <string name="speed_1_5x">1.5x</string>
+    <string name="speed_2x">2x</string>
 
     <!-- Video Player Screen -->
     <string name="video_player_title">Video Player</string>
@@ -76,6 +93,10 @@
     <string name="caption_toggle_description">Toggle captions on or off</string>
     <string name="fullscreen_description">Toggle fullscreen mode</string>
     <string name="playback_speed_description">Change playback speed</string>
+    <string name="sign_language">Sign Language</string>
+    <string name="sign_language_overlay">Sign Language Overlay</string>
+    <string name="toggle_sign_language">Toggle Sign Language</string>
+    <string name="toggle_fullscreen">Toggle Fullscreen</string>
 
     <!-- Voice Commands -->
     <string name="voice_command_listening">Listening for command…</string>
@@ -107,8 +128,7 @@
     <string name="no_chapters_available">No chapters available for this book.</string>
 
     <!-- Accessibility Announcements -->
-    <string name="talkback_mode_selection">Mode selection screen. Choose Audio Mode for blind users
-        or Video Mode for deaf users.</string>
+    <string name="talkback_mode_selection">Mode selection screen. Choose Audio Mode for blind users or Video Mode for deaf users.</string>
     <string name="talkback_class_selected">Class %1$s selected. Loading books.</string>
     <string name="talkback_book_selected">Book %1$s selected. Loading chapters.</string>
     <string name="talkback_chapter_selected">Chapter %1$s selected. Starting lesson.</string>
@@ -119,10 +139,15 @@
     <string name="menu_description">Open navigation menu</string>
     <string name="back_description">Go back to previous screen</string>
     <string name="back">Back</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_books">Books</string>
+    <string name="nav_quizzes">Quizzes</string>
+    <string name="nav_leaderboard">Leaderboard</string>
+    <string name="nav_profile">Profile</string>
+    <string name="nav_settings">Settings</string>
 
     <!-- Sample Content -->
-    <string name="sample_text_content">Welcome to the lesson. This is sample content for the audio
-        mode. The text will be read aloud using text-to-speech technology.</string>
+    <string name="sample_text_content">Welcome to the lesson. This is sample content for the audio mode. The text will be read aloud using text-to-speech technology.</string>
 
     <!-- EduAI Chat Interface -->
     <string name="eduai_name">EduAI</string>
@@ -143,10 +168,9 @@
     <string name="quick_action_daily_challenge">🏆 Daily Challenge</string>
 
     <!-- EduAI Responses -->
-    <string name="eduai_greeting">Hey! Main EduAI hoon, tumhara personal study buddy 😄📚\n\nBatao,
-        kya sikhna hai aaj?</string>
-    <string name="eduai_error_response">Oops! Kuch gadbad ho gayi 😅 Phir se try karo!</string>
-    <string name="eduai_thinking">Soch raha hoon... 🤔</string>
+    <string name="eduai_greeting">Hey! I\'m EduAI, your personal study buddy 😄📚\n\nWhat would you like to learn today?</string>
+    <string name="eduai_error_response">Oops! Something went wrong 😅 Please try again!</string>
+    <string name="eduai_thinking">Thinking... 🤔</string>
 
     <!-- Quiz Screen -->
     <string name="quiz_title">Quiz Time! 📝</string>
@@ -155,29 +179,55 @@
     <string name="quiz_next">Next</string>
     <string name="quiz_submit">Submit</string>
     <string name="quiz_finish">Finish</string>
-    <string name="quiz_correct">Shabash! 🎉 Sahi jawab!</string>
-    <string name="quiz_incorrect">Koi baat nahi! 😊 Sahi jawab hai: %1$s</string>
+    <string name="quiz_correct">Well done! 🎉 Correct answer!</string>
+    <string name="quiz_incorrect">That\'s okay! 😊 The correct answer is: %1$s</string>
 
     <!-- Quiz Result Screen -->
     <string name="quiz_result_title">Quiz Result</string>
     <string name="finish">Finish</string>
     <string name="close">Close</string>
-
-    <!-- 10th Class -->
-    <string name="class_10th">10th</string>
+    <string name="question_progress_format">Question %d/%d</string>
+    <string name="exit_quiz_title">Exit Quiz?</string>
+    <string name="exit_quiz_message">Your progress will not be saved. Are you sure you want to exit?</string>
+    <string name="percentage_format">%d%%</string>
+    <string name="excellent_performance">Excellent Performance! 🌟</string>
+    <string name="good_performance">Good Performance! 👍</string>
+    <string name="average_performance">Average Performance</string>
+    <string name="needs_improvement">Needs Improvement</string>
+    <string name="correct">Correct</string>
+    <string name="incorrect">Incorrect</string>
+    <string name="accuracy">Accuracy</string>
+    <string name="time_taken">Time Taken</string>
+    <string name="retry_quiz">Retry Quiz</string>
+    <string name="back_to_home">Back to Home</string>
+    <string name="share_results">Share Results</string>
+    <string name="xp_earned_format_new">+%d XP Earned!</string>
 
     <!-- Profile Screen -->
     <string name="profile_title">Profile</string>
-    <string name="profile">प्रोफ़ाइल</string>
+    <string name="profile">Profile</string>
     <string name="profile_streak">Streak</string>
     <string name="profile_quizzes">Quizzes</string>
     <string name="profile_badges">Badges</string>
     <string name="profile_daily_challenge">Daily Challenge</string>
     <string name="profile_badges_title">Badges 🏅</string>
     <string name="profile_badges_subtitle">Unlock badges by completing challenges</string>
-    <string name="profile_accessibility_intro">Profile screen. Showing your level, XP, streak, and
-        badges.</string>
-    <string name="view_all">सभी देखें</string>
+    <string name="profile_accessibility_intro">Profile screen. Showing your level, XP, streak, and badges.</string>
+    <string name="view_all">View All</string>
+    <string name="class_format">Class %d • %s</string>
+    <string name="level_format">Level %d</string>
+    <string name="xp_format">%d XP</string>
+    <string name="xp_progress_format">%d/%d for next level</string>
+    <string name="day_streak">Day Streak</string>
+    <string name="rank">Rank</string>
+    <string name="books_completed">Books</string>
+    <string name="chapters_completed">Chapters</string>
+    <string name="quizzes_completed">Quizzes</string>
+    <string name="minutes_learned">Minutes</string>
+    <string name="badges">Badges</string>
+    <string name="view_all_badges">View All Badges</string>
+    <string name="my_downloads">My Downloads</string>
+    <string name="learning_history">Learning History</string>
 
     <!-- Quiz List Screen -->
     <string name="quiz_list_title">Quizzes</string>
@@ -187,6 +237,23 @@
     <string name="quiz_questions">%d Questions</string>
     <string name="quiz_duration">%d min</string>
     <string name="quiz_ai_generated">AI Generated</string>
+    <string name="quizzes_title">Quizzes</string>
+    <string name="no_quizzes_available">No quizzes available</string>
+    <string name="generate_ai_quiz">Generate with AI</string>
+    <string name="create_quiz">Create Quiz</string>
+    <string name="ai_quiz">AI Quiz</string>
+    <string name="question_count_format">%d Questions</string>
+    <string name="duration_format">%d minutes</string>
+    <string name="difficulty_easy">Easy</string>
+    <string name="difficulty_medium">Medium</string>
+    <string name="difficulty_hard">Hard</string>
+    <string name="ai_generated">AI Generated</string>
+    <string name="start_quiz">Start Quiz</string>
+    <string name="quiz_item_description">%1$s - %2$d questions, %3$d minutes</string>
+    <string name="starting_quiz">Starting %s quiz</string>
+    <string name="select_chapter">Select Chapter</string>
+    <string name="select_chapter_for_quiz">Select a chapter for AI quiz generation</string>
+    <string name="browse_chapters">Browse Chapters</string>
 
     <!-- Settings Screen -->
     <string name="settings_title">Settings</string>
@@ -208,183 +275,108 @@
     <string name="settings_privacy">Privacy Policy</string>
     <string name="settings_version">Version %s</string>
     <string name="settings_logout">Logout</string>
+    <string name="settings">Settings</string>
+    <string name="accessibility">Accessibility</string>
+    <string name="talkback_support">TalkBack Support</string>
+    <string name="high_contrast">High Contrast</string>
+    <string name="large_text">Large Text</string>
+    <string name="haptic_feedback">Haptic Feedback</string>
+    <string name="content">Content</string>
+    <string name="content_mode">Content Mode</string>
+    <string name="language">Language</string>
+    <string name="download_quality">Download Quality</string>
+    <string name="quality_low">Low</string>
+    <string name="quality_medium">Medium</string>
+    <string name="quality_high">High</string>
+    <string name="auto_play">Auto Play</string>
+    <string name="offline_mode">Offline Mode</string>
+    <string name="notifications">Notifications</string>
+    <string name="enable_notifications">Enable Notifications</string>
+    <string name="daily_reminder">Daily Reminder</string>
+    <string name="account">Account</string>
+    <string name="change_class">Change Class</string>
+    <string name="clear_cache">Clear Cache</string>
+    <string name="clear_cache_message">Are you sure you want to clear the cache?</string>
+    <string name="delete_account">Delete Account</string>
+    <string name="delete_account_message">This action is irreversible. All your data will be deleted.</string>
+    <string name="about">About</string>
+    <string name="about_app">About App</string>
+    <string name="help_support">Help &amp; Support</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="select_mode">Select Mode</string>
+    <string name="select_language">Select Language</string>
+    <string name="select_quality">Select Quality</string>
 
     <!-- Gamification -->
     <string name="xp_earned_format">+%1$d XP</string>
-    <string name="badge_earned_message">Tumne yeh badge earn kar liya!</string>
+    <string name="badge_earned_message">You earned this badge!</string>
     <string name="badge_reward_prefix">Reward:</string>
     <string name="challenge_completed">Completed!</string>
-    <string name="streak_broken">Streak toot gayi 😢 Phir se shuru karo!</string>
-    
-    <!-- Navigation -->
-    <string name="nav_home">होम</string>
-    <string name="nav_books">किताबें</string>
-    <string name="nav_quizzes">प्रश्नोत्तरी</string>
-    <string name="nav_leaderboard">लीडरबोर्ड</string>
-    <string name="nav_profile">प्रोफ़ाइल</string>
-    <string name="nav_settings">सेटिंग्स</string>
-    
+    <string name="streak_broken">Streak broken 😢 Start again!</string>
+    <string name="level_up_message">Congratulations! You reached the next level</string>
+
     <!-- Home Screen -->
-    <string name="home_daily_goal">आज का लक्ष्य</string>
-    <string name="home_continue_learning">जारी रखें</string>
-    <string name="home_recommended">अनुशंसित</string>
-    <string name="home_greeting_morning">सुप्रभात</string>
-    <string name="home_greeting_afternoon">नमस्ते</string>
-    <string name="home_greeting_evening">शुभ संध्या</string>
-    <string name="home_greeting">नमस्ते, %1$s!</string>
-    <string name="home_level">स्तर</string>
+    <string name="home_daily_goal">Today\'s Goal</string>
+    <string name="home_continue_learning">Continue Learning</string>
+    <string name="home_recommended">Recommended</string>
+    <string name="home_greeting_morning">Good Morning</string>
+    <string name="home_greeting_afternoon">Good Afternoon</string>
+    <string name="home_greeting_evening">Good Evening</string>
+    <string name="home_greeting">Hello, %1$s!</string>
+    <string name="home_level">Level</string>
     <string name="home_xp">XP</string>
-    <string name="home_streak">दिन</string>
-    <string name="home_what_to_learn">आज क्या सीखना है?</string>
-    <string name="home_see_all">सभी देखें</string>
-    <string name="level_up_message">बधाई! आप अगले स्तर पर पहुंच गए</string>
-    
+    <string name="home_streak">Days</string>
+    <string name="home_what_to_learn">What do you want to learn today?</string>
+    <string name="home_see_all">See All</string>
+
     <!-- Auth Screen -->
-    <string name="auth_phone_title">अपना फ़ोन नंबर दर्ज करें</string>
-    <string name="auth_phone_subtitle">हम आपको एक OTP भेजेंगे</string>
-    <string name="auth_phone_hint">मोबाइल नंबर</string>
-    <string name="auth_continue">आगे बढ़ें</string>
-    <string name="auth_privacy_notice">आगे बढ़कर, आप हमारी गोपनीयता नीति और सेवा की शर्तों से सहमत हैं।</string>
-    <string name="auth_otp_title">OTP दर्ज करें</string>
-    <string name="auth_otp_subtitle">हमने आपके नंबर पर OTP भेजा है</string>
+    <string name="auth_phone_title">Enter your phone number</string>
+    <string name="auth_phone_subtitle">We will send you an OTP</string>
+    <string name="auth_phone_hint">Mobile Number</string>
+    <string name="auth_continue">Continue</string>
+    <string name="auth_privacy_notice">By continuing, you agree to our Privacy Policy and Terms of Service.</string>
+    <string name="auth_otp_title">Enter OTP</string>
+    <string name="auth_otp_subtitle">We sent an OTP to your number</string>
     <string name="auth_otp_hint">OTP</string>
-    <string name="auth_verify">सत्यापित करें</string>
-    <string name="auth_resend">पुनः भेजें</string>
-    <string name="auth_registration_title">अपनी जानकारी दर्ज करें</string>
-    <string name="auth_registration_subtitle">हमें आपके बारे में थोड़ा बताएं</string>
-    <string name="auth_name_hint">आपका नाम</string>
-    <string name="auth_select_class">कक्षा चुनें</string>
-    <string name="auth_select_medium">माध्यम चुनें</string>
-    <string name="auth_register">पंजीकरण करें</string>
-    
+    <string name="auth_verify">Verify</string>
+    <string name="auth_resend">Resend</string>
+    <string name="auth_registration_title">Enter your details</string>
+    <string name="auth_registration_subtitle">Tell us a bit about yourself</string>
+    <string name="auth_name_hint">Your Name</string>
+    <string name="auth_select_class">Select Class</string>
+    <string name="auth_select_medium">Select Medium</string>
+    <string name="auth_register">Register</string>
+
     <!-- Status Messages -->
-    <string name="offline_message">आप ऑफ़लाइन हैं। कुछ सुविधाएँ उपलब्ध नहीं हो सकतीं।</string>
-    <string name="dismiss">खारिज करें</string>
-    
+    <string name="offline_message">You are offline. Some features may not be available.</string>
+    <string name="dismiss">Dismiss</string>
+
     <!-- Common Actions -->
-    <string name="retry">पुनः प्रयास करें</string>
-    <string name="cancel">रद्द करें</string>
-    <string name="ok">ठीक है</string>
-    <string name="save">सहेजें</string>
-    <string name="delete">हटाएं</string>
-    <string name="edit">संपादित करें</string>
-    <string name="submit">जमा करें</string>
-    <string name="clear">साफ करें</string>
-    <string name="exit">बाहर निकलें</string>
-    <string name="logout">लॉग आउट</string>
-    <string name="logout_message">क्या आप वाकई लॉग आउट करना चाहते हैं?</string>
-    <string name="share">साझा करें</string>
-    
+    <string name="retry">Retry</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="submit">Submit</string>
+    <string name="clear">Clear</string>
+    <string name="exit">Exit</string>
+    <string name="logout">Logout</string>
+    <string name="logout_message">Are you sure you want to logout?</string>
+    <string name="share">Share</string>
+
     <!-- Chapter List -->
-    <string name="chapters">अध्याय</string>
-    <string name="overall_progress">कुल प्रगति</string>
-    <string name="chapter_progress_format">%d%% पूर्ण</string>
-    <string name="completed">पूर्ण</string>
-    <string name="download_for_offline">ऑफ़लाइन के लिए डाउनलोड करें</string>
-    
-    <!-- Audio Player -->
-    <string name="audio_cover">ऑडियो कवर</string>
-    <string name="play_pause">चलाएं/रोकें</string>
-    <string name="rewind_10_seconds">10 सेकंड पीछे</string>
-    <string name="forward_10_seconds">10 सेकंड आगे</string>
-    <string name="previous_chapter">पिछला अध्याय</string>
-    <string name="next_chapter">अगला अध्याय</string>
-    <string name="playback_speed">प्लेबैक स्पीड</string>
-    <string name="speed_0_5x">0.5x</string>
-    <string name="speed_0_75x">0.75x</string>
-    <string name="speed_1x">1x</string>
-    <string name="speed_1_25x">1.25x</string>
-    <string name="speed_1_5x">1.5x</string>
-    <string name="speed_2x">2x</string>
-    
-    <!-- Video Player -->
-    <string name="sign_language">सांकेतिक भाषा</string>
-    <string name="sign_language_overlay">सांकेतिक भाषा ओवरले</string>
-    <string name="toggle_sign_language">सांकेतिक भाषा टॉगल करें</string>
-    <string name="toggle_fullscreen">फुलस्क्रीन टॉगल करें</string>
-    
-    <!-- Quiz Active -->
-    <string name="question_progress_format">प्रश्न %d/%d</string>
-    <string name="exit_quiz_title">प्रश्नोत्तरी छोड़ें?</string>
-    <string name="exit_quiz_message">आपकी प्रगति सहेजी नहीं जाएगी। क्या आप वाकई बाहर निकलना चाहते हैं?</string>
-    
-    <!-- Quiz Result -->
-    <string name="percentage_format">%d%%</string>
-    <string name="excellent_performance">उत्कृष्ट प्रदर्शन! 🌟</string>
-    <string name="good_performance">अच्छा प्रदर्शन! 👍</string>
-    <string name="average_performance">औसत प्रदर्शन</string>
-    <string name="needs_improvement">सुधार की आवश्यकता</string>
-    <string name="correct">सही</string>
-    <string name="incorrect">गलत</string>
-    <string name="accuracy">सटीकता</string>
-    <string name="time_taken">समय लिया</string>
-    <string name="retry_quiz">पुनः प्रयास करें</string>
-    <string name="back_to_home">होम पर वापस</string>
-    <string name="share_results">परिणाम साझा करें</string>
-    <string name="xp_earned_format_new">+%d XP अर्जित!</string>
-    
-    <!-- Profile Screen Extended -->
-    <string name="class_format">कक्षा %d • %s</string>
-    <string name="level_format">स्तर %d</string>
-    <string name="xp_format">%d XP</string>
-    <string name="xp_progress_format">%d/%d अगले स्तर के लिए</string>
-    <string name="day_streak">दिन की लगातार</string>
-    <string name="rank">रैंक</string>
-    <string name="books_completed">पुस्तकें</string>
-    <string name="chapters_completed">अध्याय</string>
-    <string name="quizzes_completed">प्रश्नोत्तरी</string>
-    <string name="minutes_learned">मिनट</string>
-    <string name="badges">बैज</string>
-    <string name="view_all_badges">सभी बैज देखें</string>
-    <string name="my_downloads">मेरे डाउनलोड</string>
-    <string name="learning_history">सीखने का इतिहास</string>
-    
-    <!-- Leaderboard -->
-    <string name="leaderboard">लीडरबोर्ड</string>
-    <string name="weekly">साप्ताहिक</string>
-    <string name="monthly">मासिक</string>
-    <string name="all_time">सभी समय</string>
-    <string name="your_rank">आपकी रैंक</string>
-    <string name="no_leaderboard_data">कोई डेटा उपलब्ध नहीं</string>
-    
-    <!-- Settings Extended -->
-    <string name="settings">सेटिंग्स</string>
-    <string name="accessibility">पहुंच</string>
-    <string name="talkback_support">TalkBack सहायता</string>
-    <string name="high_contrast">उच्च कंट्रास्ट</string>
-    <string name="large_text">बड़ा टेक्स्ट</string>
-    <string name="haptic_feedback">स्पर्श प्रतिक्रिया</string>
-    <string name="content">सामग्री</string>
-    <string name="content_mode">सामग्री मोड</string>
-    <string name="language">भाषा</string>
-    <string name="download_quality">डाउनलोड गुणवत्ता</string>
-    <string name="quality_low">निम्न</string>
-    <string name="quality_medium">मध्यम</string>
-    <string name="quality_high">उच्च</string>
-    <string name="auto_play">ऑटो प्ले</string>
-    <string name="offline_mode">ऑफ़लाइन मोड</string>
-    <string name="notifications">सूचनाएं</string>
-    <string name="enable_notifications">सूचनाएं सक्षम करें</string>
-    <string name="daily_reminder">दैनिक अनुस्मारक</string>
-    <string name="account">खाता</string>
-    <string name="change_class">कक्षा बदलें</string>
-    <string name="clear_cache">कैश साफ करें</string>
-    <string name="clear_cache_message">क्या आप वाकई कैश साफ करना चाहते हैं?</string>
-    <string name="delete_account">खाता हटाएं</string>
-    <string name="delete_account_message">यह क्रिया अपरिवर्तनीय है। आपका सारा डेटा हटा दिया जाएगा।</string>
-    <string name="about">के बारे में</string>
-    <string name="about_app">ऐप के बारे में</string>
-    <string name="help_support">सहायता और समर्थन</string>
-    <string name="privacy_policy">गोपनीयता नीति</string>
-    <string name="select_mode">मोड चुनें</string>
-    <string name="select_language">भाषा चुनें</string>
-    <string name="select_quality">गुणवत्ता चुनें</string>
-    
+    <string name="chapters">Chapters</string>
+    <string name="overall_progress">Overall Progress</string>
+    <string name="chapter_progress_format">%d%% Complete</string>
+    <string name="completed">Completed</string>
+    <string name="download_for_offline">Download for Offline</string>
+
     <!-- Mode Options -->
-    <string name="mode_audio">ऑडियो मोड</string>
-    <string name="mode_video">वीडियो मोड</string>
-    <string name="mode_both">दोनों मोड</string>
-    
+    <string name="mode_audio">Audio Mode</string>
+    <string name="mode_video">Video Mode</string>
+    <string name="mode_both">Both Modes</string>
+
     <!-- Accessibility Mode Settings -->
     <string name="accessibility_mode">Accessibility Mode</string>
     <string name="accessibility_mode_description">Choose learning mode optimized for your needs</string>
@@ -399,53 +391,180 @@
     <string name="mode_low_vision_desc">Large text, high contrast, screen magnification</string>
     <string name="mode_slow_learner_desc">Adaptive pacing, extra practice, encouragement</string>
     <string name="mode_changed">Mode changed to %s</string>
-    
+
     <!-- Content Description -->
-    <string name="content_description_back">वापस जाएं</string>
-    <string name="content_description_avatar">प्रोफ़ाइल अवतार</string>
-    <string name="content_description_badge">बैज</string>
-    
+    <string name="content_description_back">Go back</string>
+    <string name="content_description_avatar">Profile avatar</string>
+    <string name="content_description_badge">Badge</string>
+
     <!-- Error Messages -->
-    <string name="error_generic">कुछ गलत हो गया</string>
-    <string name="error_network">नेटवर्क त्रुटि</string>
-    <string name="error_load_failed">लोड करने में विफल</string>
-    
-    <!-- Quiz List Screen -->
-    <string name="quizzes_title">प्रश्नोत्तरी</string>
-    <string name="no_quizzes_available">कोई प्रश्नोत्तरी उपलब्ध नहीं</string>
-    <string name="generate_ai_quiz">AI से बनाएं</string>
-    <string name="create_quiz">प्रश्नोत्तरी बनाएं</string>
-    <string name="ai_quiz">AI Quiz</string>
-    <string name="question_count_format">%d प्रश्न</string>
-    <string name="duration_format">%d मिनट</string>
-    <string name="difficulty_easy">आसान</string>
-    <string name="difficulty_medium">मध्यम</string>
-    <string name="difficulty_hard">कठिन</string>
-    <string name="ai_generated">AI Generated</string>
-    <string name="start_quiz">प्रश्नोत्तरी शुरू करें</string>
-    <string name="quiz_item_description">%1$s - %2$d प्रश्न, %3$d मिनट</string>
-    <string name="starting_quiz">%s प्रश्नोत्तरी शुरू हो रही है</string>
-    <string name="select_chapter">अध्याय चुनें</string>
-    <string name="select_chapter_for_quiz">AI प्रश्नोत्तरी बनाने के लिए अध्याय चुनें</string>
-    <string name="browse_chapters">अध्याय देखें</string>
-    
+    <string name="error_generic">Something went wrong</string>
+    <string name="error_network">Network error</string>
+    <string name="error_load_failed">Failed to load</string>
+
     <!-- Reader Screen -->
-    <string name="reader_title">पढ़ें</string>
-    <string name="no_content_available">कोई सामग्री उपलब्ध नहीं</string>
-    <string name="text_size">टेक्स्ट आकार</string>
-    <string name="read_aloud">जोर से पढ़ें</string>
-    <string name="stop_reading">पढ़ना बंद करें</string>
-    
+    <string name="reader_title">Read</string>
+    <string name="no_content_available">No content available</string>
+    <string name="text_size">Text Size</string>
+    <string name="read_aloud">Read Aloud</string>
+    <string name="stop_reading">Stop Reading</string>
+
     <!-- Profile Sub-screens -->
-    <string name="edit_profile">प्रोफ़ाइल संपादित करें</string>
-    <string name="stats_title">सांख्यिकी</string>
-    <string name="all_badges">सभी बैज</string>
-    
+    <string name="edit_profile">Edit Profile</string>
+    <string name="stats_title">Statistics</string>
+    <string name="all_badges">All Badges</string>
+
     <!-- Settings Sub-screens -->
-    <string name="accessibility_settings">पहुंच सेटिंग्स</string>
-    <string name="notification_settings">सूचना सेटिंग्स</string>
-    <string name="about_title">के बारे में</string>
-    <string name="app_version">ऐप संस्करण</string>
-    <string name="terms_of_service">सेवा की शर्तें</string>
-    <string name="contact_us">संपर्क करें</string>
+    <string name="accessibility_settings">Accessibility Settings</string>
+    <string name="notification_settings">Notification Settings</string>
+    <string name="about_title">About</string>
+    <string name="app_version">App Version</string>
+    <string name="terms_of_service">Terms of Service</string>
+    <string name="contact_us">Contact Us</string>
+
+    <!-- State View Strings -->
+    <string name="error">Error</string>
+    <string name="error_title">Something went wrong</string>
+    <string name="error_occurred">Error: %s</string>
+    <string name="no_data_title">No Data</string>
+    <string name="no_data_available">No data available</string>
+    <string name="error_no_class_selected">No class selected</string>
+
+    <!-- Leaderboard -->
+    <string name="leaderboard">Leaderboard</string>
+    <string name="weekly">Weekly</string>
+    <string name="monthly">Monthly</string>
+    <string name="all_time">All Time</string>
+    <string name="your_rank">Your Rank</string>
+    <string name="no_leaderboard_data">No data available</string>
+
+    <!-- Book Loading -->
+    <string name="books_loaded_announcement">%d books loaded</string>
+    <string name="download_started">Download started</string>
+    <string name="download_complete">Download complete</string>
+    <string name="download_failed">Download failed</string>
+
+    <!-- Accessibility Enhancements -->
+    <string name="accessibility_blind_mode">Blind Mode</string>
+    <string name="accessibility_deaf_mode">Deaf Mode</string>
+    <string name="accessibility_slow_learner_mode">Slow Learner Mode</string>
+    <string name="accessibility_normal_mode">Normal Mode</string>
+    <string name="subtitle_enabled">Subtitles enabled</string>
+    <string name="subtitle_disabled">Subtitles disabled</string>
+    <string name="haptic_feedback_enabled">Haptic feedback enabled</string>
+    <string name="haptic_feedback_disabled">Haptic feedback disabled</string>
+
+    <!-- Chat -->
+    <string name="chat_title">Chat</string>
+    <string name="send_message">Send Message</string>
+    <string name="type_message">Type a message...</string>
+
+    <!-- Empty/Error State Messages -->
+    <string name="pull_to_refresh_hint">Pull down to refresh</string>
+    <string name="tap_to_retry">Tap to retry</string>
+    <string name="no_internet_connection">No internet connection</string>
+    <string name="check_connection_and_retry">Please check your internet connection and try again</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    <string name="retry_loading">Press the button below to reload</string>
+    <string name="content_unavailable">Content unavailable</string>
+    <string name="offline_content_available">Offline content available</string>
+
+    <!-- Success Messages -->
+    <string name="saved_successfully">Saved successfully</string>
+    <string name="downloaded_successfully">Downloaded successfully</string>
+    <string name="updated_successfully">Updated successfully</string>
+
+    <!-- Progress Descriptions -->
+    <string name="progress_reading">Reading…</string>
+    <string name="progress_loading_content">Loading content…</string>
+    <string name="progress_syncing">Syncing…</string>
+    <string name="progress_downloading">Downloading…</string>
+
+    <!-- Flashcard Feature -->
+    <string name="flashcards_title">Flashcards</string>
+    <string name="flashcard_question">Question</string>
+    <string name="flashcard_answer">Answer</string>
+    <string name="flashcard_tap_to_flip">Tap to reveal answer</string>
+    <string name="tap_to_reveal">Tap to reveal</string>
+    <string name="show_hint">Show Hint</string>
+    <string name="flip_card">Flip Card</string>
+    <string name="play_pronunciation">Play Pronunciation</string>
+    <string name="no_flashcards">No flashcards</string>
+    <string name="create_flashcard_deck">Create Flashcard Deck</string>
+    <string name="again">Again</string>
+    <string name="hard">Hard</string>
+    <string name="good">Good</string>
+    <string name="easy">Easy</string>
+    <string name="cards_mastered">%1$d cards mastered</string>
+    <string name="cards_to_review">%1$d cards to review</string>
+    <string name="deck_completed">Deck complete! Congratulations!</string>
+    <string name="study_session_complete">Study session complete</string>
+    <string name="correct_answers_count">%1$d correct answers</string>
+
+    <!-- Bookmark Feature -->
+    <string name="bookmarks_title">Bookmarks</string>
+    <string name="add_bookmark">Add Bookmark</string>
+    <string name="remove_bookmark">Remove Bookmark</string>
+    <string name="bookmark_added">Bookmark added</string>
+    <string name="bookmark_removed">Bookmark removed</string>
+    <string name="no_bookmarks">No bookmarks</string>
+    <string name="bookmark_this_page">Bookmark this page</string>
+
+    <!-- Highlight Feature -->
+    <string name="highlights_title">Highlights</string>
+    <string name="add_highlight">Add Highlight</string>
+    <string name="remove_highlight">Remove Highlight</string>
+    <string name="add_note">Add Note</string>
+    <string name="no_highlights">No highlights</string>
+    <string name="select_highlight_color">Select Color</string>
+
+    <!-- Homework Reminder Feature -->
+    <string name="homework_title">Homework</string>
+    <string name="add_homework">Add Homework</string>
+    <string name="homework_added">Homework added</string>
+    <string name="due_today">Due Today</string>
+    <string name="due_tomorrow">Due Tomorrow</string>
+    <string name="due_in_days">%1$d days left</string>
+    <string name="overdue">Overdue</string>
+    <string name="mark_complete">Mark Complete</string>
+    <string name="homework_completed">Homework Complete!</string>
+    <string name="no_homework">No homework</string>
+    <string name="pending_homework">Pending Homework</string>
+    <string name="completed_homework">Completed Homework</string>
+    <string name="set_reminder">Set Reminder</string>
+    <string name="reminder_set">Reminder set</string>
+
+    <!-- Study Notes Feature -->
+    <string name="notes_title">Notes</string>
+    <string name="add_note_title">Add Note</string>
+    <string name="edit_note">Edit Note</string>
+    <string name="delete_note">Delete Note</string>
+    <string name="note_saved">Note saved</string>
+    <string name="no_notes">No notes</string>
+    <string name="voice_note">Voice Note</string>
+    <string name="start_voice_note">Start Voice Note</string>
+    <string name="stop_recording">Stop Recording</string>
+    <string name="note_placeholder">Write your note here...</string>
+
+    <!-- Priority Labels -->
+    <string name="priority_low">Low Priority</string>
+    <string name="priority_medium">Medium Priority</string>
+    <string name="priority_high">High Priority</string>
+    <string name="priority_urgent">Urgent</string>
+
+    <!-- Accessibility for New Features -->
+    <string name="flashcard_flipped_to_answer">Showing answer</string>
+    <string name="flashcard_flipped_to_question">Showing question</string>
+    <string name="swipe_left_wrong">Swipe left for wrong</string>
+    <string name="swipe_right_correct">Swipe right for correct</string>
+    <string name="homework_reminder_notification">Homework Reminder</string>
+
+    <!-- Language Settings -->
+    <string name="language_english">English</string>
+    <string name="language_hindi">Hindi</string>
+    <string name="language_changed">Language changed. App needs to restart.</string>
+    <string name="restart_now">Restart Now</string>
+    <string name="restart_later">Later</string>
+    <string name="current_language">Current Language</string>
+
 </resources>

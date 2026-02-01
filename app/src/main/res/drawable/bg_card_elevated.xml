@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Premium card background with elevation effect -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Shadow layer -->
+    <item android:bottom="0dp" android:left="0dp" android:right="0dp" android:top="2dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="16dp" />
+            <solid android:color="#0A000000" />
+        </shape>
+    </item>
+    
+    <!-- Card background -->
+    <item android:bottom="2dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="16dp" />
+            <solid android:color="?attr/colorSurface" />
+        </shape>
+    </item>
+</layer-list>

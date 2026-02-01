@@ -1,25 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Primary Brand Colors -->
-    <color name="primary_magenta">#FF00FF</color>
-    <color name="primary_magenta_dark">#CC00CC</color>
-    <color name="primary_magenta_light">#FF66FF</color>
+    <!-- Primary Brand Colors - Modern Blue-Purple Gradient -->
+    <color name="primary_magenta">#6366F1</color>
+    <color name="primary_magenta_dark">#4F46E5</color>
+    <color name="primary_magenta_light">#818CF8</color>
+    
+    <!-- Primary Brand - Indigo Theme -->
+    <color name="brand_primary">#6366F1</color>
+    <color name="brand_primary_dark">#4F46E5</color>
+    <color name="brand_primary_light">#A5B4FC</color>
+    <color name="brand_secondary">#8B5CF6</color>
+    <color name="brand_accent">#EC4899</color>
 
     <!-- Secondary Colors -->
-    <color name="secondary_purple">#C4B5FD</color>
-    <color name="secondary_purple_dark">#A78BFA</color>
-    <color name="secondary_purple_light">#DDD6FE</color>
+    <color name="secondary_purple">#8B5CF6</color>
+    <color name="secondary_purple_dark">#7C3AED</color>
+    <color name="secondary_purple_light">#C4B5FD</color>
 
     <!-- Background Colors -->
     <color name="background_white">#FFFFFF</color>
-    <color name="background_light_gray">#F5F5F5</color>
-    <color name="card_gray">#D9D9D9</color>
-    <color name="card_gray_dark">#BFBFBF</color>
+    <color name="background_light_gray">#F8FAFC</color>
+    <color name="card_gray">#F1F5F9</color>
+    <color name="card_gray_dark">#E2E8F0</color>
 
     <!-- Text Colors -->
-    <color name="text_primary">#000000</color>
-    <color name="text_secondary">#666666</color>
-    <color name="text_on_primary">#000000</color>
+    <color name="text_primary">#1E293B</color>
+    <color name="text_secondary">#64748B</color>
+    <color name="text_on_primary">#FFFFFF</color>
     <color name="text_white">#FFFFFF</color>
 
     <!-- Status Colors -->
@@ -80,4 +87,38 @@
     <color name="success">#4CAF50</color>
     <color name="error">#F44336</color>
     <color name="warning">#FF9800</color>
+    
+    <!-- EduAI Extended Palette for Accessibility -->
+    <color name="eduai_success">#00C853</color>
+    <color name="eduai_error">#FF5252</color>
+    <color name="eduai_warning">#FFD600</color>
+    <color name="eduai_secondary">#7C4DFF</color>
+    <color name="eduai_tertiary">#00BCD4</color>
+    <color name="eduai_surface">#F5F5F5</color>
+    <color name="eduai_on_surface">#212121</color>
+    
+    <!-- High Contrast Colors for Accessibility -->
+    <color name="hc_text_on_success">#FFFFFF</color>
+    <color name="hc_text_on_error">#FFFFFF</color>
+    <color name="hc_text_on_warning">#000000</color>
+    
+    <!-- Deaf Mode Visual Alert Colors -->
+    <color name="alert_flash_positive">#C8E6C9</color>
+    <color name="alert_flash_negative">#FFCDD2</color>
+    <color name="alert_flash_neutral">#E3F2FD</color>
+    
+    <!-- Subtitle Background -->
+    <color name="subtitle_background">#CC000000</color>
+    <color name="subtitle_text">#FFFFFF</color>
+    
+    <!-- Class Card Colors - Modern Gradient-like Palette -->
+    <color name="class_color_9">#6366F1</color>  <!-- Indigo -->
+    <color name="class_color_8">#8B5CF6</color>  <!-- Violet -->
+    <color name="class_color_7">#A855F7</color>  <!-- Purple -->
+    <color name="class_color_6">#EC4899</color>  <!-- Pink -->
+    <color name="class_color_5">#F43F5E</color>  <!-- Rose -->
+    <color name="class_color_4">#F97316</color>  <!-- Orange -->
+    <color name="class_color_3">#EAB308</color>  <!-- Yellow -->
+    <color name="class_color_2">#22C55E</color>  <!-- Green -->
+    <color name="class_color_1">#06B6D4</color>  <!-- Cyan -->
 </resources>

@@ -52,10 +52,20 @@ public class TTSManager {
 
         textToSpeech = new TextToSpeech(context.getApplicationContext(), status -> {
             if (status == TextToSpeech.SUCCESS) {
-                int result = textToSpeech.setLanguage(Locale.ENGLISH);
+                // Try Hindi first for EduApp, fallback to English
+                Locale hindiLocale = new Locale("hi", "IN");
+                int result = textToSpeech.setLanguage(hindiLocale);
+                
                 if (result == TextToSpeech.LANG_MISSING_DATA ||
                         result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                    Log.e(TAG, "English language not supported");
+                    // Fallback to English if Hindi not available
+                    Log.w(TAG, "Hindi not supported, falling back to English");
+                    result = textToSpeech.setLanguage(Locale.ENGLISH);
+                }
+                
+                if (result == TextToSpeech.LANG_MISSING_DATA ||
+                        result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                    Log.e(TAG, "Language not supported");
                 } else {
                     isInitialized = true;
                     textToSpeech.setSpeechRate(speechRate);

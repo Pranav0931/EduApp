@@ -1,22 +1,24 @@
 package com.hdaf.eduapp.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.ImageButton;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.hdaf.eduapp.R;
 import com.hdaf.eduapp.ui.EduAIChatBottomSheet;
 import com.hdaf.eduapp.utils.Constants;
+import com.hdaf.eduapp.utils.LocaleHelper;
 import com.hdaf.eduapp.utils.PreferenceManager;
 
 /**
- * Class selection screen - grid of circular buttons for standards 1st to 9th.
+ * Class selection screen - modern card grid for standards 1st to 9th.
  * Supports voice navigation for accessibility.
  */
 public class ClassSelectionActivity extends AppCompatActivity {
@@ -24,10 +26,15 @@ public class ClassSelectionActivity extends AppCompatActivity {
     private String currentMode;
     private PreferenceManager prefManager;
 
-    // Class buttons
-    private Button btn1st, btn2nd, btn3rd, btn4th, btn5th, btn6th, btn7th, btn8th, btn9th;
-    private FloatingActionButton fabAiChat;
+    // Class cards
+    private MaterialCardView card1st, card2nd, card3rd, card4th, card5th, card6th, card7th, card8th, card9th;
+    private ExtendedFloatingActionButton fabAiChat;
     private BottomNavigationView bottomNavigation;
+    
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LocaleHelper.INSTANCE.applyLocale(newBase));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,36 +59,30 @@ public class ClassSelectionActivity extends AppCompatActivity {
     }
 
     private void initializeViews() {
-        ImageButton menuButton = findViewById(R.id.menuButton);
         fabAiChat = findViewById(R.id.fabAiChat);
         bottomNavigation = findViewById(R.id.bottomNavigation);
 
-        btn1st = findViewById(R.id.btn1st);
-        btn2nd = findViewById(R.id.btn2nd);
-        btn3rd = findViewById(R.id.btn3rd);
-        btn4th = findViewById(R.id.btn4th);
-        btn5th = findViewById(R.id.btn5th);
-        btn6th = findViewById(R.id.btn6th);
-        btn7th = findViewById(R.id.btn7th);
-        btn8th = findViewById(R.id.btn8th);
-        btn9th = findViewById(R.id.btn9th);
-
-        menuButton.setOnClickListener(v -> {
-            // TODO: Open navigation drawer
-            onBackPressed();
-        });
+        card1st = findViewById(R.id.card1st);
+        card2nd = findViewById(R.id.card2nd);
+        card3rd = findViewById(R.id.card3rd);
+        card4th = findViewById(R.id.card4th);
+        card5th = findViewById(R.id.card5th);
+        card6th = findViewById(R.id.card6th);
+        card7th = findViewById(R.id.card7th);
+        card8th = findViewById(R.id.card8th);
+        card9th = findViewById(R.id.card9th);
     }
 
     private void setupClickListeners() {
-        btn1st.setOnClickListener(v -> selectClass("class_1", "1st"));
-        btn2nd.setOnClickListener(v -> selectClass("class_2", "2nd"));
-        btn3rd.setOnClickListener(v -> selectClass("class_3", "3rd"));
-        btn4th.setOnClickListener(v -> selectClass("class_4", "4th"));
-        btn5th.setOnClickListener(v -> selectClass("class_5", "5th"));
-        btn6th.setOnClickListener(v -> selectClass("class_6", "6th"));
-        btn7th.setOnClickListener(v -> selectClass("class_7", "7th"));
-        btn8th.setOnClickListener(v -> selectClass("class_8", "8th"));
-        btn9th.setOnClickListener(v -> selectClass("class_9", "9th"));
+        card1st.setOnClickListener(v -> selectClass("class_1", "1st"));
+        card2nd.setOnClickListener(v -> selectClass("class_2", "2nd"));
+        card3rd.setOnClickListener(v -> selectClass("class_3", "3rd"));
+        card4th.setOnClickListener(v -> selectClass("class_4", "4th"));
+        card5th.setOnClickListener(v -> selectClass("class_5", "5th"));
+        card6th.setOnClickListener(v -> selectClass("class_6", "6th"));
+        card7th.setOnClickListener(v -> selectClass("class_7", "7th"));
+        card8th.setOnClickListener(v -> selectClass("class_8", "8th"));
+        card9th.setOnClickListener(v -> selectClass("class_9", "9th"));
     }
 
     private void setupBottomNavigation() {
