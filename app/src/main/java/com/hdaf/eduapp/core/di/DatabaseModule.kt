@@ -7,8 +7,16 @@ import com.hdaf.eduapp.data.local.dao.BadgeDao
 import com.hdaf.eduapp.data.local.dao.BookDao
 import com.hdaf.eduapp.data.local.dao.ChapterAudioProgressDao
 import com.hdaf.eduapp.data.local.dao.ChapterDao
+import com.hdaf.eduapp.data.local.dao.DailyStudySummaryDao
+import com.hdaf.eduapp.data.local.dao.DownloadedContentDao
+import com.hdaf.eduapp.data.local.dao.DownloadQueueDao
+import com.hdaf.eduapp.data.local.dao.NotesDao
 import com.hdaf.eduapp.data.local.dao.QuizDao
 import com.hdaf.eduapp.data.local.dao.QuizProgressDao
+import com.hdaf.eduapp.data.local.dao.StudyGoalDao
+import com.hdaf.eduapp.data.local.dao.StudyPlanDao
+import com.hdaf.eduapp.data.local.dao.StudySessionDao
+import com.hdaf.eduapp.data.local.dao.TextHighlightsDao
 import com.hdaf.eduapp.data.local.dao.UserProgressDao
 import dagger.Module
 import dagger.Provides
@@ -106,5 +114,85 @@ object DatabaseModule {
     @Singleton
     fun provideQuizProgressDao(database: EduAppDatabase): QuizProgressDao {
         return database.quizProgressDao()
+    }
+    
+    // ========== Notes DAOs ==========
+    
+    /**
+     * Provides NotesDao for user notes management.
+     */
+    @Provides
+    @Singleton
+    fun provideNotesDao(database: EduAppDatabase): NotesDao {
+        return database.notesDao()
+    }
+    
+    // Note: BookmarkDao is already provided by existing DI setup in StudyToolsDao
+    
+    /**
+     * Provides TextHighlightsDao for text highlighting functionality.
+     */
+    @Provides
+    @Singleton
+    fun provideTextHighlightsDao(database: EduAppDatabase): TextHighlightsDao {
+        return database.textHighlightsDao()
+    }
+    
+    // ========== Download Manager DAOs ==========
+    
+    /**
+     * Provides DownloadedContentDao for managing downloaded content.
+     */
+    @Provides
+    @Singleton
+    fun provideDownloadedContentDao(database: EduAppDatabase): DownloadedContentDao {
+        return database.downloadedContentDao()
+    }
+    
+    /**
+     * Provides DownloadQueueDao for managing download queue.
+     */
+    @Provides
+    @Singleton
+    fun provideDownloadQueueDao(database: EduAppDatabase): DownloadQueueDao {
+        return database.downloadQueueDao()
+    }
+    
+    // ========== Study Planner DAOs ==========
+    
+    /**
+     * Provides StudySessionDao for managing study sessions.
+     */
+    @Provides
+    @Singleton
+    fun provideStudySessionDao(database: EduAppDatabase): StudySessionDao {
+        return database.studySessionDao()
+    }
+    
+    /**
+     * Provides StudyPlanDao for managing study plans.
+     */
+    @Provides
+    @Singleton
+    fun provideStudyPlanDao(database: EduAppDatabase): StudyPlanDao {
+        return database.studyPlanDao()
+    }
+    
+    /**
+     * Provides StudyGoalDao for managing study goals.
+     */
+    @Provides
+    @Singleton
+    fun provideStudyGoalDao(database: EduAppDatabase): StudyGoalDao {
+        return database.studyGoalDao()
+    }
+    
+    /**
+     * Provides DailyStudySummaryDao for daily study statistics.
+     */
+    @Provides
+    @Singleton
+    fun provideDailyStudySummaryDao(database: EduAppDatabase): DailyStudySummaryDao {
+        return database.dailyStudySummaryDao()
     }
 }

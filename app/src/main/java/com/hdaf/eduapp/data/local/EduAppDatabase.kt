@@ -9,11 +9,19 @@ import com.hdaf.eduapp.data.local.dao.BadgeDao
 import com.hdaf.eduapp.data.local.dao.BookDao
 import com.hdaf.eduapp.data.local.dao.ChapterDao
 import com.hdaf.eduapp.data.local.dao.ChapterAudioProgressDao
+import com.hdaf.eduapp.data.local.dao.DailyStudySummaryDao
+import com.hdaf.eduapp.data.local.dao.DownloadedContentDao
+import com.hdaf.eduapp.data.local.dao.DownloadQueueDao
+import com.hdaf.eduapp.data.local.dao.NotesDao
 import com.hdaf.eduapp.data.local.dao.OCRCacheDao
 import com.hdaf.eduapp.data.local.dao.QuizDao
 import com.hdaf.eduapp.data.local.dao.QuizProgressDao
 import com.hdaf.eduapp.data.local.dao.StudyAnalyticsDao
+import com.hdaf.eduapp.data.local.dao.StudyGoalDao
+import com.hdaf.eduapp.data.local.dao.StudyPlanDao
 import com.hdaf.eduapp.data.local.dao.StudyRecommendationDao
+import com.hdaf.eduapp.data.local.dao.StudySessionDao
+import com.hdaf.eduapp.data.local.dao.TextHighlightsDao
 import com.hdaf.eduapp.data.local.dao.UserProgressDao
 import com.hdaf.eduapp.data.local.dao.VoiceCommandDao
 import com.hdaf.eduapp.data.local.entity.AccessibilityProfileEntity
@@ -22,13 +30,21 @@ import com.hdaf.eduapp.data.local.entity.BadgeEntity
 import com.hdaf.eduapp.data.local.entity.BookEntity
 import com.hdaf.eduapp.data.local.entity.ChapterAudioProgressEntity
 import com.hdaf.eduapp.data.local.entity.ChapterEntity
+import com.hdaf.eduapp.data.local.entity.DailyStudySummaryEntity
+import com.hdaf.eduapp.data.local.entity.DownloadedContentEntity
+import com.hdaf.eduapp.data.local.entity.DownloadQueueEntity
+import com.hdaf.eduapp.data.local.entity.NoteEntity
 import com.hdaf.eduapp.data.local.entity.OCRCacheEntity
 import com.hdaf.eduapp.data.local.entity.QuizAttemptEntity
 import com.hdaf.eduapp.data.local.entity.QuizEntity
 import com.hdaf.eduapp.data.local.entity.QuizProgressEntity
 import com.hdaf.eduapp.data.local.entity.QuizQuestionEntity
 import com.hdaf.eduapp.data.local.entity.StudyAnalyticsEntity
+import com.hdaf.eduapp.data.local.entity.StudyGoalEntity
+import com.hdaf.eduapp.data.local.entity.StudyPlanEntity
 import com.hdaf.eduapp.data.local.entity.StudyRecommendationEntity
+import com.hdaf.eduapp.data.local.entity.StudySessionEntity
+import com.hdaf.eduapp.data.local.entity.TextHighlightEntity
 import com.hdaf.eduapp.data.local.entity.UserBadgeEntity
 import com.hdaf.eduapp.data.local.entity.UserProgressEntity
 import com.hdaf.eduapp.data.local.entity.VoiceCommandEntity
@@ -74,9 +90,20 @@ import com.hdaf.eduapp.data.local.converter.ListConverter
         // Audio progress entity
         ChapterAudioProgressEntity::class,
         // Quiz progress entity
-        QuizProgressEntity::class
+        QuizProgressEntity::class,
+        // Notes entities (BookmarkEntity already in StudyToolsEntities)
+        NoteEntity::class,
+        TextHighlightEntity::class,
+        // Download manager entities
+        DownloadedContentEntity::class,
+        DownloadQueueEntity::class,
+        // Study planner entities
+        StudySessionEntity::class,
+        StudyPlanEntity::class,
+        StudyGoalEntity::class,
+        DailyStudySummaryEntity::class
     ],
-    version = 5,
+    version = 6,
     exportSchema = true
 )
 @TypeConverters(DateConverter::class, ListConverter::class)
@@ -101,6 +128,20 @@ abstract class EduAppDatabase : RoomDatabase() {
     
     // Quiz progress DAO (for resumption)
     abstract fun quizProgressDao(): QuizProgressDao
+    
+    // Notes DAOs (BookmarkDao already exists in StudyToolsDao)
+    abstract fun notesDao(): NotesDao
+    abstract fun textHighlightsDao(): TextHighlightsDao
+    
+    // Download manager DAOs
+    abstract fun downloadedContentDao(): DownloadedContentDao
+    abstract fun downloadQueueDao(): DownloadQueueDao
+    
+    // Study planner DAOs
+    abstract fun studySessionDao(): StudySessionDao
+    abstract fun studyPlanDao(): StudyPlanDao
+    abstract fun studyGoalDao(): StudyGoalDao
+    abstract fun dailyStudySummaryDao(): DailyStudySummaryDao
 
     companion object {
         const val DATABASE_NAME = "eduapp_database"
