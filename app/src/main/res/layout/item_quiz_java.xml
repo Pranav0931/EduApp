@@ -4,25 +4,29 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="12dp"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="2dp"
-    app:strokeColor="@color/primary_magenta"
-    app:strokeWidth="1dp">
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
+    android:focusable="true"
+    android:clickable="true"
+    android:contentDescription="@string/quiz_card_description">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="16dp"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:background="@drawable/bg_quiz_card_gradient">
 
         <!-- Quiz Icon -->
         <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:id="@+id/ivQuizIcon"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
             android:src="@drawable/ic_quiz"
-            android:background="@drawable/bg_circle_magenta"
-            android:padding="12dp"
+            android:background="@drawable/bg_quiz_icon_circle"
+            android:padding="14dp"
+            android:importantForAccessibility="no"
             app:tint="@android:color/white" />
 
         <!-- Quiz Info -->
@@ -44,9 +48,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textColor="@color/text_primary"
+                    android:textColor="@android:color/white"
                     android:text="Quiz Title" />
 
                 <!-- AI Badge -->
@@ -56,7 +60,8 @@
                     android:layout_height="24dp"
                     android:src="@drawable/ic_ai"
                     android:visibility="gone"
-                    app:tint="@color/secondary_purple" />
+                    android:contentDescription="@string/ai_generated"
+                    app:tint="@android:color/white" />
 
             </LinearLayout>
 
@@ -65,7 +70,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
-                android:textColor="@color/text_secondary"
+                android:textColor="@color/text_white"
+                android:alpha="0.9"
                 android:text="Quiz description"
                 android:layout_marginTop="4dp" />
 
@@ -79,21 +85,25 @@
                     android:id="@+id/tvQuestionCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:textColor="@color/primary_magenta"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
                     android:text="10 Questions"
                     android:drawableStart="@drawable/ic_question"
+                    android:drawableTint="@android:color/white"
                     android:drawablePadding="4dp" />
 
                 <TextView
                     android:id="@+id/tvDuration"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:textColor="@color/text_secondary"
+                    android:textSize="13sp"
+                    android:textColor="@android:color/white"
+                    android:alpha="0.9"
                     android:text="15 min"
                     android:layout_marginStart="16dp"
                     android:drawableStart="@drawable/ic_time"
+                    android:drawableTint="@android:color/white"
                     android:drawablePadding="4dp" />
 
             </LinearLayout>
@@ -102,10 +112,14 @@
 
         <!-- Arrow -->
         <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:id="@+id/ivArrow"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:src="@drawable/ic_arrow_right"
-            app:tint="@color/text_secondary" />
+            android:background="@drawable/bg_badge_light"
+            android:padding="4dp"
+            android:contentDescription="@string/start_quiz"
+            app:tint="@color/primary_magenta" />
 
     </LinearLayout>
 

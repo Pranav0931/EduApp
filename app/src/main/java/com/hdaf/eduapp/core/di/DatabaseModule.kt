@@ -5,8 +5,10 @@ import androidx.room.Room
 import com.hdaf.eduapp.data.local.EduAppDatabase
 import com.hdaf.eduapp.data.local.dao.BadgeDao
 import com.hdaf.eduapp.data.local.dao.BookDao
+import com.hdaf.eduapp.data.local.dao.ChapterAudioProgressDao
 import com.hdaf.eduapp.data.local.dao.ChapterDao
 import com.hdaf.eduapp.data.local.dao.QuizDao
+import com.hdaf.eduapp.data.local.dao.QuizProgressDao
 import com.hdaf.eduapp.data.local.dao.UserProgressDao
 import dagger.Module
 import dagger.Provides
@@ -86,5 +88,23 @@ object DatabaseModule {
     @Singleton
     fun provideBadgeDao(database: EduAppDatabase): BadgeDao {
         return database.badgeDao()
+    }
+    
+    /**
+     * Provides ChapterAudioProgressDao for chapter-wise audio progress tracking.
+     */
+    @Provides
+    @Singleton
+    fun provideChapterAudioProgressDao(database: EduAppDatabase): ChapterAudioProgressDao {
+        return database.chapterAudioProgressDao()
+    }
+    
+    /**
+     * Provides QuizProgressDao for quiz resumption functionality.
+     */
+    @Provides
+    @Singleton
+    fun provideQuizProgressDao(database: EduAppDatabase): QuizProgressDao {
+        return database.quizProgressDao()
     }
 }

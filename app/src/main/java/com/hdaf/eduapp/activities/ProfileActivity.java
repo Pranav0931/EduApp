@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.card.MaterialCardView;
 import com.hdaf.eduapp.R;
 import com.hdaf.eduapp.accessibility.TTSManager;
+import com.hdaf.eduapp.accessibility.VoiceGuidanceManager;
 import com.hdaf.eduapp.adapters.BadgeAdapter;
 import com.hdaf.eduapp.gamification.Badge;
 import com.hdaf.eduapp.gamification.BadgeRegistry;
@@ -26,6 +27,7 @@ import java.util.List;
 /**
  * Profile activity showing user's gamification progress.
  * Displays XP, level, streaks, badges, and daily challenge.
+ * Full TalkBack voice guidance support for blind users.
  */
 public class ProfileActivity extends AppCompatActivity implements BadgeAdapter.OnBadgeClickListener {
 
@@ -46,6 +48,7 @@ public class ProfileActivity extends AppCompatActivity implements BadgeAdapter.O
     private GamificationManager gamificationManager;
     private BadgeAdapter badgeAdapter;
     private TTSManager ttsManager;
+    private VoiceGuidanceManager voiceGuidance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +57,11 @@ public class ProfileActivity extends AppCompatActivity implements BadgeAdapter.O
 
         gamificationManager = GamificationManager.getInstance(this);
         ttsManager = TTSManager.getInstance();
+        voiceGuidance = VoiceGuidanceManager.getInstance(this);
 
         initializeViews();
         setupBadgesRecycler();
+        setupAccessibility();
         loadUserData();
         loadDailyChallenge();
 
@@ -78,6 +83,22 @@ public class ProfileActivity extends AppCompatActivity implements BadgeAdapter.O
         txtChallengeDescription = findViewById(R.id.txt_challenge_description);
         txtChallengeStatus = findViewById(R.id.txt_challenge_status);
         recyclerBadges = findViewById(R.id.recycler_badges);
+    }
+    
+    private void setupAccessibility() {
+        // Make card_daily_challenge speak its full content
+        if (cardDailyChallenge != null) {
+            cardDailyChallenge.setOnClickListener(v -> {
+                DailyChallenge challenge = gamificationManager.getDailyChallenge();
+                if (challenge != null) {
+                    String status = challenge.isCompleted() ? "Completed!" : "Not completed yet.";
+                    String announcement = "Daily Challenge. " + challenge.getDisplayDescription() + 
+                        ". Reward: " + challenge.getXpReward() + " XP. Status: " + status;
+                    voiceGuidance.announce(announcement, VoiceGuidanceManager.AnnouncementType.INFORMATION);
+                    voiceGuidance.vibrate(VoiceGuidanceManager.HapticPattern.LIGHT);
+                }
+            });
+        }
     }
 
     private void setupBadgesRecycler() {
@@ -159,14 +180,17 @@ public class ProfileActivity extends AppCompatActivity implements BadgeAdapter.O
             .setPositiveButton(android.R.string.ok, null)
             .show();
 
-        // Announce for TalkBack
-        if (ttsManager != null && ttsManager.isReady()) {
-            ttsManager.speak(badge.getAccessibilityAnnouncement(isEarned));
-        }
+        // Use VoiceGuidanceManager for TalkBack
+        String voiceAnnouncement = isEarned ? 
+            badge.getName() + ". Badge earned! " + badge.getDescription() :
+            badge.getName() + ". Badge locked. " + badge.getRequirement() + ". Reward: " + badge.getXpReward() + " XP.";
+        voiceGuidance.announce(voiceAnnouncement, VoiceGuidanceManager.AnnouncementType.INFORMATION);
     }
 
     private void announceForAccessibility(String message) {
         getWindow().getDecorView().announceForAccessibility(message);
+        // Also use voice guidance for additional support
+        voiceGuidance.announceDelayed(message, 300);
     }
 
     @Override
@@ -175,5 +199,13 @@ public class ProfileActivity extends AppCompatActivity implements BadgeAdapter.O
         // Refresh data when returning to this screen
         loadUserData();
         loadDailyChallenge();
+    }
+    
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (voiceGuidance != null) {
+            voiceGuidance.stop();
+        }
     }
 }

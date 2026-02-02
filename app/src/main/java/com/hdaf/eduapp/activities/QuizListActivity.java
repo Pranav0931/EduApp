@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.hdaf.eduapp.R;
+import com.hdaf.eduapp.accessibility.VoiceGuidanceManager;
 import com.hdaf.eduapp.adapters.QuizListAdapter;
 import com.hdaf.eduapp.models.QuizModel;
 import com.hdaf.eduapp.ui.EduAIChatBottomSheet;
@@ -24,7 +25,7 @@ import java.util.List;
 
 /**
  * Quiz list screen - displays available quizzes.
- * Supports AI quiz generation.
+ * Supports AI quiz generation and full TalkBack accessibility.
  */
 public class QuizListActivity extends AppCompatActivity implements QuizListAdapter.OnQuizClickListener {
 
@@ -34,9 +35,12 @@ public class QuizListActivity extends AppCompatActivity implements QuizListAdapt
     private FloatingActionButton fabAiChat;
     private FloatingActionButton fabCreateQuiz;
     private BottomNavigationView bottomNavigation;
+    private ImageButton btnSpeaker;
 
     private PreferenceManager prefManager;
     private QuizListAdapter adapter;
+    private VoiceGuidanceManager voiceGuidance;
+    private List<QuizModel> currentQuizzes = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +48,12 @@ public class QuizListActivity extends AppCompatActivity implements QuizListAdapt
         setContentView(R.layout.activity_quiz_list);
 
         prefManager = PreferenceManager.getInstance(this);
+        voiceGuidance = VoiceGuidanceManager.getInstance(this);
 
         initializeViews();
         setupBottomNavigation();
         setupFabs();
+        setupAccessibility();
         loadQuizzes();
     }
 
@@ -60,11 +66,47 @@ public class QuizListActivity extends AppCompatActivity implements QuizListAdapt
         fabAiChat = findViewById(R.id.fabAiChat);
         fabCreateQuiz = findViewById(R.id.fabCreateQuiz);
         bottomNavigation = findViewById(R.id.bottomNavigation);
+        btnSpeaker = findViewById(R.id.btnSpeaker);
 
         headerTitle.setText(R.string.nav_quizzes);
         quizRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        menuButton.setOnClickListener(v -> onBackPressed());
+        menuButton.setOnClickListener(v -> {
+            voiceGuidance.announce("Going back", VoiceGuidanceManager.AnnouncementType.NAVIGATION);
+            onBackPressed();
+        });
+    }
+
+    private void setupAccessibility() {
+        // Speaker button to read all quizzes
+        if (btnSpeaker != null) {
+            btnSpeaker.setOnClickListener(v -> readAllQuizzes());
+        }
+        
+        // Welcome announcement when screen opens
+        voiceGuidance.announceDelayed("Quiz list. " + currentQuizzes.size() + " quizzes available. Tap speaker to hear all options.", 500);
+    }
+    
+    private void readAllQuizzes() {
+        if (currentQuizzes.isEmpty()) {
+            voiceGuidance.announce("No quizzes available. Tap the AI Quiz button to generate a new quiz.", 
+                VoiceGuidanceManager.AnnouncementType.INFORMATION);
+            return;
+        }
+        
+        StringBuilder announcement = new StringBuilder();
+        announcement.append(currentQuizzes.size()).append(" quizzes available. ");
+        
+        for (int i = 0; i < currentQuizzes.size(); i++) {
+            QuizModel quiz = currentQuizzes.get(i);
+            announcement.append("Quiz ").append(i + 1).append(": ")
+                .append(quiz.getTitle()).append(". ")
+                .append(quiz.getQuestionCount()).append(" questions. ")
+                .append(quiz.getDurationMinutes()).append(" minutes. ");
+        }
+        
+        announcement.append("Double tap any quiz to start.");
+        voiceGuidance.announce(announcement.toString(), VoiceGuidanceManager.AnnouncementType.INFORMATION);
     }
 
     private void setupBottomNavigation() {
@@ -90,12 +132,13 @@ public class QuizListActivity extends AppCompatActivity implements QuizListAdapt
 
     private void setupFabs() {
         fabAiChat.setOnClickListener(v -> {
+            voiceGuidance.announce("Opening AI chat assistant", VoiceGuidanceManager.AnnouncementType.ACTION);
             EduAIChatBottomSheet chatSheet = EduAIChatBottomSheet.newInstance();
             chatSheet.show(getSupportFragmentManager(), "EduAIChat");
         });
 
         fabCreateQuiz.setOnClickListener(v -> {
-            // TODO: Open AI Quiz generation dialog
+            voiceGuidance.announce("Creating new AI quiz", VoiceGuidanceManager.AnnouncementType.ACTION);
             EduAIChatBottomSheet chatSheet = EduAIChatBottomSheet.newInstance();
             chatSheet.show(getSupportFragmentManager(), "EduAIChat");
         });
@@ -107,15 +150,16 @@ public class QuizListActivity extends AppCompatActivity implements QuizListAdapt
         emptyText.setVisibility(View.GONE);
 
         // Load sample quizzes for now
-        List<QuizModel> quizzes = getSampleQuizzes();
+        currentQuizzes = getSampleQuizzes();
         
         loadingProgress.setVisibility(View.GONE);
-        if (quizzes.isEmpty()) {
+        if (currentQuizzes.isEmpty()) {
             emptyText.setVisibility(View.VISIBLE);
             emptyText.setText(R.string.no_quizzes_available);
+            voiceGuidance.announce("No quizzes available. Create one with AI.", VoiceGuidanceManager.AnnouncementType.INFORMATION);
         } else {
             quizRecyclerView.setVisibility(View.VISIBLE);
-            adapter = new QuizListAdapter(quizzes, this);
+            adapter = new QuizListAdapter(currentQuizzes, this);
             quizRecyclerView.setAdapter(adapter);
         }
     }
@@ -131,9 +175,23 @@ public class QuizListActivity extends AppCompatActivity implements QuizListAdapt
 
     @Override
     public void onQuizClick(QuizModel quiz, int position) {
+        // Voice feedback before opening quiz
+        String announcement = "Starting " + quiz.getTitle() + " quiz. " + 
+            quiz.getQuestionCount() + " questions. " + quiz.getDurationMinutes() + " minutes.";
+        voiceGuidance.announce(announcement, VoiceGuidanceManager.AnnouncementType.ACTION);
+        voiceGuidance.vibrate(VoiceGuidanceManager.HapticPattern.SELECTION);
+        
         Intent intent = new Intent(this, QuizActivity.class);
         intent.putExtra("quiz_id", quiz.getId());
         intent.putExtra("quiz_title", quiz.getTitle());
         startActivity(intent);
+    }
+    
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (voiceGuidance != null) {
+            voiceGuidance.stop();
+        }
     }
 }

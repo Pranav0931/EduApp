@@ -8,8 +8,10 @@ import com.hdaf.eduapp.data.local.dao.AIChatDao
 import com.hdaf.eduapp.data.local.dao.BadgeDao
 import com.hdaf.eduapp.data.local.dao.BookDao
 import com.hdaf.eduapp.data.local.dao.ChapterDao
+import com.hdaf.eduapp.data.local.dao.ChapterAudioProgressDao
 import com.hdaf.eduapp.data.local.dao.OCRCacheDao
 import com.hdaf.eduapp.data.local.dao.QuizDao
+import com.hdaf.eduapp.data.local.dao.QuizProgressDao
 import com.hdaf.eduapp.data.local.dao.StudyAnalyticsDao
 import com.hdaf.eduapp.data.local.dao.StudyRecommendationDao
 import com.hdaf.eduapp.data.local.dao.UserProgressDao
@@ -18,10 +20,12 @@ import com.hdaf.eduapp.data.local.entity.AccessibilityProfileEntity
 import com.hdaf.eduapp.data.local.entity.AIChatMessageEntity
 import com.hdaf.eduapp.data.local.entity.BadgeEntity
 import com.hdaf.eduapp.data.local.entity.BookEntity
+import com.hdaf.eduapp.data.local.entity.ChapterAudioProgressEntity
 import com.hdaf.eduapp.data.local.entity.ChapterEntity
 import com.hdaf.eduapp.data.local.entity.OCRCacheEntity
 import com.hdaf.eduapp.data.local.entity.QuizAttemptEntity
 import com.hdaf.eduapp.data.local.entity.QuizEntity
+import com.hdaf.eduapp.data.local.entity.QuizProgressEntity
 import com.hdaf.eduapp.data.local.entity.QuizQuestionEntity
 import com.hdaf.eduapp.data.local.entity.StudyAnalyticsEntity
 import com.hdaf.eduapp.data.local.entity.StudyRecommendationEntity
@@ -45,8 +49,10 @@ import com.hdaf.eduapp.data.local.converter.ListConverter
  * - QuizAttempts: User quiz attempts
  * - UserProgress: Gamification progress
  * - UserBadges: Earned badges
+ * - ChapterAudioProgress: Per-chapter audio playback state
+ * - QuizProgress: In-progress quiz state for resumption
  * 
- * @version 1 - Initial schema
+ * @version 5 - Added QuizProgressEntity for quiz resumption
  */
 @Database(
     entities = [
@@ -64,9 +70,13 @@ import com.hdaf.eduapp.data.local.converter.ListConverter
         StudyAnalyticsEntity::class,
         StudyRecommendationEntity::class,
         OCRCacheEntity::class,
-        VoiceCommandEntity::class
+        VoiceCommandEntity::class,
+        // Audio progress entity
+        ChapterAudioProgressEntity::class,
+        // Quiz progress entity
+        QuizProgressEntity::class
     ],
-    version = 3,
+    version = 5,
     exportSchema = true
 )
 @TypeConverters(DateConverter::class, ListConverter::class)
@@ -85,6 +95,12 @@ abstract class EduAppDatabase : RoomDatabase() {
     abstract fun studyRecommendationDao(): StudyRecommendationDao
     abstract fun ocrCacheDao(): OCRCacheDao
     abstract fun voiceCommandDao(): VoiceCommandDao
+    
+    // Audio progress DAO
+    abstract fun chapterAudioProgressDao(): ChapterAudioProgressDao
+    
+    // Quiz progress DAO (for resumption)
+    abstract fun quizProgressDao(): QuizProgressDao
 
     companion object {
         const val DATABASE_NAME = "eduapp_database"

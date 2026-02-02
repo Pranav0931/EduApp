@@ -49,7 +49,19 @@ public class VoiceGuidanceManager {
         CONFIRMATION,       // When an action is confirmed
         ERROR,              // When an error occurs
         HINT,               // Helpful hints
-        PROGRESS            // Progress updates
+        PROGRESS,           // Progress updates
+        NAVIGATION,         // Navigation actions
+        INFORMATION,        // General information
+        ACTION              // User actions
+    }
+    
+    // Haptic patterns
+    public enum HapticPattern {
+        LIGHT,              // Light tap
+        SELECTION,          // Selection feedback
+        SUCCESS,            // Success confirmation
+        ERROR,              // Error feedback
+        NAVIGATION          // Navigation feedback
     }
 
     private VoiceGuidanceManager(Context context) {
@@ -128,7 +140,59 @@ public class VoiceGuidanceManager {
             case PROGRESS:
                 ttsManager.speak(message, TextToSpeech.QUEUE_FLUSH, "progress");
                 break;
+            case NAVIGATION:
+                ttsManager.speak(message, TextToSpeech.QUEUE_FLUSH, "navigation");
+                break;
+            case INFORMATION:
+                ttsManager.speak(message, TextToSpeech.QUEUE_FLUSH, "info");
+                break;
+            case ACTION:
+                ttsManager.speak(message, TextToSpeech.QUEUE_FLUSH, "action");
+                break;
         }
+    }
+    
+    /**
+     * Vibrate with haptic pattern
+     */
+    public void vibrate(HapticPattern pattern) {
+        if (!hapticEnabled || vibrator == null) return;
+        
+        long duration;
+        switch (pattern) {
+            case LIGHT:
+                duration = 20;
+                break;
+            case SELECTION:
+                duration = 50;
+                break;
+            case SUCCESS:
+                duration = 100;
+                break;
+            case ERROR:
+                duration = 200;
+                break;
+            case NAVIGATION:
+                duration = 30;
+                break;
+            default:
+                duration = 50;
+        }
+        
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            vibrator.vibrate(VibrationEffect.createOneShot(duration, VibrationEffect.DEFAULT_AMPLITUDE));
+        } else {
+            vibrator.vibrate(duration);
+        }
+    }
+    
+    /**
+     * Announce with delay
+     */
+    public void announceDelayed(@NonNull String message, long delayMs) {
+        new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
+            announce(message, AnnouncementType.INFORMATION);
+        }, delayMs);
     }
 
     /**

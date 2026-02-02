@@ -1,7 +1,11 @@
 package com.hdaf.eduapp.presentation.quiz
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.AccessibilityDelegateCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -10,6 +14,9 @@ import com.hdaf.eduapp.databinding.ItemQuizBinding
 import com.hdaf.eduapp.domain.model.Quiz
 import com.hdaf.eduapp.domain.model.QuizDifficulty
 
+/**
+ * Adapter for displaying quizzes with full TalkBack accessibility.
+ */
 class QuizAdapter(
     private val onQuizClick: (Quiz) -> Unit
 ) : ListAdapter<Quiz, QuizAdapter.QuizViewHolder>(QuizDiffCallback()) {
@@ -24,7 +31,7 @@ class QuizAdapter(
     }
 
     override fun onBindViewHolder(holder: QuizViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), position, itemCount)
     }
 
     inner class QuizViewHolder(
@@ -40,7 +47,7 @@ class QuizAdapter(
             }
         }
 
-        fun bind(quiz: Quiz) {
+        fun bind(quiz: Quiz, position: Int, total: Int) {
             binding.apply {
                 tvQuizTitle.text = quiz.title
                 tvQuestionCount.text = root.context.getString(
@@ -53,27 +60,47 @@ class QuizAdapter(
                 )
                 
                 // Set difficulty indicator
-                val difficultyText = when (quiz.difficulty) {
-                    QuizDifficulty.EASY -> R.string.difficulty_easy
-                    QuizDifficulty.MEDIUM -> R.string.difficulty_medium
-                    QuizDifficulty.HARD -> R.string.difficulty_hard
+                val (difficultyText, difficultyHindi) = when (quiz.difficulty) {
+                    QuizDifficulty.EASY -> Pair(R.string.difficulty_easy, "आसान")
+                    QuizDifficulty.MEDIUM -> Pair(R.string.difficulty_medium, "मध्यम")
+                    QuizDifficulty.HARD -> Pair(R.string.difficulty_hard, "कठिन")
                 }
                 chipDifficulty.setText(difficultyText)
                 
                 // Show AI badge if AI-generated
                 chipAiGenerated.visibility = if (quiz.isAiGenerated) {
-                    android.view.View.VISIBLE
+                    View.VISIBLE
                 } else {
-                    android.view.View.GONE
+                    View.GONE
                 }
                 
-                // Accessibility
-                root.contentDescription = root.context.getString(
-                    R.string.quiz_item_description,
-                    quiz.title,
-                    quiz.questions.size,
-                    quiz.timeLimitMinutes
-                )
+                // Enhanced accessibility with position and full context
+                val aiText = if (quiz.isAiGenerated) ", AI जनित" else ""
+                root.contentDescription = buildString {
+                    append("प्रश्नोत्तरी ${position + 1} में से $total: ")
+                    append("${quiz.title}, ")
+                    append("${quiz.questions.size} प्रश्न, ")
+                    append("${quiz.timeLimitMinutes} मिनट, ")
+                    append("कठिनाई: $difficultyHindi")
+                    append(aiText)
+                    append(". शुरू करने के लिए डबल टैप करें.")
+                }
+                
+                // Set accessibility delegate for action labels
+                ViewCompat.setAccessibilityDelegate(root, object : AccessibilityDelegateCompat() {
+                    override fun onInitializeAccessibilityNodeInfo(
+                        host: View,
+                        info: AccessibilityNodeInfoCompat
+                    ) {
+                        super.onInitializeAccessibilityNodeInfo(host, info)
+                        info.addAction(
+                            AccessibilityNodeInfoCompat.AccessibilityActionCompat(
+                                AccessibilityNodeInfoCompat.ACTION_CLICK,
+                                "प्रश्नोत्तरी शुरू करें"
+                            )
+                        )
+                    }
+                })
             }
         }
     }

@@ -5,19 +5,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorSurface"
+    android:background="@color/background_white"
     tools:context=".presentation.quiz.QuizListFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_toolbar_gradient">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:navigationIcon="@drawable/ic_arrow_back"
-            app:title="@string/quizzes_title" />
+            app:navigationIconTint="@android:color/white"
+            app:titleTextColor="@android:color/white"
+            app:title="@string/quizzes_title"
+            android:contentDescription="@string/quiz_list_accessibility" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -36,6 +40,7 @@
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
                 android:padding="16dp"
+                android:contentDescription="@string/quiz_list_grid"
                 tools:listitem="@layout/item_quiz" />
 
             <!-- Empty State -->
@@ -52,9 +57,9 @@
                 <ImageView
                     android:layout_width="120dp"
                     android:layout_height="120dp"
-                    android:contentDescription="@null"
+                    android:contentDescription="@string/no_quizzes_icon"
                     android:src="@drawable/ic_quiz"
-                    app:tint="?attr/colorOutline" />
+                    app:tint="@color/primary_magenta" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -62,7 +67,7 @@
                     android:layout_marginTop="16dp"
                     android:text="@string/no_quizzes_available"
                     android:textAppearance="?attr/textAppearanceTitleMedium"
-                    android:textColor="?attr/colorOnSurfaceVariant" />
+                    android:textColor="@color/text_secondary" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_generate_ai_quiz"
@@ -70,6 +75,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="@string/generate_ai_quiz"
+                    android:contentDescription="@string/generate_ai_quiz_desc"
+                    app:backgroundTint="@color/primary_magenta"
                     app:icon="@drawable/ic_ai" />
             </LinearLayout>
 
@@ -80,6 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:indeterminate="true"
+                app:indicatorColor="@color/primary_magenta"
                 android:visibility="gone" />
 
         </FrameLayout>
@@ -92,8 +100,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:contentDescription="@string/create_quiz"
+        android:contentDescription="@string/create_ai_quiz_desc"
         android:text="@string/ai_quiz"
+        app:backgroundTint="@color/secondary_purple"
+        app:iconTint="@android:color/white"
         app:icon="@drawable/ic_ai" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

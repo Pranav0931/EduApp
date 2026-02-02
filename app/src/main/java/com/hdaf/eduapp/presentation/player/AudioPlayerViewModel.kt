@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hdaf.eduapp.accessibility.TTSEngine
+import com.hdaf.eduapp.core.accessibility.ChapterAudioManager
 import com.hdaf.eduapp.core.common.Resource
 import com.hdaf.eduapp.domain.usecase.content.GetChapterDetailUseCase
 import com.hdaf.eduapp.domain.usecase.progress.UpdateChapterProgressUseCase
@@ -15,15 +16,26 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import java.util.Locale
 import javax.inject.Inject
 
+/**
+ * ViewModel for chapter-wise audio learning.
+ * 
+ * Key features:
+ * - Per-chapter audio state isolation
+ * - Resume from last position
+ * - TTS-based audio playback
+ * - Accessibility mode support
+ */
 @HiltViewModel
 class AudioPlayerViewModel @Inject constructor(
     private val getChapterDetailUseCase: GetChapterDetailUseCase,
     private val updateProgressUseCase: UpdateChapterProgressUseCase,
     private val ttsEngine: TTSEngine,
-    private val sharedPreferences: SharedPreferences
+    private val sharedPreferences: SharedPreferences,
+    private val chapterAudioManager: ChapterAudioManager
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(AudioPlayerUiState())
@@ -33,6 +45,7 @@ class AudioPlayerViewModel @Inject constructor(
     val events = _events.receiveAsFlow()
 
     private var chapterId: String = ""
+    private var bookId: String = ""
     private var chapterContent: String = ""
 
     init {
@@ -56,8 +69,24 @@ class AudioPlayerViewModel @Inject constructor(
                 _uiState.update { it.copy(isPlaying = isSpeaking) }
             }
         }
+        
+        // Observe chapter audio manager state
+        viewModelScope.launch {
+            chapterAudioManager.currentPosition.collect { positionMs ->
+                _uiState.update { it.copy(currentPosition = (positionMs / 1000).toInt()) }
+            }
+        }
+        
+        viewModelScope.launch {
+            chapterAudioManager.playbackSpeed.collect { speed ->
+                _uiState.update { it.copy(playbackSpeed = speed) }
+            }
+        }
     }
 
+    /**
+     * Load chapter and restore previous playback position.
+     */
     fun loadChapter(chapterId: String) {
         this.chapterId = chapterId
         viewModelScope.launch {
@@ -70,8 +99,10 @@ class AudioPlayerViewModel @Inject constructor(
                     }
                     is Resource.Success -> {
                         val chapter = result.data
-                        val durationSeconds = (chapter?.durationMinutes ?: 0) * 60
-                        val currentPos = ((chapter?.readProgress ?: 0f) * durationSeconds).toInt()
+                        val durationSeconds = (chapter?.durationMinutes ?: 5) * 60
+                        
+                        // Store book ID for tracking
+                        bookId = chapter?.bookId ?: ""
                         
                         // Store chapter content for TTS - use contentText, description, or fallback
                         chapterContent = chapter?.contentText 
@@ -88,15 +119,37 @@ class AudioPlayerViewModel @Inject constructor(
                             }
                         }
                         
+                        // Load chapter in audio manager and get resume position
+                        val resumePositionMs = chapterAudioManager.loadChapter(
+                            chapterId = chapterId,
+                            chapterTitle = chapter?.title ?: "",
+                            bookId = bookId,
+                            totalDurationMs = durationSeconds * 1000L
+                        )
+                        
+                        val currentPosSeconds = (resumePositionMs / 1000).toInt()
+                        
                         _uiState.update {
                             it.copy(
                                 isLoading = false,
                                 chapterTitle = chapter?.title ?: "",
                                 bookTitle = chapter?.bookTitle ?: "",
                                 duration = durationSeconds,
-                                currentPosition = currentPos,
-                                contentAvailable = chapterContent.isNotEmpty()
+                                currentPosition = currentPosSeconds,
+                                contentAvailable = chapterContent.isNotEmpty(),
+                                hasResumePosition = currentPosSeconds > 0
                             )
+                        }
+                        
+                        // Announce resume position if applicable
+                        if (currentPosSeconds > 0) {
+                            val langCode = sharedPreferences.getString("app_language", "en") ?: "en"
+                            val message = if (langCode == "hi") {
+                                "पिछली स्थिति से जारी रखा जा रहा है"
+                            } else {
+                                "Resuming from previous position"
+                            }
+                            Timber.d("Resuming chapter from ${currentPosSeconds}s")
                         }
                     }
                     is Resource.Error -> {
@@ -110,8 +163,9 @@ class AudioPlayerViewModel @Inject constructor(
 
     fun togglePlayPause() {
         if (_uiState.value.isPlaying) {
-            // Pause TTS
+            // Pause TTS and save position
             ttsEngine.stop()
+            chapterAudioManager.pause()
         } else {
             // Start TTS with content
             if (chapterContent.isNotEmpty()) {
@@ -123,6 +177,7 @@ class AudioPlayerViewModel @Inject constructor(
                 }
                 ttsEngine.setSpeechRate(speechRate)
                 ttsEngine.speak(chapterContent)
+                chapterAudioManager.play()
                 
                 // Update UI to show playing state immediately for better UX
                 _uiState.update { it.copy(isPlaying = true) }
@@ -142,6 +197,7 @@ class AudioPlayerViewModel @Inject constructor(
             _uiState.value.duration
         )
         _uiState.update { it.copy(currentPosition = newPosition) }
+        chapterAudioManager.seekTo(newPosition * 1000L)
     }
 
     fun seekBackward() {
@@ -150,14 +206,18 @@ class AudioPlayerViewModel @Inject constructor(
             0
         )
         _uiState.update { it.copy(currentPosition = newPosition) }
+        chapterAudioManager.seekTo(newPosition * 1000L)
     }
 
     fun seekTo(position: Int) {
         _uiState.update { it.copy(currentPosition = position) }
+        chapterAudioManager.seekTo(position * 1000L)
     }
 
     fun setPlaybackSpeed(speed: Float) {
         _uiState.update { it.copy(playbackSpeed = speed) }
+        chapterAudioManager.setPlaybackSpeed(speed)
+        
         // Apply speed to TTS
         val speechRate = when (speed) {
             0.75f -> com.hdaf.eduapp.domain.model.SpeechRate.SLOW
@@ -169,6 +229,9 @@ class AudioPlayerViewModel @Inject constructor(
     }
 
     fun playNext() {
+        // Save current progress before moving
+        saveProgress()
+        
         // Stop current TTS and announce
         ttsEngine.stop()
         val langCode = sharedPreferences.getString("app_language", "en") ?: "en"
@@ -177,6 +240,9 @@ class AudioPlayerViewModel @Inject constructor(
     }
 
     fun playPrevious() {
+        // Save current progress before moving
+        saveProgress()
+        
         // Stop current TTS and announce
         ttsEngine.stop()
         val langCode = sharedPreferences.getString("app_language", "en") ?: "en"
@@ -191,14 +257,21 @@ class AudioPlayerViewModel @Inject constructor(
                 // Chapter completed
                 _uiState.update { it.copy(currentPosition = _uiState.value.duration, isPlaying = false) }
                 viewModelScope.launch {
+                    chapterAudioManager.updatePosition(_uiState.value.duration * 1000L)
                     _events.send(AudioPlayerEvent.ChapterCompleted)
                 }
             } else {
                 _uiState.update { it.copy(currentPosition = newPosition) }
+                // Update manager position (triggers periodic auto-save)
+                chapterAudioManager.updatePosition(newPosition * 1000L)
             }
         }
     }
 
+    /**
+     * Save current progress to database.
+     * Called when pausing, leaving screen, or switching chapters.
+     */
     fun saveProgress() {
         viewModelScope.launch {
             val state = _uiState.value
@@ -206,17 +279,37 @@ class AudioPlayerViewModel @Inject constructor(
                 state.currentPosition.toFloat() / state.duration
             } else 0f
             
+            // Save via chapter audio manager (persists to Room DB)
+            chapterAudioManager.saveProgress(chapterId)
+            
+            // Also update the general chapter progress
             updateProgressUseCase(
                 chapterId = chapterId,
                 progress = progressPercent,
                 timeSpentSeconds = state.currentPosition
             )
+            
+            Timber.d("Saved chapter progress: $chapterId at ${state.currentPosition}s")
+        }
+    }
+    
+    /**
+     * Reset progress and start from beginning.
+     */
+    fun restartChapter() {
+        viewModelScope.launch {
+            chapterAudioManager.resetChapterProgress(chapterId)
+            _uiState.update { it.copy(currentPosition = 0, hasResumePosition = false) }
         }
     }
     
     override fun onCleared() {
         super.onCleared()
         ttsEngine.stop()
+        // Save progress when leaving
+        viewModelScope.launch {
+            chapterAudioManager.saveProgress(chapterId)
+        }
     }
 }
 
@@ -228,7 +321,8 @@ data class AudioPlayerUiState(
     val duration: Int = 0,
     val currentPosition: Int = 0,
     val playbackSpeed: Float = 1.0f,
-    val contentAvailable: Boolean = false
+    val contentAvailable: Boolean = false,
+    val hasResumePosition: Boolean = false
 )
 
 sealed interface AudioPlayerEvent {
