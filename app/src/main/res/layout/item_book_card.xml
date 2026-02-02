@@ -3,79 +3,98 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="160dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="12dp"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="4dp">
+    android:layout_margin="8dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="6dp"
+    app:strokeWidth="0dp">
 
     <LinearLayout
+        android:id="@+id/subject_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:background="@drawable/bg_subject_english"
+        tools:background="@drawable/bg_subject_english">
 
-        <!-- Book Cover Image -->
+        <!-- Subject Icon -->
         <ImageView
             android:id="@+id/iv_book_cover"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:background="@color/design_default_color_primary_variant"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
             android:contentDescription="@null"
-            android:scaleType="centerCrop"
-            tools:background="@color/design_default_color_primary" />
+            android:src="@drawable/ic_book"
+            app:tint="@android:color/white" />
 
+        <!-- Subject Title -->
+        <TextView
+            android:id="@+id/tv_book_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="English" />
+
+        <!-- Class label -->
+        <TextView
+            android:id="@+id/tv_class"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:alpha="0.9"
+            tools:text="Class 5" />
+
+        <!-- Progress section -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="12dp">
-
-            <TextView
-                android:id="@+id/tv_book_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:textAppearance="?attr/textAppearanceTitleSmall"
-                android:textStyle="bold"
-                tools:text="गणित" />
-
-            <TextView
-                android:id="@+id/tv_class"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textAppearance="?attr/textAppearanceBodySmall"
-                android:textColor="?attr/colorOnSurfaceVariant"
-                tools:text="कक्षा 5" />
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <com.google.android.material.progressindicator.LinearProgressIndicator
-                    android:id="@+id/progress_book"
+                <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:indicatorColor="?attr/colorPrimary"
-                    app:trackColor="?attr/colorSurfaceVariant"
-                    app:trackCornerRadius="4dp"
-                    app:trackThickness="6dp"
-                    tools:progress="30" />
+                    android:text="@string/progress_label"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:alpha="0.85" />
 
                 <TextView
                     android:id="@+id/tv_progress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:textAppearance="?attr/textAppearanceBodySmall"
-                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
                     tools:text="30%" />
             </LinearLayout>
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/progress_book"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                app:indicatorColor="@android:color/white"
+                app:trackColor="#40FFFFFF"
+                app:trackCornerRadius="4dp"
+                app:trackThickness="8dp"
+                tools:progress="30" />
+
         </LinearLayout>
 
     </LinearLayout>

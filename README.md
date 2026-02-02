@@ -23,13 +23,40 @@ EduApp is an **Android-based inclusive learning application** built with **acces
 
 ---
 
+## 🎨 Modern UI Design (v2.0)
+
+### ✨ What's New
+- **Modern Gradient UI** — Beautiful color gradients throughout the app
+- **Large Accessible Cards** — Easy-to-tap mode selection cards
+- **Colorful Subject Cards** — Each subject has unique gradient colors
+- **Enhanced Audio Player** — Gradient background with large playback controls
+- **TalkBack Voice Guidance** — Complete voice feedback system for blind users
+
+### 📱 Screenshots
+
+| Mode Selection | Home Dashboard | Audio Player |
+|:---:|:---:|:---:|
+| Choose Audio/Video mode | Start Learning, Quiz, Progress | Modern gradient player |
+
+---
+
 ## ♿ Accessibility-First Architecture
+
+### 🎙️ TalkBack Voice Guidance System (NEW!)
+| Feature | Description |
+|---------|-------------|
+| **VoiceGuidanceManager** | Comprehensive voice announcements for all interactions |
+| **Screen Announcements** | Automatic voice feedback when navigating screens |
+| **Button Press Feedback** | Voice confirmation for every button tap |
+| **Haptic Patterns** | Different vibration patterns for different actions |
+| **Speed & Pitch Control** | Customize voice speed (0.5x-2.0x) and pitch |
+| **Focus Announcements** | Voice reads focused element descriptions |
 
 ### 👁️ For Blind Students
 | Feature | Description |
 |---------|-------------|
 | **OCR Engine** | ML Kit-powered camera-to-text — point at any text and hear it read aloud |
-| **Text-to-Speech** | Natural voice synthesis with adjustable speed (0.5x - 1.5x) |
+| **Text-to-Speech** | Natural voice synthesis with adjustable speed (0.5x - 2.0x) |
 | **Voice Navigation** | Complete hands-free control with voice commands |
 | **Haptic Feedback** | Tactile responses for navigation, success, and errors |
 | **TalkBack Optimized** | Full compatibility with Android's screen reader |

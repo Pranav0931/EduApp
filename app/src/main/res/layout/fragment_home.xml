@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorSurface"
+    android:background="@color/background_light_gray"
     tools:context=".presentation.home.HomeFragment">
 
     <androidx.core.widget.NestedScrollView
@@ -16,9 +16,9 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:padding="20dp">
 
-            <!-- Header with greeting and profile -->
+            <!-- Header with greeting and accessibility icon -->
             <LinearLayout
                 android:id="@+id/header"
                 android:layout_width="0dp"
@@ -39,41 +39,54 @@
                         android:id="@+id/tv_greeting"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?attr/textAppearanceHeadlineMedium"
+                        android:textSize="28sp"
                         android:textStyle="bold"
-                        tools:text="नमस्ते, राहुल!" />
+                        android:textColor="@color/text_primary"
+                        tools:text="Hello, Rahul!" />
 
                     <TextView
                         android:id="@+id/tv_subtitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="आज क्या सीखना है?"
-                        android:textAppearance="?attr/textAppearanceBodyMedium"
-                        android:textColor="?attr/colorOnSurfaceVariant" />
+                        android:text="@string/home_subtitle"
+                        android:textSize="16sp"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginTop="4dp" />
                 </LinearLayout>
+
+                <!-- Accessibility icon to indicate inclusive mode -->
+                <ImageView
+                    android:id="@+id/icon_accessibility"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_accessibility"
+                    android:contentDescription="@string/accessibility_enabled"
+                    app:tint="@color/primary"
+                    android:layout_marginEnd="8dp" />
 
                 <!-- OCR Scanner Button - for blind users -->
                 <ImageButton
                     android:id="@+id/btn_ocr_scan"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="4dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="@string/ocr_scan"
                     android:src="@drawable/ic_qr_scanner"
                     android:visibility="gone"
-                    app:tint="?attr/colorPrimary"
+                    app:tint="@color/primary"
                     tools:visibility="visible" />
 
+                <!-- Settings Button -->
                 <ImageButton
                     android:id="@+id/btn_settings"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="4dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="@string/nav_settings"
                     android:src="@drawable/ic_settings"
-                    app:tint="?attr/colorOnSurface" />
+                    app:tint="@color/text_primary" />
 
                 <ImageButton
                     android:id="@+id/btn_profile"
@@ -82,12 +95,12 @@
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="@string/nav_profile"
                     android:src="@drawable/ic_profile"
-                    app:tint="?attr/colorOnSurface" />
+                    app:tint="@color/text_primary" />
             </LinearLayout>
 
-            <!-- Stats Row: Level, XP, Streak -->
+            <!-- Quick Action Cards Row -->
             <LinearLayout
-                android:id="@+id/stats_row"
+                android:id="@+id/quick_actions_row"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -97,35 +110,170 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
+                <!-- Start Learning Card - Teal -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_start_learning"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp"
+                    app:strokeWidth="0dp"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_card_learning"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_play_circle"
+                            android:contentDescription="@null"
+                            app:tint="@android:color/white" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/start_learning"
+                            android:textColor="@android:color/white"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Daily Quiz Card - Orange -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_daily_quiz"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="4dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp"
+                    app:strokeWidth="0dp"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_card_quiz"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_quiz"
+                            android:contentDescription="@null"
+                            app:tint="@android:color/white" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/daily_quiz"
+                            android:textColor="@android:color/white"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- My Progress Card - Purple -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_my_progress"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp"
+                    app:strokeWidth="0dp"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_card_progress"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_progress_chart"
+                            android:contentDescription="@null"
+                            app:tint="@android:color/white" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/my_progress"
+                            android:textColor="@android:color/white"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <!-- Stats Row: Level, XP, Streak -->
+            <LinearLayout
+                android:id="@+id/stats_row"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                app:layout_constraintTop_toBottomOf="@id/quick_actions_row"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
                 <!-- Level Card -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginEnd="8dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="2dp">
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="2dp"
+                    app:cardBackgroundColor="@android:color/white">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:orientation="vertical"
-                        android:padding="12dp">
+                        android:padding="14dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="⭐"
-                            android:textSize="24sp" />
+                            android:textSize="28sp" />
 
                         <TextView
                             android:id="@+id/tv_level"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textSize="14sp"
                             android:textStyle="bold"
-                            tools:text="स्तर: 5" />
+                            android:textColor="@color/text_primary"
+                            tools:text="Level 5" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -135,28 +283,30 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginHorizontal="4dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="2dp">
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="2dp"
+                    app:cardBackgroundColor="@android:color/white">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:orientation="vertical"
-                        android:padding="12dp">
+                        android:padding="14dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="💎"
-                            android:textSize="24sp" />
+                            android:textSize="28sp" />
 
                         <TextView
                             android:id="@+id/tv_xp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textSize="14sp"
                             android:textStyle="bold"
+                            android:textColor="@color/text_primary"
                             tools:text="1250 XP" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -167,29 +317,31 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginStart="8dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="2dp">
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="2dp"
+                    app:cardBackgroundColor="@android:color/white">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:orientation="vertical"
-                        android:padding="12dp">
+                        android:padding="14dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="🔥"
-                            android:textSize="24sp" />
+                            android:textSize="28sp" />
 
                         <TextView
                             android:id="@+id/tv_streak"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:textSize="14sp"
                             android:textStyle="bold"
-                            tools:text="7 स्ट्रीक" />
+                            android:textColor="@color/text_primary"
+                            tools:text="7 Days" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
@@ -199,9 +351,10 @@
                 android:id="@+id/card_daily_goal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:cardCornerRadius="16dp"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="20dp"
                 app:cardElevation="4dp"
+                app:cardBackgroundColor="@android:color/white"
                 app:layout_constraintTop_toBottomOf="@id/stats_row"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">

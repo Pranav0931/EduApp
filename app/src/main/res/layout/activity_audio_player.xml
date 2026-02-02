@@ -5,14 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/background_white"
+    android:background="@drawable/bg_player_gradient"
     tools:context=".activities.AudioPlayerActivity">
 
-    <!-- Header -->
-    <RelativeLayout
+    <!-- Header with back button -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_header"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
         android:padding="16dp"
         android:paddingTop="32dp">
 
@@ -20,139 +21,290 @@
             android:id="@+id/menuButton"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_menu"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/menu_description"
-            app:tint="@color/text_primary" />
+            android:src="@drawable/ic_arrow_back"
+            android:background="@drawable/bg_control_button_light"
+            android:contentDescription="@string/back_description"
+            android:padding="12dp"
+            app:tint="@android:color/white" />
 
         <TextView
             android:id="@+id/headerTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="ENGLISH"
-            android:textSize="24sp"
+            android:layout_weight="1"
+            android:text="@string/audio_player_title"
+            android:textSize="22sp"
             android:textStyle="bold"
-            android:textColor="@color/text_primary"
-            android:fontFamily="sans-serif-black"
-            tools:ignore="HardcodedText" />
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:fontFamily="sans-serif-medium" />
 
-    </RelativeLayout>
+        <ImageButton
+            android:id="@+id/btnAudioOnly"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_headphones"
+            android:background="@drawable/bg_control_button_light"
+            android:contentDescription="@string/audio_only_mode"
+            android:padding="12dp"
+            app:tint="@android:color/white" />
+
+    </LinearLayout>
 
     <!-- Unit Badge -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:paddingTop="24dp"
-        android:paddingBottom="16dp">
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp">
 
         <TextView
             android:id="@+id/unitBadge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_badge"
-            android:paddingTop="14dp"
-            android:paddingBottom="14dp"
-            android:paddingStart="48dp"
-            android:paddingEnd="48dp"
+            android:background="@drawable/bg_badge_light"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:paddingStart="32dp"
+            android:paddingEnd="32dp"
             android:text="UNIT 1"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="@color/text_primary"
+            android:textColor="@color/player_gradient_start"
             tools:ignore="HardcodedText" />
 
     </LinearLayout>
 
-    <!-- Visualization Area -->
+    <!-- Lesson Title -->
+    <TextView
+        android:id="@+id/lessonTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="8dp"
+        android:text="@string/lesson_title_placeholder"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:alpha="0.9" />
+
+    <!-- Visualization Area with large circle -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:padding="32dp">
+        android:padding="24dp">
 
-        <View
-            android:id="@+id/visualizationCircle"
-            android:layout_width="280dp"
-            android:layout_height="280dp"
-            android:background="@drawable/bg_audio_visualization"
-            android:contentDescription="@string/audio_visualization_description" />
+        <FrameLayout
+            android:layout_width="260dp"
+            android:layout_height="260dp">
+
+            <View
+                android:id="@+id/visualizationCircle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_audio_visualization_modern"
+                android:contentDescription="@string/audio_visualization_description" />
+
+            <!-- Central play indicator -->
+            <ImageView
+                android:id="@+id/centerPlayIcon"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_play"
+                android:contentDescription="@null"
+                app:tint="@android:color/white"
+                android:alpha="0.3" />
+
+        </FrameLayout>
 
     </LinearLayout>
 
-    <!-- Speed Control -->
+    <!-- Progress Bar -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingHorizontal="32dp"
-        android:paddingBottom="8dp">
+        android:paddingHorizontal="24dp">
+
+        <SeekBar
+            android:id="@+id/progressSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:progress="0"
+            android:progressTint="@android:color/white"
+            android:thumbTint="@android:color/white"
+            android:progressBackgroundTint="#60FFFFFF"
+            android:contentDescription="@string/progress_seek_desc" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp">
+
+            <TextView
+                android:id="@+id/tvCurrentTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0:00"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:alpha="0.8" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/tvTotalTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0:00"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:alpha="0.8" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Speed Control Slider -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="16dp">
 
         <TextView
             android:id="@+id/speedLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Speed: 1.0x"
+            android:text="@string/speed_1x"
             android:textSize="14sp"
-            android:textColor="@color/text_secondary"
-            tools:ignore="HardcodedText" />
+            android:textStyle="bold"
+            android:textColor="@android:color/white" />
 
-        <SeekBar
-            android:id="@+id/speedSeekBar"
+        <com.google.android.material.slider.Slider
+            android:id="@+id/speedSlider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:max="150"
-            android:progress="50"
+            android:valueFrom="0.5"
+            android:valueTo="2.0"
+            android:value="1.0"
+            android:stepSize="0.25"
+            app:thumbColor="@android:color/white"
+            app:trackColorActive="@android:color/white"
+            app:trackColorInactive="#60FFFFFF"
+            app:haloColor="#40FFFFFF"
             android:contentDescription="@string/speed_control_description" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/speed_0_5x"
+                android:textColor="@android:color/white"
+                android:textSize="11sp"
+                android:alpha="0.7" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/speed_2x"
+                android:textColor="@android:color/white"
+                android:textSize="11sp"
+                android:alpha="0.7" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <!-- Player Controls -->
+    <!-- Large Player Controls -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:paddingBottom="48dp"
-        android:paddingTop="16dp">
+        android:paddingBottom="40dp"
+        android:paddingTop="24dp">
 
         <!-- Previous Button -->
         <ImageButton
             android:id="@+id/previousButton"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:src="@drawable/ic_previous"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:scaleType="centerInside"
-            android:padding="8dp"
-            android:contentDescription="@string/previous_button_description" />
-
-        <!-- Play/Pause Button -->
-        <ImageButton
-            android:id="@+id/playPauseButton"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/ic_pause"
-            android:background="@drawable/bg_play_button"
+            android:src="@drawable/ic_skip_previous"
+            android:background="@drawable/bg_control_button_light"
             android:scaleType="centerInside"
             android:padding="16dp"
-            android:layout_marginHorizontal="32dp"
-            android:contentDescription="@string/play_button_description" />
+            android:contentDescription="@string/previous_button_description"
+            app:tint="@android:color/white" />
+
+        <!-- Rewind 10s -->
+        <ImageButton
+            android:id="@+id/rewindButton"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:src="@drawable/ic_replay_10"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="centerInside"
+            android:layout_marginStart="16dp"
+            android:contentDescription="@string/rewind_10_seconds"
+            app:tint="@android:color/white" />
+
+        <!-- Play/Pause Button - Large -->
+        <ImageButton
+            android:id="@+id/playPauseButton"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:src="@drawable/ic_pause"
+            android:background="@drawable/bg_play_button_large"
+            android:scaleType="centerInside"
+            android:padding="20dp"
+            android:layout_marginHorizontal="16dp"
+            android:contentDescription="@string/play_button_description"
+            app:tint="@android:color/white" />
+
+        <!-- Forward 10s -->
+        <ImageButton
+            android:id="@+id/forwardButton"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:src="@drawable/ic_forward_10"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="centerInside"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@string/forward_10_seconds"
+            app:tint="@android:color/white" />
 
         <!-- Next Button -->
         <ImageButton
             android:id="@+id/nextButton"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:src="@drawable/ic_next"
-            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_skip_next"
+            android:background="@drawable/bg_control_button_light"
             android:scaleType="centerInside"
-            android:padding="8dp"
-            android:contentDescription="@string/next_button_description" />
+            android:padding="16dp"
+            android:contentDescription="@string/next_button_description"
+            app:tint="@android:color/white" />
 
     </LinearLayout>
 

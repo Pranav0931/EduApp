@@ -9,13 +9,18 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.hdaf.eduapp.R
+import com.hdaf.eduapp.accessibility.TTSManager
+import com.hdaf.eduapp.accessibility.VoiceGuidanceManager
 import com.hdaf.eduapp.databinding.FragmentAccessibilitySettingsBinding
 import com.hdaf.eduapp.domain.model.AccessibilityModeType
+import com.hdaf.eduapp.utils.PreferenceManager
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Locale
 import javax.inject.Inject
 
 /**
  * Fragment for detailed accessibility settings.
+ * Includes voice speed, pitch controls, and TalkBack settings.
  */
 @AndroidEntryPoint
 class AccessibilitySettingsFragment : Fragment() {
@@ -25,6 +30,10 @@ class AccessibilitySettingsFragment : Fragment() {
 
     @Inject
     lateinit var sharedPreferences: SharedPreferences
+
+    private lateinit var prefManager: PreferenceManager
+    private lateinit var voiceGuidance: VoiceGuidanceManager
+    private lateinit var ttsManager: TTSManager
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,9 +47,14 @@ class AccessibilitySettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        prefManager = PreferenceManager.getInstance(requireContext())
+        voiceGuidance = VoiceGuidanceManager.getInstance(requireContext())
+        ttsManager = TTSManager.getInstance()
+
         setupToolbar()
         loadSettings()
         setupListeners()
+        setupVoiceControls()
     }
 
     private fun setupToolbar() {
@@ -54,10 +68,54 @@ class AccessibilitySettingsFragment : Fragment() {
         val mode = AccessibilityModeType.entries.getOrElse(modeOrdinal) { AccessibilityModeType.NORMAL }
         updateModeDisplay(mode)
 
-        binding.switchTalkback.isChecked = sharedPreferences.getBoolean("talkback_enabled", false)
-        binding.switchHighContrast.isChecked = sharedPreferences.getBoolean("high_contrast_enabled", false)
-        binding.switchLargeText.isChecked = sharedPreferences.getBoolean("large_text_enabled", false)
-        binding.switchHaptic.isChecked = sharedPreferences.getBoolean("haptic_enabled", true)
+        binding.switchTalkback.isChecked = prefManager.isVoiceGuidanceEnabled()
+        binding.switchHighContrast.isChecked = prefManager.isHighContrastEnabled()
+        binding.switchLargeText.isChecked = prefManager.isLargeTextEnabled()
+        binding.switchHaptic.isChecked = prefManager.isHapticFeedbackEnabled()
+    }
+
+    private fun setupVoiceControls() {
+        // Load current values
+        val currentSpeed = prefManager.getTtsSpeed()
+        val currentPitch = prefManager.getVoicePitch()
+
+        binding.sliderVoiceSpeed.value = currentSpeed
+        binding.sliderVoicePitch.value = currentPitch
+        
+        updateSpeedDisplay(currentSpeed)
+        updatePitchDisplay(currentPitch)
+
+        // Speed slider listener
+        binding.sliderVoiceSpeed.addOnChangeListener { _, value, fromUser ->
+            if (fromUser) {
+                updateSpeedDisplay(value)
+                prefManager.setTtsSpeed(value)
+                ttsManager.setSpeechRate(value)
+            }
+        }
+
+        // Pitch slider listener
+        binding.sliderVoicePitch.addOnChangeListener { _, value, fromUser ->
+            if (fromUser) {
+                updatePitchDisplay(value)
+                prefManager.setVoicePitch(value)
+                voiceGuidance.setSpeechPitch(value)
+            }
+        }
+
+        // Test voice button
+        binding.btnTestVoice.setOnClickListener {
+            val testMessage = getString(R.string.test_voice_message)
+            ttsManager.speak(testMessage)
+        }
+    }
+
+    private fun updateSpeedDisplay(speed: Float) {
+        binding.tvVoiceSpeed.text = String.format(Locale.getDefault(), "%.2fx", speed)
+    }
+
+    private fun updatePitchDisplay(pitch: Float) {
+        binding.tvVoicePitch.text = String.format(Locale.getDefault(), "%.1f", pitch)
     }
 
     private fun updateModeDisplay(mode: AccessibilityModeType) {
@@ -77,19 +135,27 @@ class AccessibilitySettingsFragment : Fragment() {
         }
 
         binding.switchTalkback.setOnCheckedChangeListener { _, isChecked ->
-            sharedPreferences.edit().putBoolean("talkback_enabled", isChecked).apply()
+            prefManager.setVoiceGuidanceEnabled(isChecked)
+            voiceGuidance.setEnabled(isChecked)
+            if (isChecked) {
+                voiceGuidance.announce(getString(R.string.talkback_support) + " enabled", 
+                    VoiceGuidanceManager.AnnouncementType.CONFIRMATION)
+            }
         }
 
         binding.switchHighContrast.setOnCheckedChangeListener { _, isChecked ->
-            sharedPreferences.edit().putBoolean("high_contrast_enabled", isChecked).apply()
+            prefManager.setHighContrastEnabled(isChecked)
+            // Could trigger theme change here
         }
 
         binding.switchLargeText.setOnCheckedChangeListener { _, isChecked ->
-            sharedPreferences.edit().putBoolean("large_text_enabled", isChecked).apply()
+            prefManager.setLargeTextEnabled(isChecked)
+            // Could trigger font scale change here
         }
 
         binding.switchHaptic.setOnCheckedChangeListener { _, isChecked ->
-            sharedPreferences.edit().putBoolean("haptic_enabled", isChecked).apply()
+            prefManager.setHapticFeedbackEnabled(isChecked)
+            voiceGuidance.setHapticEnabled(isChecked)
         }
     }
 
@@ -113,6 +179,7 @@ class AccessibilitySettingsFragment : Fragment() {
                 val selectedMode = modes[which]
                 sharedPreferences.edit().putInt("accessibility_mode", which).apply()
                 updateModeDisplay(selectedMode)
+                voiceGuidance.announceSelection(modeNames[which])
                 dialog.dismiss()
             }
             .setNegativeButton(R.string.cancel, null)

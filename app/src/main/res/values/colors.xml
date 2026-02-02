@@ -121,4 +121,49 @@
     <color name="class_color_3">#EAB308</color>  <!-- Yellow -->
     <color name="class_color_2">#22C55E</color>  <!-- Green -->
     <color name="class_color_1">#06B6D4</color>  <!-- Cyan -->
+    
+    <!-- Modern UI Gradient Colors -->
+    <color name="gradient_blue_start">#4A90D9</color>
+    <color name="gradient_blue_end">#67B8E3</color>
+    <color name="gradient_purple_start">#8B5CF6</color>
+    <color name="gradient_purple_end">#A78BFA</color>
+    <color name="gradient_pink_start">#EC4899</color>
+    <color name="gradient_pink_end">#F472B6</color>
+    <color name="gradient_teal_start">#0891B2</color>
+    <color name="gradient_teal_end">#22D3EE</color>
+    
+    <!-- Audio Mode Colors -->
+    <color name="audio_mode_bg_start">#A5D8FF</color>
+    <color name="audio_mode_bg_end">#D0EBFF</color>
+    <color name="audio_mode_icon">#1971C2</color>
+    
+    <!-- Video Mode Colors -->
+    <color name="video_mode_bg_start">#E5DBFF</color>
+    <color name="video_mode_bg_end">#F3D9FA</color>
+    <color name="video_mode_icon">#7C3AED</color>
+    
+    <!-- Dashboard Card Colors -->
+    <color name="card_learning">#0D9488</color>
+    <color name="card_learning_dark">#0F766E</color>
+    <color name="card_quiz">#D97706</color>
+    <color name="card_quiz_dark">#B45309</color>
+    <color name="card_progress">#7C3AED</color>
+    <color name="card_progress_dark">#6D28D9</color>
+    
+    <!-- Subject Colors -->
+    <color name="subject_english">#2563EB</color>
+    <color name="subject_math">#DC2626</color>
+    <color name="subject_science">#16A34A</color>
+    <color name="subject_history">#CA8A04</color>
+    <color name="subject_geography">#0891B2</color>
+    <color name="subject_hindi">#EA580C</color>
+    
+    <!-- Player Gradient -->
+    <color name="player_gradient_start">#6366F1</color>
+    <color name="player_gradient_end">#A855F7</color>
+    
+    <!-- Accessibility Colors -->
+    <color name="talkback_highlight">#FFD60A</color>
+    <color name="focus_indicator">#2563EB</color>
+    
 </resources>

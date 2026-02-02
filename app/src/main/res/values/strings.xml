@@ -28,10 +28,23 @@
 
     <!-- Mode Selection Screen -->
     <string name="mode_selection_title">Choose Learning Mode</string>
+    <string name="how_do_you_learn">How do you\nlearn best?</string>
+    <string name="audio_mode_title">Audio Mode</string>
+    <string name="video_mode_title">Video Mode</string>
+    <string name="for_blind_users">For Blind Users</string>
+    <string name="for_deaf_users">For Deaf Users</string>
+    <string name="both">Both</string>
+    <string name="standard">Standard</string>
     <string name="audio_mode_button">🎧 Audio Mode (For Blind Users)</string>
     <string name="video_mode_button">🎬 Video Mode (For Deaf Users)</string>
     <string name="audio_mode_description">Learn through audio lessons with text-to-speech. Optimized for TalkBack.</string>
     <string name="video_mode_description">Learn through video lessons with Indian Sign Language and captions.</string>
+    <string name="audio_mode_full_desc">Audio Mode. Learn through audio lessons with text-to-speech. Optimized for visually impaired users. Tap to select.</string>
+    <string name="video_mode_full_desc">Video Mode. Learn through video lessons with Indian Sign Language and captions. Optimized for hearing impaired users. Tap to select.</string>
+    <string name="both_modes_desc">Both modes. Access both audio and video learning features.</string>
+    <string name="standard_mode_desc">Standard mode. Regular learning experience without accessibility features.</string>
+    <string name="speak_options">Speak the available options</string>
+    <string name="parent_zone">Parent Zone - Parental controls</string>
 
     <!-- Class Selection Screen -->
     <string name="class_selection_title">Select Class</string>
@@ -85,6 +98,9 @@
     <string name="speed_1x">1x</string>
     <string name="speed_1_25x">1.25x</string>
     <string name="speed_1_5x">1.5x</string>
+    <string name="audio_only_mode">Audio only mode - no video</string>
+    <string name="lesson_title_placeholder">Select a lesson to begin</string>
+    <string name="progress_seek_desc">Seek through lesson progress</string>
     <string name="speed_2x">2x</string>
 
     <!-- Video Player Screen -->
@@ -328,6 +344,11 @@
     <string name="home_streak">Days</string>
     <string name="home_what_to_learn">What do you want to learn today?</string>
     <string name="home_see_all">See All</string>
+    <string name="home_subtitle">What would you like to learn today?</string>
+    <string name="start_learning">Start\nLearning</string>
+    <string name="daily_quiz">Daily\nQuiz</string>
+    <string name="my_progress">My\nProgress</string>
+    <string name="accessibility_enabled">Accessibility features enabled</string>
 
     <!-- Auth Screen -->
     <string name="auth_phone_title">Enter your phone number</string>
@@ -396,6 +417,7 @@
     <string name="content_description_back">Go back</string>
     <string name="content_description_avatar">Profile avatar</string>
     <string name="content_description_badge">Badge</string>
+    <string name="progress_label">Progress</string>
 
     <!-- Error Messages -->
     <string name="error_generic">Something went wrong</string>
@@ -421,6 +443,18 @@
     <string name="app_version">App Version</string>
     <string name="terms_of_service">Terms of Service</string>
     <string name="contact_us">Contact Us</string>
+    
+    <!-- Voice Accessibility -->
+    <string name="voice_speed">Voice Speed</string>
+    <string name="voice_speed_desc">Adjust the speed of voice guidance</string>
+    <string name="voice_pitch">Voice Pitch</string>
+    <string name="voice_pitch_desc">Adjust the pitch of voice guidance</string>
+    <string name="slow">Slow</string>
+    <string name="fast">Fast</string>
+    <string name="low">Low</string>
+    <string name="high">High</string>
+    <string name="test_voice">Test Voice</string>
+    <string name="test_voice_message">This is how your voice assistant will sound. You can adjust speed and pitch in settings.</string>
 
     <!-- State View Strings -->
     <string name="error">Error</string>

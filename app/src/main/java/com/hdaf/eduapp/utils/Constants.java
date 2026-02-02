@@ -23,6 +23,8 @@ public final class Constants {
     // Learning modes
     public static final String MODE_AUDIO = "audio";
     public static final String MODE_VIDEO = "video";
+    public static final String MODE_BOTH = "both";
+    public static final String MODE_STANDARD = "standard";
 
     // Shared preferences
     public static final String PREF_NAME = "eduapp_prefs";
