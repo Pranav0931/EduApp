@@ -14,6 +14,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.media3.ui.PlayerView
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.hdaf.eduapp.R
@@ -21,6 +22,7 @@ import com.hdaf.eduapp.core.accessibility.EduAccessibilityManager
 import com.hdaf.eduapp.core.accessibility.HapticType
 import com.hdaf.eduapp.databinding.FragmentVideoPlayerBinding
 import com.hdaf.eduapp.domain.model.AccessibilityModeType
+import com.hdaf.eduapp.media.VideoPlayerManager
 import com.hdaf.eduapp.ui.accessibility.VisualAlertManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -28,6 +30,7 @@ import javax.inject.Inject
 
 /**
  * Video player fragment for visual educational content.
+ * Uses ExoPlayer for media playback.
  * Includes sign language overlay support for deaf students.
  */
 @AndroidEntryPoint
@@ -56,6 +59,9 @@ class VideoPlayerFragment : Fragment() {
     
     @Inject
     lateinit var sharedPreferences: SharedPreferences
+    
+    @Inject
+    lateinit var videoPlayerManager: VideoPlayerManager
     
     private var isDeafMode = false
 
@@ -92,6 +98,7 @@ class VideoPlayerFragment : Fragment() {
         // Keep screen on during video playback
         activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
+        setupExoPlayer()
         setupToolbar()
         setupPlayerControls()
         setupSeekBar()
@@ -99,8 +106,56 @@ class VideoPlayerFragment : Fragment() {
         setupVideoSurfaceClick()
         setupAccessibilityFeatures()
         observeUiState()
+        observePlayerState()
 
         viewModel.loadChapter(chapterId)
+    }
+    
+    private fun setupExoPlayer() {
+        val player = videoPlayerManager.initialize()
+        
+        // If we have a PlayerView in the layout, attach the player
+        // The videoView is typically a SurfaceView or TextureView
+        // For full ExoPlayer UI support, we'd use PlayerView
+        try {
+            val playerView = binding.root.findViewById<PlayerView>(R.id.player_view)
+            playerView?.player = player
+        } catch (e: Exception) {
+            // PlayerView not in layout, using custom controls
+        }
+        
+        // Load video if URL is provided
+        if (videoUrl.isNotBlank()) {
+            videoPlayerManager.loadVideo(videoUrl)
+        }
+    }
+    
+    private fun observePlayerState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                videoPlayerManager.playerState.collect { state ->
+                    binding.progressLoading.visibility = if (state.isBuffering) View.VISIBLE else View.GONE
+                    binding.btnPlay.setImageResource(
+                        if (state.isPlaying) R.drawable.ic_pause else R.drawable.ic_play
+                    )
+                    
+                    if (state.isEnded) {
+                        viewModel.onVideoCompleted()
+                    }
+                }
+            }
+        }
+        
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                videoPlayerManager.playbackError.collect { error ->
+                    error?.let {
+                        Snackbar.make(binding.root, it, Snackbar.LENGTH_LONG).show()
+                        videoPlayerManager.clearError()
+                    }
+                }
+            }
+        }
     }
     
     private fun setupAccessibilityFeatures() {
@@ -140,7 +195,7 @@ class VideoPlayerFragment : Fragment() {
     }
 
     private fun setupVideoSurfaceClick() {
-        binding.videoView.setOnClickListener {
+        binding.playerView.setOnClickListener {
             toggleControls()
         }
         
@@ -180,18 +235,21 @@ class VideoPlayerFragment : Fragment() {
         binding.apply {
             btnPlay.setOnClickListener {
                 accessibilityManager.provideHapticFeedback(HapticType.CLICK)
+                videoPlayerManager.togglePlayPause()
                 viewModel.togglePlayPause()
                 scheduleHideControls()
             }
 
             btnRewind.setOnClickListener {
                 accessibilityManager.provideHapticFeedback(HapticType.CLICK)
+                videoPlayerManager.seekBackward(10)
                 viewModel.seekBackward()
                 scheduleHideControls()
             }
 
             btnForward.setOnClickListener {
                 accessibilityManager.provideHapticFeedback(HapticType.CLICK)
+                videoPlayerManager.seekForward(10)
                 viewModel.seekForward()
                 scheduleHideControls()
             }
@@ -216,7 +274,11 @@ class VideoPlayerFragment : Fragment() {
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                seekBar?.progress?.let { viewModel.seekTo(it) }
+                seekBar?.progress?.let { progress ->
+                    val positionMs = progress * 1000L
+                    videoPlayerManager.seekTo(positionMs)
+                    viewModel.seekTo(progress)
+                }
                 handler.post(updateProgressRunnable)
                 scheduleHideControls()
             }
@@ -319,6 +381,7 @@ class VideoPlayerFragment : Fragment() {
         activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         handler.removeCallbacks(updateProgressRunnable)
         handler.removeCallbacks(hideControlsRunnable)
+        videoPlayerManager.release()
         _binding = null
     }
 }

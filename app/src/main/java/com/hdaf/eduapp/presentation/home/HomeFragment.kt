@@ -22,6 +22,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.hdaf.eduapp.R
 import com.hdaf.eduapp.accessibility.OCREngine
 import com.hdaf.eduapp.core.accessibility.EduAccessibilityManager
+import com.hdaf.eduapp.data.local.dao.NotesDao
+import com.hdaf.eduapp.data.local.entity.NoteEntity
 import com.hdaf.eduapp.databinding.FragmentHomeBinding
 import com.hdaf.eduapp.domain.model.AccessibilityModeType
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -29,6 +31,7 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.io.File
+import java.util.UUID
 import javax.inject.Inject
 
 /**
@@ -57,6 +60,9 @@ class HomeFragment : Fragment() {
     
     @Inject
     lateinit var sharedPreferences: SharedPreferences
+    
+    @Inject
+    lateinit var notesDao: NotesDao
     
     private var currentPhotoUri: Uri? = null
     
@@ -189,8 +195,35 @@ class HomeFragment : Fragment() {
             .setPositiveButton(R.string.btn_play) { _, _ ->
                 accessibilityManager.speak(text)
             }
+            .setNeutralButton(R.string.save_note) { _, _ ->
+                saveOcrAsNote(text)
+            }
             .setNegativeButton(R.string.cancel, null)
             .show()
+    }
+    
+    private fun saveOcrAsNote(text: String) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                val note = NoteEntity(
+                    id = UUID.randomUUID().toString(),
+                    chapterId = "ocr_scan",
+                    chapterTitle = "OCR Scanned Text",
+                    bookId = "scanned_notes",
+                    content = text,
+                    highlightColor = "BLUE",
+                    createdAt = System.currentTimeMillis(),
+                    updatedAt = System.currentTimeMillis(),
+                    isSynced = false
+                )
+                notesDao.insertNote(note)
+                
+                accessibilityManager.speak("Note saved successfully")
+                Toast.makeText(requireContext(), R.string.note_saved_success, Toast.LENGTH_SHORT).show()
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), "Failed to save note: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun setupViews() {
@@ -291,21 +324,46 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupClickListeners() {
+        // Quick Action Cards
+        binding.cardStartLearning.setOnClickListener {
+            accessibilityManager.provideHapticFeedback(com.hdaf.eduapp.core.accessibility.HapticType.CLICK)
+            accessibilityManager.announceForAccessibility("Opening subjects")
+            findNavController().navigate(R.id.action_home_to_bookList)
+        }
+        
+        binding.cardDailyQuiz.setOnClickListener {
+            accessibilityManager.provideHapticFeedback(com.hdaf.eduapp.core.accessibility.HapticType.CLICK)
+            accessibilityManager.announceForAccessibility("Opening quizzes")
+            findNavController().navigate(R.id.action_home_to_quizList)
+        }
+        
+        binding.cardMyProgress.setOnClickListener {
+            accessibilityManager.provideHapticFeedback(com.hdaf.eduapp.core.accessibility.HapticType.CLICK)
+            accessibilityManager.announceForAccessibility("Opening profile")
+            findNavController().navigate(R.id.action_home_to_profile)
+        }
+        
         binding.cardDailyGoal.setOnClickListener {
+            accessibilityManager.provideHapticFeedback(com.hdaf.eduapp.core.accessibility.HapticType.CLICK)
             findNavController().navigate(R.id.action_home_to_quizList)
         }
         
         binding.btnAllBooks.setOnClickListener {
+            accessibilityManager.provideHapticFeedback(com.hdaf.eduapp.core.accessibility.HapticType.CLICK)
             findNavController().navigate(R.id.action_home_to_bookList)
         }
         
         binding.btnSettings.setOnClickListener {
+            accessibilityManager.provideHapticFeedback(com.hdaf.eduapp.core.accessibility.HapticType.CLICK)
             findNavController().navigate(R.id.action_home_to_settings)
         }
         
         binding.btnProfile.setOnClickListener {
+            accessibilityManager.provideHapticFeedback(com.hdaf.eduapp.core.accessibility.HapticType.CLICK)
             findNavController().navigate(R.id.action_home_to_profile)
         }
+        
+        // AI Tutor is available via bottom navigation, not FAB here
     }
 
     override fun onResume() {

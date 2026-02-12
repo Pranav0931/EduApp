@@ -131,7 +131,7 @@ public class AudioPlayerActivity extends AppCompatActivity {
                 voiceGuidance.announceButtonPress(getString(R.string.forward_10_seconds));
                 // Forward functionality would go here
             });
-        }
+         }
     }
 
     private void togglePlayPause() {

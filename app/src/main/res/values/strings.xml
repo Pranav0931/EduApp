@@ -8,6 +8,14 @@
     <string name="class_label">Class</string>
     <string name="eduai_ask">Ask AI</string>
     
+    <!-- Language Selection -->
+    <string name="language_selection_title">Choose Your Language</string>
+    <string name="language_selection_title_hindi">अपनी भाषा चुनें</string>
+    <string name="language_hindi">हिंदी</string>
+    <string name="language_english">English</string>
+    <string name="language_marathi">मराठी</string>
+    <string name="continue_button">Continue / जारी रखें</string>
+    
     <!-- Splash Screen -->
     <string name="splash_tagline">Education for Everyone</string>
     
@@ -590,6 +598,17 @@
     <string name="no_homework">No homework</string>
     <string name="pending_homework">Pending Homework</string>
     <string name="completed_homework">Completed Homework</string>
+
+    <!-- Study Planner Feature -->
+    <string name="study_planner_title">Study Planner</string>
+    <string name="today_summary">Today\'s Summary</string>
+    <string name="minutes_studied">Minutes Studied</string>
+    <string name="chapters_done">Chapters Done</string>
+    <string name="goal_progress">Goal Progress</string>
+    <string name="study_goals">Study Goals</string>
+    <string name="no_study_goals">No study goals set. Set a goal to stay on track!</string>
+    <string name="no_study_sessions">No study sessions today</string>
+    <string name="recent_sessions">Today\'s Sessions</string>
     <string name="set_reminder">Set Reminder</string>
     <string name="reminder_set">Reminder set</string>
 
@@ -619,8 +638,6 @@
     <string name="homework_reminder_notification">Homework Reminder</string>
 
     <!-- Language Settings -->
-    <string name="language_english">English</string>
-    <string name="language_hindi">Hindi</string>
     <string name="language_changed">Language changed. App needs to restart.</string>
     <string name="restart_now">Restart Now</string>
     <string name="restart_later">Later</string>
@@ -638,5 +655,59 @@
     <string name="quiz_submit_confirm">Submit answer. Double tap to confirm.</string>
     <string name="quiz_next_question">Next question</string>
     <string name="quiz_previous_question">Previous question</string>
+
+    <!-- New Accessibility Features -->
+    <string name="deaf_features_title">Deaf Mode Features / बधिर मोड सुविधाएं</string>
+    <string name="blind_features_title">Blind Mode Features / दृष्टिबाधित मोड सुविधाएं</string>
+    <string name="enable_sign_language">Enable Sign Language / सांकेतिक भाषा सक्षम करें</string>
+    <string name="sign_language_desc">Show ISL videos for lessons</string>
+    <string name="enable_captions">Enable Captions / कैप्शन सक्षम करें</string>
+    <string name="captions_desc">Show subtitles for all audio content</string>
+    <string name="visual_alerts">Visual Alerts / दृश्य अलर्ट</string>
+    <string name="visual_alerts_desc">Flash screen for notifications</string>
+    <string name="enable_voice_control">Enable Voice Control / वॉयस कंट्रोल</string>
+    <string name="voice_control_desc">Control app with voice commands</string>
+    <string name="gesture_navigation">Gesture Navigation / जेस्चर नेविगेशन</string>
+    <string name="gesture_navigation_desc">Swipe to navigate screens</string>
+    <string name="audio_descriptions">Audio Descriptions / ऑडियो विवरण</string>
+    <string name="audio_descriptions_desc">Describe images and charts aloud</string>
+    <string name="braille_haptics">Braille-style Haptics / ब्रेल स्पर्श</string>
+    <string name="braille_haptics_desc">Vibration patterns for navigation</string>
+    <string name="test_deaf_features">Test Deaf Features</string>
+    <string name="test_blind_features">Test Blind Features</string>
+    <string name="deaf_mode_enabled">Deaf mode features enabled. Visual alerts and captions are now active.</string>
+    <string name="blind_mode_enabled">Blind mode features enabled. Voice control and haptic feedback are now active.</string>
+
+    <!-- Navigation Tutorial -->
+    <string name="tutorial_get_started">Get Started</string>
+    
+    <string name="tutorial_welcome_title">Welcome to EduApp</string>
+    <string name="tutorial_welcome_description">This app is designed for students with all abilities - blind, deaf, low vision, and more. Let\'s learn how to use it!</string>
+    <string name="tutorial_welcome_subtitle">Visual captions and audio descriptions available on all screens</string>
+    <string name="tutorial_welcome_tts">Welcome to EduApp! This app is designed for students with all abilities including blind, deaf, low vision, and slow learners. Swipe right to continue the tutorial, or tap Skip to start using the app immediately.</string>
+    
+    <string name="tutorial_gestures_title">Gesture Navigation</string>
+    <string name="tutorial_gestures_description">Swipe left and right to navigate between sections. Double-tap to select items. Long-press for more options.</string>
+    <string name="tutorial_gestures_subtitle">TalkBack users: Use standard TalkBack gestures throughout the app</string>
+    <string name="tutorial_gestures_tts">Gesture Navigation. Swipe left and right to navigate between sections. Double-tap to select items. Long-press for more options. If you use TalkBack, standard TalkBack gestures work throughout the app.</string>
+    
+    <string name="tutorial_deaf_title">For Deaf Users</string>
+    <string name="tutorial_deaf_description">All videos include Indian Sign Language interpretation. Captions are available for all audio content. Visual alerts replace sound notifications.</string>
+    <string name="tutorial_deaf_subtitle">Enable visual flash alerts in Settings for notifications</string>
+    <string name="tutorial_deaf_tts">Features for deaf users. All videos include Indian Sign Language interpretation. Captions are available for all audio content. Visual flash alerts can replace sound notifications.</string>
+    
+    <string name="tutorial_blind_title">For Blind Users</string>
+    <string name="tutorial_blind_description">Every screen is optimized for TalkBack. Audio descriptions explain all visual content. Haptic feedback confirms your actions.</string>
+    <string name="tutorial_blind_subtitle">Tap the speaker icon anytime to hear the current content</string>
+    <string name="tutorial_blind_tts">Features for blind users. Every screen is fully optimized for TalkBack screen reader. Audio descriptions explain all visual content. Haptic feedback confirms your actions with vibrations.</string>
+    
+    <string name="tutorial_navigation_title">Bottom Navigation</string>
+    <string name="tutorial_navigation_description">Use the bottom bar to switch between: Home, Subjects, Quizzes, and Settings. The floating button opens AI Chat for questions.</string>
+    <string name="tutorial_navigation_subtitle">All navigation items have full TalkBack and touch feedback support</string>
+    <string name="tutorial_navigation_tts">Navigation. Use the bottom bar to switch between Home, Subjects, Quizzes, and Settings. The floating action button opens AI Chat where you can ask any question about your studies.</string>
+
+    <!-- OCR Save Notes -->
+    <string name="save_note">Save as Note</string>
+    <string name="note_saved_success">Note saved successfully!</string>
 
 </resources>

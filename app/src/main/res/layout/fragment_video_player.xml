@@ -8,11 +8,13 @@
     android:background="@android:color/black"
     tools:context=".presentation.player.VideoPlayerFragment">
 
-    <!-- Main Video View -->
-    <SurfaceView
-        android:id="@+id/video_view"
+    <!-- Main Video View - ExoPlayer PlayerView -->
+    <androidx.media3.ui.PlayerView
+        android:id="@+id/player_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        app:show_buffering="when_playing"
+        app:use_controller="false" />
 
     <!-- Sign Language Overlay (PIP style) -->
     <FrameLayout

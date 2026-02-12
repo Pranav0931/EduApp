@@ -62,6 +62,9 @@ class SplashFragment : Fragment() {
 
                 viewModel.navigationState.collect { navState ->
                     when (navState) {
+                        SplashNavigationState.LanguageSelection -> {
+                            navigateToLanguageSelection()
+                        }
                         SplashNavigationState.Onboarding -> {
                             navigateToOnboarding()
                         }
@@ -111,6 +114,12 @@ class SplashFragment : Fragment() {
             playTogether(scaleX, scaleY, fadeIn, taglineFadeIn)
             start()
         }
+    }
+
+    private fun navigateToLanguageSelection() {
+        findNavController().navigate(
+            SplashFragmentDirections.actionSplashToLanguageSelection()
+        )
     }
 
     private fun navigateToOnboarding() {

@@ -156,6 +156,18 @@
 
 -keep class com.google.ai.client.generativeai.** { *; }
 -dontwarn com.google.ai.client.generativeai.**
+-keep class com.google.ai.client.generativeai.type.** { *; }
+-keep class com.google.ai.client.generativeai.internal.** { *; }
+-keepclassmembers class com.google.ai.client.generativeai.** {
+    <fields>;
+    <methods>;
+}
+
+# Keep Gemini response serialization (Kotlinx Serialization used internally)
+-keepclassmembers class * {
+    @kotlinx.serialization.SerialName <fields>;
+}
+-keep,includedescriptorclasses class com.google.ai.client.**$$serializer { *; }
 
 # ==================== Supabase ====================
 

@@ -11,6 +11,12 @@ import com.hdaf.eduapp.data.local.dao.ChapterDao
 import com.hdaf.eduapp.data.local.dao.ChapterAudioProgressDao
 import com.hdaf.eduapp.data.local.dao.DailyStudySummaryDao
 import com.hdaf.eduapp.data.local.dao.DownloadedContentDao
+import com.hdaf.eduapp.data.local.dao.FlashcardDao
+import com.hdaf.eduapp.data.local.dao.FlashcardDeckDao
+import com.hdaf.eduapp.data.local.dao.BookmarkDao
+import com.hdaf.eduapp.data.local.dao.HighlightDao
+import com.hdaf.eduapp.data.local.dao.HomeworkReminderDao
+import com.hdaf.eduapp.data.local.dao.StudyNoteDao
 import com.hdaf.eduapp.data.local.dao.DownloadQueueDao
 import com.hdaf.eduapp.data.local.dao.NotesDao
 import com.hdaf.eduapp.data.local.dao.OCRCacheDao
@@ -48,6 +54,12 @@ import com.hdaf.eduapp.data.local.entity.TextHighlightEntity
 import com.hdaf.eduapp.data.local.entity.UserBadgeEntity
 import com.hdaf.eduapp.data.local.entity.UserProgressEntity
 import com.hdaf.eduapp.data.local.entity.VoiceCommandEntity
+import com.hdaf.eduapp.data.local.entity.FlashcardEntity
+import com.hdaf.eduapp.data.local.entity.FlashcardDeckEntity
+import com.hdaf.eduapp.data.local.entity.BookmarkEntity
+import com.hdaf.eduapp.data.local.entity.HighlightEntity
+import com.hdaf.eduapp.data.local.entity.HomeworkReminderEntity
+import com.hdaf.eduapp.data.local.entity.StudyNoteEntity
 import com.hdaf.eduapp.data.local.converter.DateConverter
 import com.hdaf.eduapp.data.local.converter.ListConverter
 
@@ -68,7 +80,7 @@ import com.hdaf.eduapp.data.local.converter.ListConverter
  * - ChapterAudioProgress: Per-chapter audio playback state
  * - QuizProgress: In-progress quiz state for resumption
  * 
- * @version 5 - Added QuizProgressEntity for quiz resumption
+ * @version 7 - Added Flashcard, Bookmark, Highlight, HomeworkReminder, StudyNote entities
  */
 @Database(
     entities = [
@@ -101,9 +113,16 @@ import com.hdaf.eduapp.data.local.converter.ListConverter
         StudySessionEntity::class,
         StudyPlanEntity::class,
         StudyGoalEntity::class,
-        DailyStudySummaryEntity::class
+        DailyStudySummaryEntity::class,
+        // Study tools entities
+        FlashcardEntity::class,
+        FlashcardDeckEntity::class,
+        BookmarkEntity::class,
+        HighlightEntity::class,
+        HomeworkReminderEntity::class,
+        StudyNoteEntity::class
     ],
-    version = 6,
+    version = 7,
     exportSchema = true
 )
 @TypeConverters(DateConverter::class, ListConverter::class)
@@ -142,6 +161,14 @@ abstract class EduAppDatabase : RoomDatabase() {
     abstract fun studyPlanDao(): StudyPlanDao
     abstract fun studyGoalDao(): StudyGoalDao
     abstract fun dailyStudySummaryDao(): DailyStudySummaryDao
+    
+    // Study tools DAOs
+    abstract fun flashcardDao(): FlashcardDao
+    abstract fun flashcardDeckDao(): FlashcardDeckDao
+    abstract fun bookmarkDao(): BookmarkDao
+    abstract fun highlightDao(): HighlightDao
+    abstract fun homeworkReminderDao(): HomeworkReminderDao
+    abstract fun studyNoteDao(): StudyNoteDao
 
     companion object {
         const val DATABASE_NAME = "eduapp_database"

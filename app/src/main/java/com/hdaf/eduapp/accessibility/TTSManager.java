@@ -8,9 +8,14 @@ import android.util.Log;
 import java.util.Locale;
 
 /**
- * Singleton manager for Text-to-Speech functionality.
+ * Legacy singleton manager for Text-to-Speech functionality.
  * Provides consistent TTS experience across the app for blind users.
+ *
+ * @deprecated Use {@link com.hdaf.eduapp.core.accessibility.TTSManager} (Kotlin Hilt-injected)
+ * for new Fragments and ViewModels. This legacy version is retained only for Java Activities
+ * that cannot use Hilt injection. Migrate callers incrementally to the Kotlin version.
  */
+@Deprecated
 public class TTSManager {
 
     private static final String TAG = "TTSManager";

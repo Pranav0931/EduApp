@@ -126,7 +126,7 @@ class AccessibilityViewHelper @Inject constructor(
                 is TextView -> {
                     // Increase readability
                     view.setTextSize(TypedValue.COMPLEX_UNIT_SP, 
-                        view.textSize / context.resources.displayMetrics.scaledDensity * 1.15f)
+                        pxToSp(view.textSize) * 1.15f)
                     view.letterSpacing = 0.03f
                     view.setLineSpacing(4f, 1.2f)
                 }
@@ -145,7 +145,7 @@ class AccessibilityViewHelper @Inject constructor(
         if (profile.largeTextEnabled) {
             processViewHierarchy(rootView) { view ->
                 if (view is TextView) {
-                    val currentSize = view.textSize / context.resources.displayMetrics.scaledDensity
+                    val currentSize = pxToSp(view.textSize)
                     view.setTextSize(TypedValue.COMPLEX_UNIT_SP, currentSize * 1.2f)
                 }
             }
@@ -181,7 +181,7 @@ class AccessibilityViewHelper @Inject constructor(
             ContrastLevel.INVERTED -> 1.3f
         }
         
-        val currentSize = textView.textSize / context.resources.displayMetrics.scaledDensity
+        val currentSize = pxToSp(textView.textSize)
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, currentSize * scaleFactor)
         
         // Apply high contrast colors
@@ -429,12 +429,23 @@ class AccessibilityViewHelper @Inject constructor(
     fun applyLargeText(rootView: View, scaleFactor: Float) {
         processViewHierarchy(rootView) { view ->
             if (view is TextView) {
-                val currentSize = view.textSize / context.resources.displayMetrics.scaledDensity
+                val currentSize = pxToSp(view.textSize)
                 view.setTextSize(TypedValue.COMPLEX_UNIT_SP, currentSize * scaleFactor)
             }
         }
     }
     
+    /**
+     * Convert pixel text size back to SP value without using deprecated scaledDensity.
+     * Uses TypedValue.applyDimension to compute pixels-per-SP.
+     */
+    private fun pxToSp(px: Float): Float {
+        val oneSp = TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_SP, 1f, context.resources.displayMetrics
+        )
+        return px / oneSp
+    }
+
     /**
      * Convert dp to pixels.
      */

@@ -129,6 +129,14 @@ class VideoPlayerViewModel @Inject constructor(
             )
         }
     }
+    
+    fun onVideoCompleted() {
+        _uiState.update { it.copy(isPlaying = false) }
+        viewModelScope.launch {
+            _events.send(VideoPlayerEvent.ChapterCompleted)
+        }
+        saveProgress()
+    }
 }
 
 data class VideoPlayerUiState(

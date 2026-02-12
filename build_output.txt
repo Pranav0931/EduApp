@@ -88,54 +88,96 @@ All code optimizations and obfuscation are disabled for debuggable builds.
 > Task :app:kspDevDebugKotlin
 > Task :app:kspProdDebugKotlin
 > Task :app:kaptGenerateStubsDevDebugKotlin
+> Task :app:kaptDevDebugKotlin UP-TO-DATE
 > Task :app:kaptGenerateStubsProdDebugKotlin
-> Task :app:kaptProdDebugKotlin
-> Task :app:kaptDevDebugKotlin
-
+> Task :app:kaptProdDebugKotlin UP-TO-DATE
+> Task :app:compileDevDebugKotlin
 > Task :app:compileProdDebugKotlin
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/ScreenReaderHelper.kt:53:24 Parameter 'view' is never used
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/ScreenReaderHelper.kt:54:40 'obtain(Int): AccessibilityEvent!' is deprecated. Deprecated in Java
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/book/BookListViewModel.kt:73:57 Elvis operator (?:) always returns the left operand of non-nullable type List<Book>
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/book/BookListViewModel.kt:94:85 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/BlindGestureManager.kt:75:31 Parameter 'view' is never used
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/BlindGestureManager.kt:130:78 Parameter 'velocityX' is never used
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/BlindGestureManager.kt:150:76 Parameter 'velocityY' is never used
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/CaptionManager.kt:162:27 Parameter 'videoId' is never used
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/SignLanguageManager.kt:146:9 Parameter 'questionId' is never used
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/SignLanguageManager.kt:196:36 Parameter 'word' is never used
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/SignLanguageManager.kt:209:30 Parameter 'word' is never used
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/SignLanguageManager.kt:214:29 Parameter 'word' is never used
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/TTSManager.kt:83:30 This declaration overrides deprecated member but not marked as deprecated itself. Please add @Deprecated annotation or suppress. See https://youtrack.jetbrains.com/issue/KT-47902 for details
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/TTSManager.kt:153:30 This declaration overrides deprecated member but not marked as deprecated itself. Please add @Deprecated annotation or suppress. See https://youtrack.jetbrains.com/issue/KT-47902 for details
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/TTSManager.kt:176:71 'obtain(Int): AccessibilityEvent!' is deprecated. Deprecated in Java
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/memory/MemoryMonitor.kt:143:42 'TRIM_MEMORY_RUNNING_CRITICAL: Int' is deprecated. Deprecated in Java
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/memory/MemoryMonitor.kt:147:42 'TRIM_MEMORY_RUNNING_LOW: Int' is deprecated. Deprecated in Java
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/memory/MemoryMonitor.kt:151:42 'TRIM_MEMORY_RUNNING_MODERATE: Int' is deprecated. Deprecated in Java
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/network/RateLimiter.kt:228:30 Parameter 'attempt' is never used, could be renamed to _
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/result/AppResult.kt:160:51 Redundant 'suspend' modifier: lambda parameters of suspend function type uses existing continuation.
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/usecase/UseCase.kt:117:22 Unreachable code
 w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/leaderboard/LeaderboardFragment.kt:59:51 Parameter 'user' is never used, could be renamed to _
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:73:55 Unnecessary safe call on a non-null receiver of type Chapter
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:73:73 Elvis operator (?:) always returns the left operand of non-nullable type Int
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:74:51 Unnecessary safe call on a non-null receiver of type Chapter
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:74:66 Elvis operator (?:) always returns the left operand of non-nullable type Float
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:77:49 Unnecessary safe call on a non-null receiver of type Chapter
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:78:39 Unnecessary safe call on a non-null receiver of type Chapter
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:85:50 Unnecessary safe call on a non-null receiver of type Chapter
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:85:58 Elvis operator (?:) always returns the left operand of non-nullable type String
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:87:59 Unnecessary safe call on a non-null receiver of type Chapter
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:87:67 Elvis operator (?:) always returns the left operand of non-nullable type String
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:94:55 Unnecessary safe call on a non-null receiver of type Chapter
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:94:63 Elvis operator (?:) always returns the left operand of non-nullable type String
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:95:52 Unnecessary safe call on a non-null receiver of type Chapter
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:104:80 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:102:55 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:102:73 Elvis operator (?:) always returns the left operand of non-nullable type Int
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:105:41 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:105:50 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:108:49 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:109:39 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:116:50 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:116:58 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:118:59 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:118:67 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:125:51 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:125:59 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:135:55 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:135:63 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:136:52 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:147:33 Variable 'message' is never used
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:157:80 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/VideoPlayerViewModel.kt:44:55 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/VideoPlayerViewModel.kt:44:73 Elvis operator (?:) always returns the left operand of non-nullable type Int
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/VideoPlayerViewModel.kt:45:51 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/VideoPlayerViewModel.kt:45:66 Elvis operator (?:) always returns the left operand of non-nullable type Float
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/VideoPlayerViewModel.kt:47:46 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/VideoPlayerViewModel.kt:51:55 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/VideoPlayerViewModel.kt:51:63 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/VideoPlayerViewModel.kt:52:52 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/VideoPlayerViewModel.kt:61:80 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:88:25 Unnecessary safe call on a non-null receiver of type LinearLayout
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:89:47 Unnecessary safe call on a non-null receiver of type TextView
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:93:26 Unnecessary safe call on a non-null receiver of type LinearLayout
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:94:53 Unnecessary safe call on a non-null receiver of type TextView
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:98:30 Unnecessary safe call on a non-null receiver of type LinearLayout
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:99:47 Unnecessary safe call on a non-null receiver of type TextView
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:108:31 Unnecessary safe call on a non-null receiver of type MaterialCardView
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:109:59 Unnecessary safe call on a non-null receiver of type TextView
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:110:43 Unnecessary safe call on a non-null receiver of type TextView
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:114:29 Unnecessary safe call on a non-null receiver of type MaterialButton
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:161:26 Unnecessary safe call on a non-null receiver of type TextView
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:162:20 Unnecessary safe call on a non-null receiver of type TextView
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:165:17 Unnecessary safe call on a non-null receiver of type TextView
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:167:23 Unnecessary safe call on a non-null receiver of type TextView
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:169:23 Unnecessary safe call on a non-null receiver of type LinearProgressIndicator
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:170:23 Unnecessary safe call on a non-null receiver of type LinearProgressIndicator
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:174:26 Unnecessary safe call on a non-null receiver of type TextView
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:175:31 Unnecessary safe call on a non-null receiver of type TextView
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:179:26 Unnecessary safe call on a non-null receiver of type TextView
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:182:25 Unnecessary safe call on a non-null receiver of type LinearLayout
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:183:26 Unnecessary safe call on a non-null receiver of type LinearLayout
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:184:30 Unnecessary safe call on a non-null receiver of type LinearLayout
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:193:29 Unnecessary safe call on a non-null receiver of type MaterialButton
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:196:26 Unnecessary safe call on a non-null receiver of type TextView
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:197:35 Unnecessary safe call on a non-null receiver of type TextView
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileViewModel.kt:100:58 Elvis operator (?:) always returns the left operand of non-nullable type List<Badge>
 
 > Task :app:compileProdDebugJavaWithJavac
 .\gradlew : Note: Some input files use or override a deprecated API.
 At line:1 char:1
 + .\gradlew assembleDebug 2>&1 | Out-File -FilePath "build_output.txt"  ...
 + ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : NotSpecified: (Note: Some inpu...deprecated API.:String) [], R 
-   emoteException
+    + CategoryInfo          : NotSpecified: (Note: Some inpu...deprecated AP 
+   I.:String) [], RemoteException
     + FullyQualifiedErrorId : NativeCommandError
  
 Note: Recompile with -Xlint:deprecation for details.
 
-> Task :app:compileDevDebugKotlin
-> Task :app:hiltAggregateDepsProdDebug UP-TO-DATE
+> Task :app:hiltAggregateDepsProdDebug
 > Task :app:hiltJavaCompileProdDebug
 > Task :app:processProdDebugJavaRes
-> Task :app:mergeProdDebugJavaResource
-> Task :app:transformProdDebugClassesWithAsm
-> Task :app:dexBuilderProdDebug
-> Task :app:mergeProdDebugGlobalSynthetics UP-TO-DATE
-> Task :app:mergeProjectDexProdDebug
-> Task :app:packageProdDebug
-> Task :app:createProdDebugApkListingFileRedirect UP-TO-DATE
-> Task :app:assembleProdDebug
 
 > Task :app:compileDevDebugKotlin
 w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/accessibility/AdaptiveStudyEngine.kt:139:37 Parameter 'isCorrect' is never used
@@ -143,10 +185,27 @@ w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hda
 w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/accessibility/AdaptiveStudyEngine.kt:338:25 Variable 'totalInteractions' is never used
 w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/accessibility/AdaptiveStudyEngine.kt:356:17 Variable 'recentSubjects' is never used
 w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/accessibility/OCREngine.kt:105:44 Unnecessary safe call on a non-null receiver of type Float
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/BlindGestureManager.kt:75:31 Parameter 'view' is never used
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/BlindGestureManager.kt:130:78 Parameter 'velocityX' is never used
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/BlindGestureManager.kt:150:76 Parameter 'velocityY' is never used
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/CaptionManager.kt:162:27 Parameter 'videoId' is never used
 w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/EduAccessibilityManager.kt:101:26 This declaration overrides deprecated member but not marked as deprecated itself. Please add @Deprecated annotation or suppress. See https://youtrack.jetbrains.com/issue/KT-47902 for details
 w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/EduAccessibilityManager.kt:140:26 This declaration overrides deprecated member but not marked as deprecated itself. Please add @Deprecated annotation or suppress. See https://youtrack.jetbrains.com/issue/KT-47902 for details
 w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/ScreenReaderHelper.kt:53:24 Parameter 'view' is never used
 w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/ScreenReaderHelper.kt:54:40 'obtain(Int): AccessibilityEvent!' is deprecated. Deprecated in Java
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/SignLanguageManager.kt:146:9 Parameter 'questionId' is never used
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/SignLanguageManager.kt:196:36 Parameter 'word' is never used
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/SignLanguageManager.kt:209:30 Parameter 'word' is never used
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/SignLanguageManager.kt:214:29 Parameter 'word' is never used
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/TTSManager.kt:83:30 This declaration overrides deprecated member but not marked as deprecated itself. Please add @Deprecated annotation or suppress. See https://youtrack.jetbrains.com/issue/KT-47902 for details
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/TTSManager.kt:153:30 This declaration overrides deprecated member but not marked as deprecated itself. Please add @Deprecated annotation or suppress. See https://youtrack.jetbrains.com/issue/KT-47902 for details
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/accessibility/TTSManager.kt:176:71 'obtain(Int): AccessibilityEvent!' is deprecated. Deprecated in Java
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/memory/MemoryMonitor.kt:143:42 'TRIM_MEMORY_RUNNING_CRITICAL: Int' is deprecated. Deprecated in Java
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/memory/MemoryMonitor.kt:147:42 'TRIM_MEMORY_RUNNING_LOW: Int' is deprecated. Deprecated in Java
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/memory/MemoryMonitor.kt:151:42 'TRIM_MEMORY_RUNNING_MODERATE: Int' is deprecated. Deprecated in Java
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/network/RateLimiter.kt:228:30 Parameter 'attempt' is never used, could be renamed to _
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/result/AppResult.kt:160:51 Redundant 'suspend' modifier: lambda parameters of suspend function type uses existing continuation.
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/core/usecase/UseCase.kt:117:22 Unreachable code
 w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/data/repository/AIChatRepositoryImpl.kt:158:9 Parameter 'responseMode' is never used
 w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/data/repository/AuthRepositoryImpl.kt:284:17 Variable 'token' is never used
 w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/data/repository/ProgressRepositoryImpl.kt:389:17 Variable 'progress' is never used
@@ -164,20 +223,23 @@ w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hda
 w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/chapter/ChapterListViewModel.kt:51:80 Elvis operator (?:) always returns the left operand of non-nullable type String
 w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/leaderboard/LeaderboardFragment.kt:59:51 Parameter 'user' is never used, could be renamed to _
 w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/leaderboard/LeaderboardViewModel.kt:36:55 Elvis operator (?:) always returns the left operand of non-nullable type List<LeaderboardEntryData>
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:73:55 Unnecessary safe call on a non-null receiver of type Chapter
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:73:73 Elvis operator (?:) always returns the left operand of non-nullable type Int
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:74:51 Unnecessary safe call on a non-null receiver of type Chapter
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:74:66 Elvis operator (?:) always returns the left operand of non-nullable type Float
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:77:49 Unnecessary safe call on a non-null receiver of type Chapter
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:78:39 Unnecessary safe call on a non-null receiver of type Chapter
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:85:50 Unnecessary safe call on a non-null receiver of type Chapter
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:85:58 Elvis operator (?:) always returns the left operand of non-nullable type String
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:87:59 Unnecessary safe call on a non-null receiver of type Chapter
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:87:67 Elvis operator (?:) always returns the left operand of non-nullable type String
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:94:55 Unnecessary safe call on a non-null receiver of type Chapter
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:94:63 Elvis operator (?:) always returns the left operand of non-nullable type String
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:95:52 Unnecessary safe call on a non-null receiver of type Chapter
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:104:80 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:102:55 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:102:73 Elvis operator (?:) always returns the left operand of non-nullable type Int
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:105:41 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:105:50 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:108:49 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:109:39 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:116:50 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:116:58 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:118:59 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:118:67 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:125:51 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:125:59 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:135:55 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:135:63 Elvis operator (?:) always returns the left operand of non-nullable type String
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:136:52 Unnecessary safe call on a non-null receiver of type Chapter
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:147:33 Variable 'message' is never used
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/AudioPlayerViewModel.kt:157:80 Elvis operator (?:) always returns the left operand of non-nullable type String
 w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/VideoPlayerViewModel.kt:44:55 Unnecessary safe call on a non-null receiver of type Chapter
 w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/VideoPlayerViewModel.kt:44:73 Elvis operator (?:) always returns the left operand of non-nullable type Int
 w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/VideoPlayerViewModel.kt:45:51 Unnecessary safe call on a non-null receiver of type Chapter
@@ -188,7 +250,32 @@ w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hda
 w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/VideoPlayerViewModel.kt:52:52 Unnecessary safe call on a non-null receiver of type Chapter
 w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/player/VideoPlayerViewModel.kt:61:80 Elvis operator (?:) always returns the left operand of non-nullable type String
 w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/BadgesFragment.kt:57:30 Parameter 'badge' is never used, could be renamed to _
-w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileViewModel.kt:68:54 Elvis operator (?:) always returns the left operand of non-nullable type List<Badge>
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:88:25 Unnecessary safe call on a non-null receiver of type LinearLayout
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:89:47 Unnecessary safe call on a non-null receiver of type TextView
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:93:26 Unnecessary safe call on a non-null receiver of type LinearLayout
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:94:53 Unnecessary safe call on a non-null receiver of type TextView
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:98:30 Unnecessary safe call on a non-null receiver of type LinearLayout
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:99:47 Unnecessary safe call on a non-null receiver of type TextView
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:108:31 Unnecessary safe call on a non-null receiver of type MaterialCardView
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:109:59 Unnecessary safe call on a non-null receiver of type TextView
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:110:43 Unnecessary safe call on a non-null receiver of type TextView
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:114:29 Unnecessary safe call on a non-null receiver of type MaterialButton
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:161:26 Unnecessary safe call on a non-null receiver of type TextView
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:162:20 Unnecessary safe call on a non-null receiver of type TextView
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:165:17 Unnecessary safe call on a non-null receiver of type TextView
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:167:23 Unnecessary safe call on a non-null receiver of type TextView
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:169:23 Unnecessary safe call on a non-null receiver of type LinearProgressIndicator
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:170:23 Unnecessary safe call on a non-null receiver of type LinearProgressIndicator
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:174:26 Unnecessary safe call on a non-null receiver of type TextView
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:175:31 Unnecessary safe call on a non-null receiver of type TextView
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:179:26 Unnecessary safe call on a non-null receiver of type TextView
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:182:25 Unnecessary safe call on a non-null receiver of type LinearLayout
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:183:26 Unnecessary safe call on a non-null receiver of type LinearLayout
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:184:30 Unnecessary safe call on a non-null receiver of type LinearLayout
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:193:29 Unnecessary safe call on a non-null receiver of type MaterialButton
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:196:26 Unnecessary safe call on a non-null receiver of type TextView
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileFragment.kt:197:35 Unnecessary safe call on a non-null receiver of type TextView
+w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/profile/ProfileViewModel.kt:100:58 Elvis operator (?:) always returns the left operand of non-nullable type List<Badge>
 w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/quiz/QuizListViewModel.kt:43:55 Elvis operator (?:) always returns the left operand of non-nullable type List<Quiz>
 w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/quiz/QuizViewModel.kt:115:58 Elvis operator (?:) always returns the left operand of non-nullable type String
 w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/presentation/quiz/QuizViewModel.kt:145:52 Elvis operator (?:) always returns the left operand of non-nullable type String
@@ -205,14 +292,23 @@ w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hda
 w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/ui/accessibility/AccessibilityViewModel.kt:305:32 Unnecessary safe call on a non-null receiver of type OCRResult
 w: file:///C:/Users/prana/AndroidStudioProjects/EduApp/app/src/main/java/com/hdaf/eduapp/ui/accessibility/AccessibilityViewModel.kt:315:69 Elvis operator (?:) always returns the left operand of non-nullable type String
 
+> Task :app:mergeProdDebugJavaResource
+> Task :app:transformProdDebugClassesWithAsm
+
 > Task :app:compileDevDebugJavaWithJavac
 Note: Some input files use or override a deprecated API.
 Note: Recompile with -Xlint:deprecation for details.
 
-> Task :app:hiltAggregateDepsDevDebug UP-TO-DATE
+> Task :app:hiltAggregateDepsDevDebug
+> Task :app:dexBuilderProdDebug
 > Task :app:hiltJavaCompileDevDebug
 > Task :app:processDevDebugJavaRes
-> Task :app:mergeDevDebugJavaResource UP-TO-DATE
+> Task :app:mergeProdDebugGlobalSynthetics UP-TO-DATE
+> Task :app:mergeProjectDexProdDebug
+> Task :app:mergeDevDebugJavaResource
+> Task :app:packageProdDebug
+> Task :app:createProdDebugApkListingFileRedirect UP-TO-DATE
+> Task :app:assembleProdDebug
 > Task :app:transformDevDebugClassesWithAsm
 > Task :app:dexBuilderDevDebug
 > Task :app:mergeDevDebugGlobalSynthetics UP-TO-DATE
@@ -228,5 +324,5 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/8.10.2/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD SUCCESSFUL in 2m 35s
-101 actionable tasks: 25 executed, 76 up-to-date
+BUILD SUCCESSFUL in 2m 43s
+101 actionable tasks: 26 executed, 75 up-to-date

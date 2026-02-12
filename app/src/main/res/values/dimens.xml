@@ -15,4 +15,7 @@
     <dimen name="corner_radius_md">12dp</dimen>
     <dimen name="corner_radius_lg">16dp</dimen>
     <dimen name="corner_radius_xl">24dp</dimen>
+    
+    <!-- Indicator size -->
+    <dimen name="indicator_size">10dp</dimen>
 </resources>
